@@ -1,12 +1,18 @@
 import type { StateCreator } from 'zustand';
 import type {
   AnchorRect,
+  AnyAppDefinition,
   FlyoutId,
   FlyoutState,
   Lang,
+  LocalizedValue,
   MenuItem,
+  Point,
+  Rect,
   Toast,
   ToastInput,
+  WindowState,
+  WindowStatus,
 } from '@/types';
 
 export interface SettingsSlice {
@@ -22,6 +28,30 @@ export interface SettingsSlice {
   restart: () => void;
 }
 
+export interface WindowsSlice {
+  windows: Record<string, WindowState>;
+  activeId: string | null;
+  zTop: number;
+  focusSeq: number;
+  // Opens a window – or focuses the existing one with the same instance key
+  openWindow: (app: AnyAppDefinition, args: unknown, origin: Point | null) => string;
+  closeWindow: (id: string) => void;
+  removeWindow: (id: string) => void;
+  minimizeWindow: (id: string) => void;
+  restoreWindow: (id: string) => void;
+  focusWindow: (id: string) => void;
+  blurWindows: () => void;
+  toggleMaximize: (id: string) => void;
+  maximizeWindow: (id: string) => void;
+  // Un-maximize without animation (e.g. while dragging)
+  unmaximizeTo: (id: string, rect: Rect) => void;
+  setWindowRect: (id: string, rect: Rect) => void;
+  setWindowStatus: (id: string, status: WindowStatus) => void;
+  setWindowTitle: (id: string, title: LocalizedValue) => void;
+  clearGeometryAnimation: (id: string) => void;
+  fitWindowsToViewport: () => void;
+}
+
 export interface UiSlice {
   flyout: FlyoutState | null;
   toasts: Toast[];
@@ -32,7 +62,7 @@ export interface UiSlice {
   dismissToast: (id: string) => void;
 }
 
-export type OsStore = SettingsSlice & UiSlice;
+export type OsStore = SettingsSlice & WindowsSlice & UiSlice;
 
 export type SliceCreator<T> = StateCreator<OsStore, [['zustand/persist', unknown]], [], T>;
 

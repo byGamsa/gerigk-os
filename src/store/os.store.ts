@@ -5,11 +5,13 @@ import { languages } from '@/i18n';
 import type { OsStore, PersistedState } from './os.store.types';
 import { createSettingsSlice } from './slices/settings.slice';
 import { createUiSlice } from './slices/ui.slice';
+import { createWindowsSlice } from './slices/windows.slice';
 
 export const useOsStore = create<OsStore>()(
   persist(
     (...a) => ({
       ...createSettingsSlice(...a),
+      ...createWindowsSlice(...a),
       ...createUiSlice(...a),
     }),
     {
