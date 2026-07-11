@@ -2,7 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, type CSSProperties, ty
 import { getApp } from '@/apps/registry';
 import { useT } from '@/hooks/useT';
 import { taskbarRegistry } from '@/lib/domRegistry';
-import { centerOf } from '@/lib/geometry';
+import { anchorFromPoint, centerOf } from '@/lib/geometry';
 import { useOsStore } from '@/store/os.store';
 import type { WindowState } from '@/types';
 import { useWindowDrag } from './useWindowDrag';
@@ -69,6 +69,26 @@ export function useWindow(id: string) {
     [toggleMaximize],
   );
 
+  const onTitlebarContextMenu = useCallback(
+    (e: MouseEvent) => {
+      e.preventDefault();
+      const w = useOsStore.getState().windows[id];
+      if (!w) return;
+      actions.openMenu(
+        [
+          { type: 'item', label: t('win.restore'), icon: 'restore', disabled: !w.maximized, onSelect: toggleMaximize },
+          { type: 'item', label: t('win.minimize'), icon: 'minimize', onSelect: minimize },
+          { type: 'item', label: t('win.maximize'), icon: 'maximize', disabled: w.maximized, onSelect: toggleMaximize },
+          { type: 'separator' },
+          { type: 'item', label: t('win.close'), icon: 'close', onSelect: close },
+        ],
+        anchorFromPoint(e.clientX, e.clientY),
+        `window:${id}`,
+      );
+    },
+    [actions, close, id, minimize, t, toggleMaximize],
+  );
+
   const style: CSSProperties | undefined = win && {
     left: win.rect.x,
     top: win.rect.y,
@@ -94,6 +114,7 @@ export function useWindow(id: string) {
     close,
     onTitlebarPointerDown,
     onTitlebarDoubleClick,
+    onTitlebarContextMenu,
     onResizePointerDown,
   };
 }

@@ -32,6 +32,7 @@ export function Window({ id }: WindowProps) {
         className={cn(s.titlebar, !w.isActive && s.titlebarInactive)}
         onPointerDown={w.onTitlebarPointerDown}
         onDoubleClick={w.onTitlebarDoubleClick}
+        onContextMenu={w.onTitlebarContextMenu}
       >
         <div className={s.title}>
           <Icon name={app.icon} className={s.titleIcon} />
