@@ -90,10 +90,11 @@ export function useWindow(id: string) {
   );
 
   const style: CSSProperties | undefined = win && {
-    left: win.rect.x,
-    top: win.rect.y,
-    width: win.rect.width,
-    height: win.rect.height,
+    // Whole pixels → crisp, cleanly anti-aliased edges
+    left: Math.round(win.rect.x),
+    top: Math.round(win.rect.y),
+    width: Math.round(win.rect.width),
+    height: Math.round(win.rect.height),
     minWidth: win.minSize.width,
     minHeight: win.minSize.height,
     zIndex: win.z,
