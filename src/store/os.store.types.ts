@@ -4,6 +4,7 @@ import type {
   AnyAppDefinition,
   FlyoutId,
   FlyoutState,
+  GridCell,
   Lang,
   LocalizedValue,
   MenuItem,
@@ -52,6 +53,14 @@ export interface WindowsSlice {
   fitWindowsToViewport: () => void;
 }
 
+export interface DesktopSlice {
+  iconPositions: Record<string, GridCell>;
+  snapPreview: boolean;
+  setIconPosition: (appId: string, cell: GridCell) => void;
+  resetIconPositions: () => void;
+  setSnapPreview: (visible: boolean) => void;
+}
+
 export interface UiSlice {
   flyout: FlyoutState | null;
   toasts: Toast[];
@@ -62,9 +71,9 @@ export interface UiSlice {
   dismissToast: (id: string) => void;
 }
 
-export type OsStore = SettingsSlice & WindowsSlice & UiSlice;
+export type OsStore = SettingsSlice & WindowsSlice & DesktopSlice & UiSlice;
 
 export type SliceCreator<T> = StateCreator<OsStore, [['zustand/persist', unknown]], [], T>;
 
 // Persisted part of the store
-export type PersistedState = Pick<OsStore, 'lang' | 'muted' | 'welcomed'>;
+export type PersistedState = Pick<OsStore, 'lang' | 'muted' | 'welcomed' | 'iconPositions'>;

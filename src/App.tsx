@@ -1,5 +1,9 @@
-import { WindowLayer } from './components/Window/WindowLayer';
+import { Desktop } from './components/Desktop/Desktop';
 
 export function App() {
-  return <WindowLayer />;
+  return (
+    <>
+      <Desktop />
+    </>
+  );
 }

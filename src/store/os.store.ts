@@ -3,6 +3,7 @@ import { createJSONStorage, persist } from 'zustand/middleware';
 import { osConfig } from '@/config/os.config';
 import { languages } from '@/i18n';
 import type { OsStore, PersistedState } from './os.store.types';
+import { createDesktopSlice } from './slices/desktop.slice';
 import { createSettingsSlice } from './slices/settings.slice';
 import { createUiSlice } from './slices/ui.slice';
 import { createWindowsSlice } from './slices/windows.slice';
@@ -12,6 +13,7 @@ export const useOsStore = create<OsStore>()(
     (...a) => ({
       ...createSettingsSlice(...a),
       ...createWindowsSlice(...a),
+      ...createDesktopSlice(...a),
       ...createUiSlice(...a),
     }),
     {
@@ -22,6 +24,7 @@ export const useOsStore = create<OsStore>()(
         lang: s.lang,
         muted: s.muted,
         welcomed: s.welcomed,
+        iconPositions: s.iconPositions,
       }),
       merge: (persisted, current) => {
         const p = (persisted ?? {}) as Partial<PersistedState>;
