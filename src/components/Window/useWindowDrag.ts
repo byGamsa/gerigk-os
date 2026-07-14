@@ -6,7 +6,7 @@ import type { Rect } from '@/types';
 
 const DRAG_THRESHOLD = 4;
 
-// Dragging via the title bar: un-maximizes under the cursor
+// Dragging via the title bar: un-maximizes under the cursor, snaps to maximize at the top edge
 export function useWindowDrag(id: string) {
   return useCallback(
     (e: ReactPointerEvent<HTMLElement>) => {
@@ -18,6 +18,7 @@ export function useWindowDrag(id: string) {
       const start = { x: e.clientX, y: e.clientY };
       let base: Rect = { ...store().windows[id]!.rect };
       let moving = false;
+      let snap = false;
 
       const onMove = (ev: PointerEvent) => {
         const dx = ev.clientX - start.x;
@@ -38,12 +39,21 @@ export function useWindowDrag(id: string) {
           x: clamp(base.x + dx, -base.width + 100, window.innerWidth - 100),
           y: clamp(base.y + dy, area.y, window.innerHeight - 60),
         });
+        const nextSnap = ev.clientY < area.y - 4;
+        if (nextSnap !== snap) {
+          snap = nextSnap;
+          store().setSnapPreview(snap);
+        }
       };
 
       const onUp = () => {
         handle.removeEventListener('pointermove', onMove);
         handle.removeEventListener('pointerup', onUp);
         handle.removeEventListener('pointercancel', onUp);
+        if (snap) {
+          store().setSnapPreview(false);
+          store().maximizeWindow(id);
+        }
       };
 
       handle.addEventListener('pointermove', onMove);
