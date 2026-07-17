@@ -31,6 +31,13 @@ export function Desktop() {
         })}
       </div>
 
+      {d.selection && (
+        <div
+          className={s.selection}
+          style={{ left: d.selection.x, top: d.selection.y, width: d.selection.width, height: d.selection.height }}
+        />
+      )}
+
       <WindowLayer />
     </main>
   );

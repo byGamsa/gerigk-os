@@ -2,10 +2,10 @@ import { useCallback, useLayoutEffect, useMemo, useRef, useState, type MouseEven
 import { desktopApps } from '@/apps/registry';
 import { useFullscreen } from '@/hooks/useFullscreen';
 import { useT } from '@/hooks/useT';
-import { anchorFromPoint } from '@/lib/geometry';
+import { anchorFromPoint, rectsIntersect } from '@/lib/geometry';
 import { cellKey, measureGrid, resolveIconLayout, type GridDims } from '@/lib/grid';
 import { useOsStore } from '@/store/os.store';
-import type { GridCell } from '@/types';
+import type { GridCell, Rect } from '@/types';
 
 // Grid dimensions of the icon layer, updated on resize
 function useGridDims() {
@@ -34,6 +34,7 @@ export function useDesktop() {
   const fullscreen = useFullscreen();
   const iconPositions = useOsStore((s) => s.iconPositions);
   const [selected, setSelected] = useState<ReadonlySet<string>>(new Set());
+  const [selection, setSelection] = useState<Rect | null>(null);
 
   const cells = useMemo(
     () =>
@@ -69,10 +70,43 @@ export function useDesktop() {
     });
   }, []);
 
+  // Selection rectangle on empty desktop space
   const onBackgroundPointerDown = useCallback((e: PointerEvent<HTMLDivElement>) => {
     if (e.button !== 0 || e.target !== e.currentTarget) return;
     useOsStore.getState().blurWindows();
     setSelected(new Set());
+
+    const layer = e.currentTarget;
+    layer.setPointerCapture(e.pointerId);
+    const start = { x: e.clientX, y: e.clientY };
+    const icons = Array.from(layer.querySelectorAll<HTMLElement>('[data-desktop-icon]'));
+
+    const onMove = (ev: globalThis.PointerEvent) => {
+      const rect = {
+        x: Math.min(start.x, ev.clientX),
+        y: Math.min(start.y, ev.clientY),
+        width: Math.abs(ev.clientX - start.x),
+        height: Math.abs(ev.clientY - start.y),
+      };
+      if (rect.width < 3 && rect.height < 3) return;
+      setSelection(rect);
+      setSelected(
+        new Set(
+          icons
+            .filter((icon) => rectsIntersect(icon.getBoundingClientRect(), rect))
+            .map((icon) => icon.dataset.desktopIcon!),
+        ),
+      );
+    };
+    const onUp = () => {
+      layer.removeEventListener('pointermove', onMove);
+      layer.removeEventListener('pointerup', onUp);
+      layer.removeEventListener('pointercancel', onUp);
+      setSelection(null);
+    };
+    layer.addEventListener('pointermove', onMove);
+    layer.addEventListener('pointerup', onUp);
+    layer.addEventListener('pointercancel', onUp);
   }, []);
 
   const onBackgroundContextMenu = useCallback(
@@ -104,6 +138,7 @@ export function useDesktop() {
     cells,
     occupiedFor,
     selected,
+    selection,
     selectIcon,
     onBackgroundPointerDown,
     onBackgroundContextMenu,
