@@ -1,16 +1,27 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useNow } from '@/hooks/useNow';
 import { useT } from '@/hooks/useT';
 import { formatDayHeading, formatLongDate, formatMonthYear, formatTime, weekdayLabels } from '@/lib/format';
+import { useOsStore } from '@/store/os.store';
 import type { MonthDirection } from './Calendar.types';
 import { addMonths, buildMonthGrid, startOfMonth, toDateKey } from './calendar.utils';
 
 export function useCalendar() {
   const now = useNow();
   const { t, lang, locale } = useT();
+  const openedAt = useOsStore((s) => (s.flyout?.id === 'calendar' ? s.flyout.openedAt : null));
   const [month, setMonth] = useState(() => startOfMonth(now));
   const [selected, setSelected] = useState(() => now);
   const [direction, setDirection] = useState<MonthDirection>(0);
+
+  // Jump to today on every open
+  useEffect(() => {
+    if (openedAt === null) return;
+    const today = new Date();
+    setMonth(startOfMonth(today));
+    setSelected(today);
+    setDirection(0);
+  }, [openedAt]);
 
   const todayKey = toDateKey(now);
   const days = useMemo(
