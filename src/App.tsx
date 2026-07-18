@@ -1,3 +1,4 @@
+import { Calendar } from './components/Calendar/Calendar';
 import { Desktop } from './components/Desktop/Desktop';
 import { StartMenu } from './components/StartMenu/StartMenu';
 import { Taskbar } from './components/Taskbar/Taskbar';
@@ -12,6 +13,7 @@ export function App() {
       <Taskbar />
 
       <StartMenu />
+      <Calendar />
     </>
   );
 }
