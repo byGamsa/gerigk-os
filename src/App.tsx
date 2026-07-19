@@ -1,5 +1,6 @@
 import { Calendar } from './components/Calendar/Calendar';
 import { Desktop } from './components/Desktop/Desktop';
+import { QuickSettings } from './components/QuickSettings/QuickSettings';
 import { StartMenu } from './components/StartMenu/StartMenu';
 import { Taskbar } from './components/Taskbar/Taskbar';
 import { useGlobalListeners } from './hooks/useGlobalListeners';
@@ -14,6 +15,7 @@ export function App() {
 
       <StartMenu />
       <Calendar />
+      <QuickSettings />
     </>
   );
 }
