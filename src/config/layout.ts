@@ -15,7 +15,7 @@ export const layout = {
     iconWidth: 88,
   },
   window: {
-    defaultWidth: 720,
+    defaultWidth: 760,
     defaultHeight: 500,
     minWidth: 320,
     minHeight: 200,
