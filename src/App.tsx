@@ -1,4 +1,5 @@
 import { Calendar } from './components/Calendar/Calendar';
+import { ContextMenu } from './components/ContextMenu/ContextMenu';
 import { Desktop } from './components/Desktop/Desktop';
 import { QuickSettings } from './components/QuickSettings/QuickSettings';
 import { StartMenu } from './components/StartMenu/StartMenu';
@@ -16,6 +17,7 @@ export function App() {
       <StartMenu />
       <Calendar />
       <QuickSettings />
+      <ContextMenu />
     </>
   );
 }
