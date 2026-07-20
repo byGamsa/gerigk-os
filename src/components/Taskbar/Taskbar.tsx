@@ -6,7 +6,7 @@ import { TaskbarButton } from './TaskbarButton';
 import { useTaskbar } from './useTaskbar';
 
 export function Taskbar() {
-  const { items, t, tr, onActivate, toggleStart } = useTaskbar();
+  const { items, t, tr, onActivate, onContextMenu, toggleStart } = useTaskbar();
 
   return (
     <div className={s.root}>
@@ -29,6 +29,7 @@ export function Taskbar() {
               item={item}
               label={tr(item.app.title)}
               onActivate={onActivate}
+              onContextMenu={onContextMenu}
             />
           ))}
         </div>

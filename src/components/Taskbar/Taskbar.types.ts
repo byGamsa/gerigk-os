@@ -12,4 +12,5 @@ export interface TaskbarButtonProps {
   item: TaskbarItem;
   label: string;
   onActivate: (appId: string, el: HTMLElement) => void;
+  onContextMenu: (appId: string, e: React.MouseEvent<HTMLButtonElement>) => void;
 }

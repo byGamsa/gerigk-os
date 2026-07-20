@@ -5,7 +5,7 @@ import { Icon } from '../Icon/Icon';
 import { taskbarStyles as s } from './Taskbar.styles';
 import type { TaskbarButtonProps } from './Taskbar.types';
 
-export function TaskbarButton({ item, label, onActivate }: TaskbarButtonProps) {
+export function TaskbarButton({ item, label, onActivate, onContextMenu }: TaskbarButtonProps) {
   const { app, phase, running, active } = item;
   const register = useCallback(
     (el: HTMLButtonElement | null) => {
@@ -23,6 +23,7 @@ export function TaskbarButton({ item, label, onActivate }: TaskbarButtonProps) {
       aria-pressed={active}
       className={cn(s.button, active && s.buttonActive, phase !== 'present' && s.buttonHidden)}
       onClick={(e) => onActivate(app.id, e.currentTarget)}
+      onContextMenu={(e) => onContextMenu(app.id, e)}
     >
       <Icon name={app.icon} className={s.icon} />
       <span className={cn(s.indicator, active ? s.indicatorActive : running ? s.indicatorRunning : s.indicatorIdle)} />

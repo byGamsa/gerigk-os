@@ -1,10 +1,10 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, type MouseEvent } from 'react';
 import { useShallow } from 'zustand/react/shallow';
 import { getApp, pinnedApps } from '@/apps/registry';
 import { usePresence } from '@/hooks/usePresence';
 import { useT } from '@/hooks/useT';
 import { anchorFromElement } from '@/lib/geometry';
-import { activateFromTaskbar } from '@/services/launcher';
+import { activateFromTaskbar, closeAppWindows, launchApp } from '@/services/launcher';
 import { useOsStore } from '@/store/os.store';
 import type { AnyAppDefinition } from '@/types';
 import type { TaskbarItem } from './Taskbar.types';
@@ -45,9 +45,31 @@ export function useTaskbar() {
 
   const onActivate = useCallback((appId: string, el: HTMLElement) => activateFromTaskbar(appId, el), []);
 
+  const onContextMenu = useCallback(
+    (appId: string, e: MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault();
+      const app = getApp(appId);
+      if (!app) return;
+      const el = e.currentTarget;
+      const running = runningIds.includes(appId);
+      useOsStore.getState().openMenu(
+        [
+          { type: 'label', label: tr(app.title) },
+          { type: 'item', label: t('task.open'), icon: app.icon, onSelect: () => launchApp(appId, undefined, el) },
+          ...(running
+            ? [{ type: 'item' as const, label: t('task.closeAll'), icon: 'close' as const, onSelect: () => closeAppWindows(appId) }]
+            : []),
+        ],
+        anchorFromElement(el),
+        `task:${appId}`,
+      );
+    },
+    [runningIds, t, tr],
+  );
+
   const toggleStart = useCallback((el: HTMLElement) => {
     useOsStore.getState().toggleFlyout('start', anchorFromElement(el), 'taskbar');
   }, []);
 
-  return { items, tr, t, onActivate, toggleStart };
+  return { items, tr, t, onActivate, onContextMenu, toggleStart };
 }
