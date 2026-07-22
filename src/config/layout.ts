@@ -3,7 +3,7 @@ export const layout = {
   // Distance of the top bar from the screen edge
   barGap: 6,
   topbarHeight: 34,
-  taskbarHeight: 56,
+  taskbarHeight: 62,
   // Distance of the taskbar from the bottom edge
   taskbarOffset: 12,
   // Gap between maximized windows and bars/edges
