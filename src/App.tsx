@@ -1,3 +1,4 @@
+import { Boot } from './components/Boot/Boot';
 import { Calendar } from './components/Calendar/Calendar';
 import { ContextMenu } from './components/ContextMenu/ContextMenu';
 import { Desktop } from './components/Desktop/Desktop';
@@ -20,6 +21,8 @@ export function App() {
       <QuickSettings />
       <ContextMenu />
       <Toasts />
+
+      <Boot />
     </>
   );
 }
