@@ -1,5 +1,5 @@
-import { locales } from "@/i18n";
-import type { Lang } from "@/types";
+import { locales } from '@/i18n';
+import type { Lang } from '@/types';
 
 const cache = new Map<string, Intl.DateTimeFormat>();
 

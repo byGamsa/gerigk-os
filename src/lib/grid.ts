@@ -1,6 +1,6 @@
-import { layout } from "@/config/layout";
-import type { GridCell, Point } from "@/types";
-import { clamp } from "./math";
+import { layout } from '@/config/layout';
+import type { GridCell, Point } from '@/types';
+import { clamp } from './math';
 
 const { cellWidth, cellHeight, padding, iconWidth } = layout.grid;
 
