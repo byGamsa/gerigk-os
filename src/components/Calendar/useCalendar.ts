@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState, type WheelEvent } from 'react';
 import { useNow } from '@/hooks/useNow';
 import { useT } from '@/hooks/useT';
 import { formatDayHeading, formatLongDate, formatMonthYear, formatTime, weekdayLabels } from '@/lib/format';
@@ -42,6 +42,8 @@ export function useCalendar() {
     setSelected(today);
   }, []);
 
+  const onWheel = useCallback((e: WheelEvent) => shift(e.deltaY > 0 ? 1 : -1), [shift]);
+
   return {
     t,
     heading: formatDayHeading(now, lang),
@@ -56,6 +58,7 @@ export function useCalendar() {
     prev: () => shift(-1),
     next: () => shift(1),
     goToday,
+    onWheel,
     dayLabel: (d: Date) => formatLongDate(d, lang),
   };
 }

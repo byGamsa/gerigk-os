@@ -26,7 +26,7 @@ export function Calendar() {
         </div>
       </div>
 
-      <div key={cal.monthKey} role="grid" className={cn(s.grid, s.gridAnimate[cal.direction])}>
+      <div key={cal.monthKey} role="grid" className={cn(s.grid, s.gridAnimate[cal.direction])} onWheel={cal.onWheel}>
         {cal.weekdays.map((wd) => (
           <div key={wd} role="columnheader" className={s.weekday}>
             {wd}
