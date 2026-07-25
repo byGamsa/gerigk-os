@@ -52,4 +52,9 @@ export const en: Dictionary = {
 
   'toast.welcome':
     'Welcome! Double-click an icon to open an app. By the way, there is still something in the recycle bin …',
+
+  'about.title': 'About me',
+  'about.skills': 'Skills',
+  'about.contact': 'Contact',
+  'about.note': 'Placeholder – edit the content in src/apps/About/about.content.ts.',
 };

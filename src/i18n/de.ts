@@ -50,4 +50,9 @@ export const de = {
 
   'toast.welcome':
     'Willkommen! Doppelklicke auf ein Symbol, um eine App zu öffnen. Im Papierkorb liegt übrigens noch etwas …',
+
+  'about.title': 'Über mich',
+  'about.skills': 'Skills',
+  'about.contact': 'Kontakt',
+  'about.note': 'Platzhalter – Inhalte in src/apps/About/about.content.ts anpassen.',
 } as const;
