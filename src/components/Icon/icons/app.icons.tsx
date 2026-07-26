@@ -48,6 +48,15 @@ function Tile({ gradient: [from, to], children, ...p }: IconSvgProps & { gradien
   );
 }
 
+function Notepad(p: IconSvgProps) {
+  return (
+    <Tile gradient={['#86d4ff', '#2d6be6']} {...p}>
+      <rect x="17" y="13" width="30" height="38" rx="4.5" fill="#fff" fillOpacity=".96" />
+      <path d="M23 23h18M23 30h18M23 37h11" stroke="#2d6be6" strokeWidth="3" strokeLinecap="round" />
+    </Tile>
+  );
+}
+
 function About(p: IconSvgProps) {
   return (
     <Tile gradient={['#ffbd73', '#ff5f8a']} {...p}>
@@ -59,5 +68,6 @@ function About(p: IconSvgProps) {
 
 export const appIcons = {
   logo: Logo,
+  notepad: Notepad,
   about: About,
 } satisfies Record<string, IconComponent>;

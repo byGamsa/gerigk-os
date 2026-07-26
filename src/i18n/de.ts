@@ -51,6 +51,14 @@ export const de = {
   'toast.welcome':
     'Willkommen! Doppelklicke auf ein Symbol, um eine App zu öffnen. Im Papierkorb liegt übrigens noch etwas …',
 
+  'np.title': 'Editor',
+  'np.untitled': 'Unbenannt',
+  'np.menu.file': 'Datei',
+  'np.menu.edit': 'Bearbeiten',
+  'np.menu.view': 'Ansicht',
+  'np.position': 'Zeile {line}, Spalte {col}',
+  'np.chars': '{n} Zeichen',
+
   'about.title': 'Über mich',
   'about.skills': 'Skills',
   'about.contact': 'Kontakt',

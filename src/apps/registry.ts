@@ -1,8 +1,9 @@
 import type { AnyAppDefinition, AppId } from '@/types';
 import { aboutApp } from './About';
+import { notepadApp } from './Notepad';
 
 // All installed apps – new apps: create a folder in `src/apps/`, use `defineApp` and register here
-export const apps: readonly AnyAppDefinition[] = [aboutApp];
+export const apps: readonly AnyAppDefinition[] = [aboutApp, notepadApp];
 
 const byId = new Map(apps.map((app) => [app.id, app]));
 

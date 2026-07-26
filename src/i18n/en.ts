@@ -53,6 +53,14 @@ export const en: Dictionary = {
   'toast.welcome':
     'Welcome! Double-click an icon to open an app. By the way, there is still something in the recycle bin …',
 
+  'np.title': 'Notepad',
+  'np.untitled': 'Untitled',
+  'np.menu.file': 'File',
+  'np.menu.edit': 'Edit',
+  'np.menu.view': 'View',
+  'np.position': 'Ln {line}, Col {col}',
+  'np.chars': '{n} characters',
+
   'about.title': 'About me',
   'about.skills': 'Skills',
   'about.contact': 'Contact',
