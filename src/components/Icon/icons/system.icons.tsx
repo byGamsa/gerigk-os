@@ -47,6 +47,16 @@ export const systemIcons = {
       <path d="m9 6 6 6-6 6" />
     </Stroke>
   ),
+  arrowLeft: (p) => (
+    <Stroke {...p}>
+      <path d="M19 12H5m6-6-6 6 6 6" />
+    </Stroke>
+  ),
+  arrowRight: (p) => (
+    <Stroke {...p}>
+      <path d="M5 12h14m-6-6 6 6-6 6" />
+    </Stroke>
+  ),
   wifi: (p) => (
     <Stroke {...p}>
       <path d="M2.5 8.8a14 14 0 0 1 19 0" />
@@ -144,6 +154,36 @@ export const systemIcons = {
     <Stroke {...p}>
       <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3" />
       <path d="M19.5 4.5v4h-4" />
+    </Stroke>
+  ),
+  monitor: (p) => (
+    <Stroke {...p}>
+      <rect x="3" y="4.5" width="18" height="12" rx="2" />
+      <path d="M9 20h6m-3-3.5V20" />
+    </Stroke>
+  ),
+  document: (p) => (
+    <Stroke {...p}>
+      <path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8z" />
+      <path d="M14 3.5V8h4.5M9 13h6m-6 3.5h4" />
+    </Stroke>
+  ),
+  image: (p) => (
+    <Stroke {...p}>
+      <rect x="3.5" y="4.5" width="17" height="15" rx="2.5" />
+      <circle cx="9" cy="10" r="1.7" />
+      <path d="m20.5 16-5-5-8.5 8.5" />
+    </Stroke>
+  ),
+  restoreFile: (p) => (
+    <Stroke {...p}>
+      <path d="M4 12a8 8 0 1 0 2.4-5.7" />
+      <path d="M4 4.5v4h4" />
+    </Stroke>
+  ),
+  trashSmall: (p) => (
+    <Stroke {...p}>
+      <path d="M4.5 7h15M9.5 7V5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v2M6.5 7l.9 11.5a2 2 0 0 0 2 1.8h5.2a2 2 0 0 0 2-1.8L17.5 7" />
     </Stroke>
   ),
 } satisfies Record<string, IconComponent>;
