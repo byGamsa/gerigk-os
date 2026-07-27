@@ -18,9 +18,19 @@ export function Notepad({ windowId, args }: AppWindowProps<NotepadArgs>) {
         className={s.editor}
         value={np.text}
         onChange={np.onChange}
+        onSelect={np.onCaret}
+        onKeyUp={np.onCaret}
+        onClick={np.onCaret}
         spellCheck={false}
         aria-label={np.t('np.title')}
       />
+
+      <footer className={s.status}>
+        <span className={s.position}>{np.position}</span>
+        <span className={s.hideNarrow}>{np.chars}</span>
+        <span className={s.hideNarrow}>100 %</span>
+        <span>UTF-8</span>
+      </footer>
     </div>
   );
 }

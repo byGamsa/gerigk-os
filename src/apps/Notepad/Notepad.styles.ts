@@ -5,4 +5,7 @@ export const notepadStyles = {
   menu: 'flex gap-0.5 px-2 pb-1.5 text-[13px]',
   menuItem: `rounded-md px-2.5 py-1 ${tokens.hover}`,
   editor: `flex-1 resize-none select-text border-t border-surface-line bg-surface-well px-5 py-4 font-mono text-sm leading-relaxed text-[#f3eee9] outline-none selection:bg-accent/40 ${tokens.scroll}`,
+  status: 'flex h-7 shrink-0 items-center justify-end gap-5 border-t border-surface-line px-3.5 text-xs text-ink-dim',
+  position: 'mr-auto tabular',
+  hideNarrow: 'hidden @[480px]:inline',
 } as const;
