@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import containerQueries from '@tailwindcss/container-queries';
 import plugin from 'tailwindcss/plugin';
 import { deskInsets, layout } from './src/config/layout';
 
@@ -98,6 +99,7 @@ export default {
     },
   },
   plugins: [
+    containerQueries,
     plugin(({ addComponents, addUtilities, theme }) => {
       addComponents({
         // Light liquid glass – bars, snap preview

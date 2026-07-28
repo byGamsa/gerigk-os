@@ -30,6 +30,48 @@ function Logo(p: IconSvgProps) {
   );
 }
 
+// Glass recycle bin with recycling arrows
+function Trash(p: IconSvgProps) {
+  const body = useSvgId('tb');
+  const arrow = useSvgId('ta');
+  const shine = useSvgId('ts');
+  return (
+    <svg viewBox="0 0 64 64" {...p}>
+      <defs>
+        <linearGradient id={body} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#fff" stopOpacity=".92" />
+          <stop offset=".55" stopColor="#dcebff" stopOpacity=".55" />
+          <stop offset="1" stopColor="#b9d6ff" stopOpacity=".5" />
+        </linearGradient>
+        <linearGradient id={arrow} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#6cc0ff" />
+          <stop offset="1" stopColor="#1e6fe0" />
+        </linearGradient>
+        <linearGradient id={shine} x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#fff" stopOpacity=".9" />
+          <stop offset="1" stopColor="#fff" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      <path
+        d="M13.5 19h37l-3.3 36.4A5 5 0 0 1 42.2 60H21.8a5 5 0 0 1-5-4.6z"
+        fill={`url(#${body})`}
+        stroke="#fff"
+        strokeOpacity=".95"
+        strokeWidth="1.2"
+      />
+      <path d="M18 22h3l2.6 33h-3z" fill={`url(#${shine})`} opacity=".7" />
+      <rect x="10.5" y="12" width="43" height="7.5" rx="3.75" fill="#fff" fillOpacity=".95" />
+      <rect x="25.5" y="7.5" width="13" height="5.5" rx="2.2" fill="none" stroke="#fff" strokeWidth="2" />
+      <g fill="none" stroke={`url(#${arrow})`} strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M24.5 41a8 8 0 0 1 11.7-9.2" />
+        <path d="m36.6 28.2.1 4-3.9.7" />
+        <path d="M39.5 37a8 8 0 0 1-11.7 9.2" />
+        <path d="m27.4 49.8-.1-4 3.9-.7" />
+      </g>
+    </svg>
+  );
+}
+
 // iOS-like tile icon with gradient
 function Tile({ gradient: [from, to], children, ...p }: IconSvgProps & { gradient: readonly [string, string] }) {
   const g = useSvgId('tile');
@@ -66,8 +108,37 @@ function About(p: IconSvgProps) {
   );
 }
 
+function TextFile(p: IconSvgProps) {
+  return (
+    <svg viewBox="0 0 48 48" {...p}>
+      <path d="M12 4h17l11 11v27a3 3 0 0 1-3 3H12a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3z" fill="#f4f7fb" />
+      <path d="M29 4v8a3 3 0 0 0 3 3h8z" fill="#c9d4e2" />
+      <path d="M15 22h18M15 28h18M15 34h12" stroke="#8a9bb2" strokeWidth="2.2" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function Folder(p: IconSvgProps) {
+  const g = useSvgId('fd');
+  return (
+    <svg viewBox="0 0 48 48" {...p}>
+      <defs>
+        <linearGradient id={g} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#ffd86b" />
+          <stop offset="1" stopColor="#f5a524" />
+        </linearGradient>
+      </defs>
+      <path d="M5 12a3 3 0 0 1 3-3h10l4 4h18a3 3 0 0 1 3 3v2H5z" fill="#e59a1c" />
+      <rect x="5" y="16" width="38" height="24" rx="3.5" fill={`url(#${g})`} />
+    </svg>
+  );
+}
+
 export const appIcons = {
   logo: Logo,
+  trash: Trash,
   notepad: Notepad,
   about: About,
+  textFile: TextFile,
+  folder: Folder,
 } satisfies Record<string, IconComponent>;

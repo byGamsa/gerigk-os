@@ -53,6 +53,27 @@ export const en: Dictionary = {
   'toast.welcome':
     'Welcome! Double-click an icon to open an app. By the way, there is still something in the recycle bin …',
 
+  'explorer.thisPc': 'This PC',
+  'explorer.back': 'Back',
+  'explorer.forward': 'Forward',
+  'explorer.search': 'Search {folder}',
+  'explorer.col.name': 'Name',
+  'explorer.col.origin': 'Original location',
+  'explorer.col.deleted': 'Date deleted',
+  'explorer.col.modified': 'Date modified',
+  'explorer.col.type': 'Type',
+  'explorer.col.size': 'Size',
+  'explorer.type.text': 'Text document',
+  'explorer.type.shortcut': 'Shortcut',
+  'explorer.items': '{n} item(s)',
+  'explorer.empty': 'This folder is empty.',
+  'explorer.noMatches': 'No matches',
+
+  'trash.title': 'Recycle Bin',
+  'trash.empty': 'Empty Recycle Bin',
+  'trash.restore': 'Restore',
+  'trash.emptyNope': 'Nice try 😉 – this file stays right where it is.',
+
   'np.title': 'Notepad',
   'np.untitled': 'Untitled',
   'np.menu.file': 'File',

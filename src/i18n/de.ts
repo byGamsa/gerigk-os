@@ -51,6 +51,27 @@ export const de = {
   'toast.welcome':
     'Willkommen! Doppelklicke auf ein Symbol, um eine App zu öffnen. Im Papierkorb liegt übrigens noch etwas …',
 
+  'explorer.thisPc': 'Dieser PC',
+  'explorer.back': 'Zurück',
+  'explorer.forward': 'Vor',
+  'explorer.search': '{folder} durchsuchen',
+  'explorer.col.name': 'Name',
+  'explorer.col.origin': 'Ursprünglicher Ort',
+  'explorer.col.deleted': 'Gelöscht am',
+  'explorer.col.modified': 'Geändert am',
+  'explorer.col.type': 'Typ',
+  'explorer.col.size': 'Größe',
+  'explorer.type.text': 'Textdokument',
+  'explorer.type.shortcut': 'Verknüpfung',
+  'explorer.items': '{n} Element(e)',
+  'explorer.empty': 'Dieser Ordner ist leer.',
+  'explorer.noMatches': 'Keine Treffer',
+
+  'trash.title': 'Papierkorb',
+  'trash.empty': 'Papierkorb leeren',
+  'trash.restore': 'Wiederherstellen',
+  'trash.emptyNope': 'Netter Versuch 😉 – diese Datei bleibt, wo sie ist.',
+
   'np.title': 'Editor',
   'np.untitled': 'Unbenannt',
   'np.menu.file': 'Datei',
