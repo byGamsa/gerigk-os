@@ -13,11 +13,11 @@ export const de = {
   'win.minimize': 'Minimieren',
   'win.maximize': 'Maximieren',
   'win.restore': 'Wiederherstellen',
-  'win.close': 'Schliessen',
+  'win.close': 'Schließen',
 
   'task.open': 'Öffnen',
   'task.closeAll': 'Alle Fenster schließen',
-  'task.close': 'Fenster schliessen',
+  'task.close': 'Fenster schließen',
 
   'ctx.open': 'Öffnen',
   'ctx.arrange': 'Symbole anordnen',
