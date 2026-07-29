@@ -16,6 +16,7 @@ const DEFAULT_COLUMNS: readonly ExplorerColumn[] = ['name', 'modified', 'type', 
 export function useExplorer(windowId: string, initialFolder: FolderId) {
   const { t, tr, lang } = useT();
   const [history, setHistory] = useState<ExplorerHistory>({ stack: [initialFolder], index: 0 });
+  const [query, setQuery] = useState('');
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
   const folderId = history.stack[history.index] ?? initialFolder;
@@ -28,6 +29,7 @@ export function useExplorer(windowId: string, initialFolder: FolderId) {
   // ---------- Navigation ----------
 
   const resetView = () => {
+    setQuery('');
     setSelectedId(null);
   };
 
@@ -54,6 +56,7 @@ export function useExplorer(windowId: string, initialFolder: FolderId) {
   // ---------- Entries ----------
 
   const rows = useMemo<ExplorerRow[]>(() => {
+    const q = query.trim().toLowerCase();
     return entriesIn(folderId)
       .map((entry): ExplorerRow => {
         if (entry.kind === 'shortcut') {
@@ -83,8 +86,9 @@ export function useExplorer(windowId: string, initialFolder: FolderId) {
             size: formatFileSize(new Blob([tr(entry.content)]).size),
           },
         };
-      });
-  }, [folderId, lang, t, tr]);
+      })
+      .filter((row) => row.cells.name.toLowerCase().includes(q));
+  }, [folderId, lang, query, t, tr]);
 
   // ---------- Opening ----------
 
@@ -126,6 +130,8 @@ export function useExplorer(windowId: string, initialFolder: FolderId) {
     columnLabel,
     rows,
     total: entriesIn(folderId).length,
+    query,
+    setQuery,
     selectedId,
     rowHandlers,
     navigate,

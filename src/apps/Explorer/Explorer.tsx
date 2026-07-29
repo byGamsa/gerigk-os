@@ -27,6 +27,15 @@ export function Explorer({ windowId, initialFolder }: ExplorerProps) {
           <Icon name="chevronRight" className={s.pathSeparator} />
           <span className={s.pathCurrent}>{folderName}</span>
         </div>
+        <label className={s.search}>
+          <Icon name="search" className={s.searchIcon} />
+          <input
+            className={s.searchInput}
+            value={ex.query}
+            onChange={(e) => ex.setQuery(e.target.value)}
+            placeholder={t('explorer.search', { folder: folderName })}
+          />
+        </label>
       </div>
 
       <div className={s.main}>

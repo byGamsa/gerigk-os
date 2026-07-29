@@ -15,6 +15,9 @@ export const explorerStyles = {
   pathRoot: 'hidden shrink-0 text-ink-dim @[420px]:inline',
   pathSeparator: 'hidden size-3 shrink-0 text-ink-faint @[420px]:block',
   pathCurrent: 'truncate',
+  search: `${tokens.field} w-32 @[560px]:w-52`,
+  searchIcon: 'size-3.5 shrink-0 text-ink-dim',
+  searchInput: tokens.input,
 
   main: 'flex min-h-0 flex-1 border-t border-surface-line',
   sidebar: `hidden w-44 shrink-0 flex-col gap-0.5 border-r border-surface-line p-2 ${tokens.scroll} @[560px]:flex`,
