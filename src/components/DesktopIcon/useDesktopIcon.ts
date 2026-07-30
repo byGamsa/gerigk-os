@@ -45,6 +45,9 @@ export function useDesktopIcon({ app, cell, dims, occupied, onSelect }: DesktopI
           const target = pointToCell({ x: base.x + ev.clientX - start.x, y: base.y + ev.clientY - start.y }, dims);
           useOsStore.getState().setIconPosition(app.id, findFreeCell(target, occupied, dims));
           setDrag(null);
+        } else if (ev.type === 'pointerup' && ev.pointerType !== 'mouse') {
+          // Touch: a single tap opens
+          open(el);
         }
       };
 
