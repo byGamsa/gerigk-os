@@ -5,6 +5,18 @@ import { deskInsets, layout } from './src/config/layout';
 
 const px = (value: number) => `${value}px`;
 
+// Liquid-glass light edge: a real 1px border overlay, brighter on top, nearly invisible at the bottom
+const glassEdge = (top: number, sides: number, bottom: number) => ({
+  content: '""',
+  position: 'absolute',
+  inset: '0',
+  zIndex: '20',
+  borderRadius: 'inherit',
+  pointerEvents: 'none',
+  border: '1px solid transparent',
+  borderColor: `rgba(255,255,255,${top}) rgba(255,255,255,${sides}) rgba(255,255,255,${bottom})`,
+});
+
 export default {
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
@@ -49,8 +61,9 @@ export default {
         bar: '22px',
       },
       boxShadow: {
-        glass: 'inset 0 1px 0 rgba(255,255,255,.35), 0 12px 40px -8px rgba(0,0,0,.35)',
-        panel: 'inset 0 1px 0 rgba(255,255,255,.2), 0 24px 60px -12px rgba(0,0,0,.55), 0 2px 8px rgba(0,0,0,.18)',
+        // Soft shadows only – the edge comes from the overlay (glassEdge), no hard outer ring
+        glass: '0 12px 40px -8px rgba(0,0,0,.35)',
+        panel: '0 24px 60px -12px rgba(0,0,0,.55), 0 2px 8px rgba(0,0,0,.18)',
         window: '0 30px 80px -12px rgba(0,0,0,.6), 0 4px 14px rgba(0,0,0,.22)',
         'window-inactive': '0 16px 40px -12px rgba(0,0,0,.45), 0 2px 8px rgba(0,0,0,.16)',
         glow: '0 4px 16px rgba(90,169,255,.45)',
@@ -109,6 +122,7 @@ export default {
           backdropFilter: 'blur(22px) saturate(185%)',
           WebkitBackdropFilter: 'blur(22px) saturate(185%)',
           boxShadow: theme('boxShadow.glass'),
+          '&::after': glassEdge(0.34, 0.14, 0.08),
         },
         // Denser glass – flyouts, menus, toasts
         '.glass-strong': {
@@ -116,13 +130,14 @@ export default {
           backdropFilter: 'blur(36px) saturate(180%)',
           WebkitBackdropFilter: 'blur(36px) saturate(180%)',
           boxShadow: theme('boxShadow.panel'),
+          '&::after': glassEdge(0.2, 0.1, 0.05),
         },
         // Windows
         '.glass-window': {
           background: 'linear-gradient(160deg, rgba(52,45,49,.66), rgba(22,19,22,.76))',
           backdropFilter: 'blur(40px) saturate(170%)',
           WebkitBackdropFilter: 'blur(40px) saturate(170%)',
-          boxShadow: 'inset 0 1px 0 rgba(255,255,255,.16)',
+          '&::after': glassEdge(0.16, 0.08, 0.04),
         },
       });
       addUtilities({
