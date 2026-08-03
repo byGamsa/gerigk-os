@@ -38,6 +38,19 @@ export function Explorer({ windowId, initialFolder }: ExplorerProps) {
         </label>
       </div>
 
+      {ex.isTrash && (
+        <div className={s.actions}>
+          <button type="button" className={s.action} onClick={ex.emptyBin}>
+            <Icon name="trashSmall" className={s.actionIcon} />
+            {t('trash.empty')}
+          </button>
+          <button type="button" className={s.action} disabled>
+            <Icon name="restoreFile" className={s.actionIcon} />
+            {t('trash.restore')}
+          </button>
+        </div>
+      )}
+
       <div className={s.main}>
         <nav className={s.sidebar} aria-label={t('explorer.thisPc')}>
           {ex.folders.map((f) => (

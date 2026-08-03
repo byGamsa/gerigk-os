@@ -3,8 +3,10 @@ import { getApp } from '@/apps/registry';
 import { entriesIn, folders, getFolder } from '@/data/fileSystem';
 import { useT } from '@/hooks/useT';
 import { useWindowTitle } from '@/hooks/useWindowTitle';
+import { localize } from '@/i18n';
 import { formatDateTime, formatFileSize } from '@/lib/format';
 import { launchApp } from '@/services/launcher';
+import { useOsStore } from '@/store/os.store';
 import type { FolderId, FsEntry } from '@/types';
 import type { NotepadArgs } from '../Notepad/Notepad.types';
 import type { ExplorerColumn, ExplorerHistory, ExplorerRow } from './Explorer.types';
@@ -111,6 +113,11 @@ export function useExplorer(windowId: string, initialFolder: FolderId) {
     [open],
   );
 
+  const emptyBin = useCallback(
+    () => useOsStore.getState().notify({ text: localize('trash.emptyNope'), icon: 'trash' }),
+    [],
+  );
+
   const columnLabel: Record<ExplorerColumn, string> = {
     name: t('explorer.col.name'),
     origin: t('explorer.col.origin'),
@@ -139,5 +146,6 @@ export function useExplorer(windowId: string, initialFolder: FolderId) {
     canGoForward,
     goBack,
     goForward,
+    emptyBin,
   };
 }
