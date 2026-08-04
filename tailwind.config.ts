@@ -32,7 +32,7 @@ export default {
         ink: {
           DEFAULT: '#ffffff',
           soft: 'rgba(255,255,255,.86)',
-          dim: 'rgba(255,255,255,.56)',
+          dim: 'rgba(255,255,255,.64)',
           faint: 'rgba(255,255,255,.36)',
         },
         surface: {
