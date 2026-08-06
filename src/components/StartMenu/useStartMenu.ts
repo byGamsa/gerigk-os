@@ -12,12 +12,14 @@ export function useStartMenu() {
   const [query, setQuery] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // On open: clear the search and focus it
+  // On open: clear the search and focus it (mouse/keyboard only)
   useEffect(() => {
     if (!open) return;
     setQuery('');
-    const timer = window.setTimeout(() => inputRef.current?.focus(), 60);
-    return () => window.clearTimeout(timer);
+    if (window.matchMedia('(pointer: fine)').matches) {
+      const timer = window.setTimeout(() => inputRef.current?.focus(), 60);
+      return () => window.clearTimeout(timer);
+    }
   }, [open]);
 
   const results = useMemo(() => {
