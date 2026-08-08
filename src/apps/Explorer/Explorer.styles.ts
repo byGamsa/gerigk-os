@@ -19,6 +19,12 @@ export const explorerStyles = {
   searchIcon: 'size-3.5 shrink-0 text-ink-dim',
   searchInput: tokens.input,
 
+  // Folder chips for narrow windows (sidebar is hidden there)
+  tabs: `flex shrink-0 gap-1.5 overflow-x-auto px-3 pb-2.5 [scrollbar-width:none] @[560px]:hidden`,
+  tab: `inline-flex h-7 shrink-0 items-center gap-1.5 rounded-full bg-white/[.07] px-3 text-xs ${tokens.hover} ${tokens.focusRing}`,
+  tabActive: 'bg-surface-active',
+  tabIcon: 'size-3.5',
+
   actions: 'flex gap-1.5 border-t border-surface-line px-3 py-2',
   action: `inline-flex h-[30px] items-center gap-2 rounded-lg px-3 text-[13px] ${tokens.hover} ${tokens.focusRing} disabled:pointer-events-none disabled:opacity-40`,
   actionIcon: 'size-4',

@@ -38,6 +38,15 @@ export function Explorer({ windowId, initialFolder }: ExplorerProps) {
         </label>
       </div>
 
+      <nav className={s.tabs} aria-label={t('explorer.thisPc')}>
+        {ex.folders.map((f) => (
+          <button key={f.id} type="button" className={cn(s.tab, f.id === ex.folder.id && s.tabActive)} onClick={() => ex.navigate(f.id)}>
+            <Icon name={f.icon} className={s.tabIcon} />
+            {tr(f.name)}
+          </button>
+        ))}
+      </nav>
+
       {ex.isTrash && (
         <div className={s.actions}>
           <button type="button" className={s.action} onClick={ex.emptyBin}>
