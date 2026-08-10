@@ -186,4 +186,12 @@ export const systemIcons = {
       <path d="M4.5 7h15M9.5 7V5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v2M6.5 7l.9 11.5a2 2 0 0 0 2 1.8h5.2a2 2 0 0 0 2-1.8L17.5 7" />
     </Stroke>
   ),
+  gamepad: (p) => (
+    <Stroke {...p}>
+      <path d="M7 8h10a4.5 4.5 0 0 1 4.4 5.4l-.7 3.4a2.4 2.4 0 0 1-4.1 1.2L14.5 16h-5l-2.1 2a2.4 2.4 0 0 1-4.1-1.2l-.7-3.4A4.5 4.5 0 0 1 7 8z" />
+      <path d="M8 10.5v3M6.5 12h3" />
+      <circle cx="15.5" cy="11" r=".6" fill="currentColor" />
+      <circle cx="17" cy="13" r=".6" fill="currentColor" />
+    </Stroke>
+  ),
 } satisfies Record<string, IconComponent>;

@@ -5,6 +5,9 @@ export const en: Dictionary = {
   'os.start': 'Start',
   'os.mute': 'Mute',
   'os.unmute': 'Unmute',
+  'menu.apps': 'Apps',
+  'menu.games': 'Games',
+  'menu.noGames': 'No games installed yet',
 
   'start.search': 'Search apps',
   'start.all': 'All apps',
@@ -49,9 +52,12 @@ export const en: Dictionary = {
   'tray.battery': 'Battery',
   'tray.charging': 'Charging',
   'tray.clock': 'Time and date',
+  'tray.downloads': 'Downloads',
+  'tray.more': 'More',
 
   'toast.welcome':
     'Welcome! Double-click an icon to open an app. By the way, there is still something in the recycle bin …',
+  'toast.noDownloads': 'No recent downloads.',
 
   'explorer.thisPc': 'This PC',
   'explorer.back': 'Back',

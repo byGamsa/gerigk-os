@@ -3,6 +3,9 @@ export const de = {
   'os.start': 'Start',
   'os.mute': 'Stummschalten',
   'os.unmute': 'Stummschaltung aufheben',
+  'menu.apps': 'Apps',
+  'menu.games': 'Spiele',
+  'menu.noGames': 'Noch keine Spiele installiert',
 
   'start.search': 'Apps durchsuchen',
   'start.all': 'Alle Apps',
@@ -47,9 +50,12 @@ export const de = {
   'tray.battery': 'Akku',
   'tray.charging': 'Wird geladen',
   'tray.clock': 'Uhrzeit und Datum',
+  'tray.downloads': 'Downloads',
+  'tray.more': 'Mehr',
 
   'toast.welcome':
     'Willkommen! Doppelklicke auf ein Symbol, um eine App zu öffnen. Im Papierkorb liegt übrigens noch etwas …',
+  'toast.noDownloads': 'Keine aktuellen Downloads.',
 
   'explorer.thisPc': 'Dieser PC',
   'explorer.back': 'Zurück',

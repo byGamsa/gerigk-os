@@ -6,6 +6,7 @@ import { QuickSettings } from './components/QuickSettings/QuickSettings';
 import { StartMenu } from './components/StartMenu/StartMenu';
 import { Taskbar } from './components/Taskbar/Taskbar';
 import { Toasts } from './components/Toasts/Toasts';
+import { TopBar } from './components/TopBar/TopBar';
 import { useGlobalListeners } from './hooks/useGlobalListeners';
 
 export function App() {
@@ -14,6 +15,7 @@ export function App() {
   return (
     <>
       <Desktop />
+      <TopBar />
       <Taskbar />
 
       <StartMenu />
