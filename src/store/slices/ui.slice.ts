@@ -13,6 +13,9 @@ export const createUiSlice: SliceCreator<UiSlice> = (set, get) => ({
   },
 
   openMenu: (items, anchor, source) => {
+    const current = get().flyout;
+    // Same trigger (e.g. top bar "Apps") → close
+    if (current?.id === 'menu' && current.source === source && anchor.kind === 'bar') return set({ flyout: null });
     set({ flyout: { id: 'menu', anchor, source, items, openedAt: Date.now() } });
   },
 
