@@ -56,6 +56,8 @@ export const de = {
   'toast.welcome':
     'Willkommen! Doppelklicke auf ein Symbol, um eine App zu öffnen. Im Papierkorb liegt übrigens noch etwas …',
   'toast.noDownloads': 'Keine aktuellen Downloads.',
+  'toast.offline': 'Keine Internetverbindung.',
+  'toast.online': 'Wieder online.',
 
   'explorer.thisPc': 'Dieser PC',
   'explorer.back': 'Zurück',

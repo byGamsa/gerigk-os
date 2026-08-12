@@ -58,6 +58,8 @@ export const en: Dictionary = {
   'toast.welcome':
     'Welcome! Double-click an icon to open an app. By the way, there is still something in the recycle bin …',
   'toast.noDownloads': 'No recent downloads.',
+  'toast.offline': 'No internet connection.',
+  'toast.online': 'Back online.',
 
   'explorer.thisPc': 'This PC',
   'explorer.back': 'Back',
