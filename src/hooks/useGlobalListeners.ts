@@ -40,4 +40,10 @@ export function useGlobalListeners() {
       window.removeEventListener('offline', onOffline);
     };
   }, []);
+
+  // Keep <html lang> in sync (also after loading from storage)
+  const lang = useOsStore((s) => s.lang);
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
 }
