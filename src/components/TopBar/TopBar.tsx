@@ -41,6 +41,9 @@ export function TopBar() {
       </div>
 
       <div className={s.group}>
+        <button type="button" className={cn(s.button, s.hideMobile)} title={t('tray.downloads')} aria-label={t('tray.downloads')} onClick={bar.showDownloads}>
+          <Icon name="download" className={s.icon} />
+        </button>
         <button
           type="button"
           className={cn(s.button, s.hideMobile)}

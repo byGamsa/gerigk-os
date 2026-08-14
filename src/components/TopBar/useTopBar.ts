@@ -3,6 +3,7 @@ import { apps } from '@/apps/registry';
 import { useNow } from '@/hooks/useNow';
 import { useSystemStatus } from '@/hooks/useSystemStatus';
 import { useT } from '@/hooks/useT';
+import { localize } from '@/i18n';
 import { formatTime, formatWeekdayShort } from '@/lib/format';
 import { anchorFromElement } from '@/lib/geometry';
 import { launchApp } from '@/services/launcher';
@@ -39,6 +40,11 @@ export function useTopBar() {
     useOsStore.getState().toggleFlyout(id, anchorFromElement(el), 'topbar');
   }, []);
 
+  const showDownloads = useCallback(
+    () => useOsStore.getState().notify({ text: localize('toast.noDownloads'), icon: 'download' }),
+    [],
+  );
+
   return {
     ...i18n,
     ...status,
@@ -49,5 +55,6 @@ export function useTopBar() {
     openApps: (el: HTMLElement) => openAppMenu(el, 'topbar:apps'),
     openGames: (el: HTMLElement) => openAppMenu(el, 'topbar:games', 'game'),
     toggle,
+    showDownloads,
   };
 }
