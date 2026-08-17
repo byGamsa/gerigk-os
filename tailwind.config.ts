@@ -97,6 +97,7 @@ export default {
         'boot-bar': { '0%': { transform: 'translateX(-100%)' }, '100%': { transform: 'translateX(250%)' } },
         'cal-next': { from: { opacity: '0', transform: 'translateX(18px)' }, to: { opacity: '1', transform: 'none' } },
         'cal-prev': { from: { opacity: '0', transform: 'translateX(-18px)' }, to: { opacity: '1', transform: 'none' } },
+        'wallpaper-fade': { from: { opacity: '0', transform: 'scale(1.04)' }, to: { opacity: '1', transform: 'scale(1)' } },
       },
       animation: {
         'slide-down': 'slide-down .7s cubic-bezier(.16,1,.3,1) both',

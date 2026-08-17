@@ -28,6 +28,9 @@ export const de = {
   'ctx.language': 'Sprache: English',
   'ctx.fullscreen': 'Vollbild',
 
+  'wallpaper.credit': 'Foto von {name}',
+  'wallpaper.openOnUnsplash': 'Foto auf Unsplash ansehen',
+
   'cal.today': 'Heute',
   'cal.noEvents': 'Keine Termine',
   'cal.prev': 'Vorheriger Monat',

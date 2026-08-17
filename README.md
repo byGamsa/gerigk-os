@@ -55,6 +55,19 @@ src/
 
 Eigene Icons: eine Komponente in `components/Icon/icons/app.icons.tsx` ergänzen und in `appIcons` eintragen – der Name ist danach automatisch als `IconName` typisiert.
 
+## Hintergrund (Unsplash)
+
+Bei jedem Laden erscheint ein zufälliges Unsplash-Foto in Bildschirmauflösung (inkl. Retina/4K,
+passend zugeschnitten, AVIF/WebP), unten links mit Fotografen-Nennung und Link zum Foto.
+
+1. Auf https://unsplash.com/oauth/applications eine App anlegen und den **Access Key** kopieren
+2. `.env.example` nach `.env.local` kopieren und `VITE_UNSPLASH_ACCESS_KEY=…` eintragen
+3. Dev-Server neu starten
+
+Ohne Key (oder solange das Foto lädt) ist der Hintergrund neutral grau. Motiv, Qualität und Cache-Dauer: `src/config/wallpaper.config.ts`.
+Es werden 30 Fotos pro API-Aufruf geladen und einige Stunden im Browser gecacht (Demo-Keys erlauben
+nur 50 Aufrufe/Stunde). Rechtsklick auf den Desktop → „Neuer Hintergrund“.
+
 ## Anpassen
 
 - **Name / Wallpaper:** `src/config/os.config.ts` (eigenes Foto z. B. als `public/wallpaper.jpg`)

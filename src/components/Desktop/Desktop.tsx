@@ -1,4 +1,5 @@
 import { DesktopClock } from '../DesktopClock/DesktopClock';
+import { Wallpaper } from '../Wallpaper/Wallpaper';
 import { DesktopIcon } from '../DesktopIcon/DesktopIcon';
 import { WindowLayer } from '../Window/WindowLayer';
 import { desktopStyles as s } from './Desktop.styles';
@@ -9,6 +10,7 @@ export function Desktop() {
 
   return (
     <main className={s.root}>
+      <Wallpaper />
       <DesktopClock />
 
       <div

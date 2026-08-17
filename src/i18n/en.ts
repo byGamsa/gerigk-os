@@ -30,6 +30,9 @@ export const en: Dictionary = {
   'ctx.language': 'Language: Deutsch',
   'ctx.fullscreen': 'Full screen',
 
+  'wallpaper.credit': 'Photo by {name}',
+  'wallpaper.openOnUnsplash': 'View photo on Unsplash',
+
   'cal.today': 'Today',
   'cal.noEvents': 'No events',
   'cal.prev': 'Previous month',
