@@ -8,11 +8,14 @@ export interface LoadedWallpaper {
   src: string;
 }
 
-// Fully load and decode the image before showing it
-async function preload(src: string): Promise<void> {
-  const img = new Image();
-  img.src = src;
-  await img.decode();
+// Fully load the image before showing it; `onload` instead of `decode()` (hangs in background tabs)
+function preload(src: string): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve();
+    img.onerror = () => reject(new Error(`Hintergrund konnte nicht geladen werden: ${src}`));
+    img.src = src;
+  });
 }
 
 // Fresh cache → else a new API batch → on error the last stored batch
