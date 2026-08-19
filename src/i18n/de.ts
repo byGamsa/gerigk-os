@@ -27,6 +27,7 @@ export const de = {
   'ctx.refresh': 'Aktualisieren',
   'ctx.language': 'Sprache: English',
   'ctx.fullscreen': 'Vollbild',
+  'ctx.wallpaper': 'Neuer Hintergrund',
 
   'wallpaper.credit': 'Foto von {name}',
   'wallpaper.openOnUnsplash': 'Foto auf Unsplash ansehen',

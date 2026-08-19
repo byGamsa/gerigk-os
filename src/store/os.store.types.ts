@@ -56,9 +56,12 @@ export interface WindowsSlice {
 export interface DesktopSlice {
   iconPositions: Record<string, GridCell>;
   snapPreview: boolean;
+  // Increment → new random wallpaper
+  wallpaperNonce: number;
   setIconPosition: (appId: string, cell: GridCell) => void;
   resetIconPositions: () => void;
   setSnapPreview: (visible: boolean) => void;
+  nextWallpaper: () => void;
 }
 
 export interface UiSlice {

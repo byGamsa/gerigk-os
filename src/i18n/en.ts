@@ -29,6 +29,7 @@ export const en: Dictionary = {
   'ctx.refresh': 'Refresh',
   'ctx.language': 'Language: Deutsch',
   'ctx.fullscreen': 'Full screen',
+  'ctx.wallpaper': 'New wallpaper',
 
   'wallpaper.credit': 'Photo by {name}',
   'wallpaper.openOnUnsplash': 'View photo on Unsplash',

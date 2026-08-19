@@ -4,6 +4,7 @@ import { useFullscreen } from '@/hooks/useFullscreen';
 import { useT } from '@/hooks/useT';
 import { anchorFromPoint, rectsIntersect } from '@/lib/geometry';
 import { cellKey, measureGrid, resolveIconLayout, type GridDims } from '@/lib/grid';
+import { unsplashKey } from '@/services/wallpaper/unsplash';
 import { useOsStore } from '@/store/os.store';
 import type { GridCell, Rect } from '@/types';
 
@@ -118,6 +119,7 @@ export function useDesktop() {
         [
           { type: 'item', label: t('ctx.arrange'), icon: 'grid', onSelect: s.resetIconPositions },
           { type: 'item', label: t('ctx.refresh'), icon: 'refresh', onSelect: () => setSelected(new Set()) },
+          ...(unsplashKey ? [{ type: 'item' as const, label: t('ctx.wallpaper'), icon: 'image' as const, onSelect: s.nextWallpaper }] : []),
           { type: 'separator' },
           { type: 'item', label: t('ctx.language'), icon: 'globe', onSelect: s.toggleLang },
           ...(fullscreen.supported

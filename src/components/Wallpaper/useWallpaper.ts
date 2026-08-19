@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { useT } from '@/hooks/useT';
 import { loadRandomWallpaper, type LoadedWallpaper } from '@/services/wallpaper/wallpaperService';
+import { useOsStore } from '@/store/os.store';
 
 // Loads a random Unsplash wallpaper on every start (and on demand)
 export function useWallpaper() {
   const { t } = useT();
+  const nonce = useOsStore((s) => s.wallpaperNonce);
   const [current, setCurrent] = useState<LoadedWallpaper | null>(null);
   // Previous image stays underneath while switching → smooth crossfade
   const [previous, setPrevious] = useState<LoadedWallpaper | null>(null);
@@ -24,7 +26,7 @@ export function useWallpaper() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [nonce]);
 
   return {
     current,
