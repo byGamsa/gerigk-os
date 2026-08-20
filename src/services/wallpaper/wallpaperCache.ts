@@ -36,6 +36,29 @@ export function anyCachedWallpapers(): WallpaperCacheEntry | null {
   return entry && entry.photos.length > 0 ? entry : null;
 }
 
+// ---------- Block after hitting the hourly limit ----------
+
+const BLOCK_KEY = `${osConfig.storageKey}:unsplash-blocked-until`;
+
+export function blockedUntil(): number {
+  try {
+    return Number(localStorage.getItem(BLOCK_KEY)) || 0;
+  } catch {
+    return 0;
+  }
+}
+
+// Unsplash resets the limit hourly → don't ask again until the next full hour
+export function blockUntilNextHour() {
+  const next = new Date();
+  next.setHours(next.getHours() + 1, 0, 30, 0);
+  try {
+    localStorage.setItem(BLOCK_KEY, String(next.getTime()));
+  } catch {
+    // ignore
+  }
+}
+
 export function storeWallpapers(orientation: WallpaperOrientation, photos: Wallpaper[]): WallpaperCacheEntry {
   const entry: WallpaperCacheEntry = {
     fetchedAt: Date.now(),

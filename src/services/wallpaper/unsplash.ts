@@ -5,6 +5,17 @@ const API = 'https://api.unsplash.com';
 
 export const unsplashKey = import.meta.env.VITE_UNSPLASH_ACCESS_KEY?.trim() || null;
 
+export class UnsplashError extends Error {
+  constructor(
+    readonly status: number,
+    // Hourly limit exhausted (Unsplash then responds with 403 "Rate Limit Exceeded")
+    readonly rateLimited: boolean,
+  ) {
+    super(rateLimited ? 'Unsplash: Stundenlimit erreicht' : `Unsplash: HTTP ${status}`);
+    this.name = 'UnsplashError';
+  }
+}
+
 // Unsplash requires utm parameters on all links back to Unsplash
 const withUtm = (url: string) =>
   `${url}${url.includes('?') ? '&' : '?'}utm_source=${wallpaperConfig.appName}&utm_medium=referral`;
@@ -34,7 +45,10 @@ export async function fetchRandomWallpapers(orientation: WallpaperOrientation, k
   const res = await fetch(`${API}/photos/random?${params}`, {
     headers: { Authorization: `Client-ID ${key}`, 'Accept-Version': 'v1' },
   });
-  if (!res.ok) throw new Error(`Unsplash: HTTP ${res.status}`);
+  if (!res.ok) {
+    const remaining = res.headers.get('X-Ratelimit-Remaining');
+    throw new UnsplashError(res.status, remaining === '0' || res.status === 429);
+  }
   const photos = (await res.json()) as UnsplashPhoto[];
   return photos.map(toWallpaper);
 }
