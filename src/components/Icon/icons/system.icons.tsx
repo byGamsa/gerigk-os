@@ -194,4 +194,67 @@ export const systemIcons = {
       <circle cx="17" cy="13" r=".6" fill="currentColor" />
     </Stroke>
   ),
+  play: (p) => (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...p}>
+      <path d="M8 5.6v12.8a1 1 0 0 0 1.52.85l10.2-6.4a1 1 0 0 0 0-1.7l-10.2-6.4A1 1 0 0 0 8 5.6z" />
+    </svg>
+  ),
+  pause: (p) => (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...p}>
+      <rect x="6.5" y="5" width="4" height="14" rx="1.2" />
+      <rect x="13.5" y="5" width="4" height="14" rx="1.2" />
+    </svg>
+  ),
+  skipBack: (p) => (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...p}>
+      <rect x="5" y="5" width="2.4" height="14" rx="1" />
+      <path d="M19 6.1v11.8a1 1 0 0 1-1.55.83L9.3 13.2a1.4 1.4 0 0 1 0-2.4l8.15-5.53A1 1 0 0 1 19 6.1z" />
+    </svg>
+  ),
+  skipForward: (p) => (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...p}>
+      <rect x="16.6" y="5" width="2.4" height="14" rx="1" />
+      <path d="M5 6.1v11.8a1 1 0 0 0 1.55.83l8.15-5.53a1.4 1.4 0 0 0 0-2.4L6.55 5.27A1 1 0 0 0 5 6.1z" />
+    </svg>
+  ),
+  shuffle: (p) => (
+    <Stroke {...p}>
+      <path d="M3.5 7h3.2c1.6 0 3.1.8 4 2.1l2.6 5.8c.9 1.3 2.4 2.1 4 2.1h3.2M3.5 17h3.2c1.2 0 2.3-.4 3.1-1.2M14.2 8.2c.8-.8 1.9-1.2 3.1-1.2h3.2" />
+      <path d="m18.5 4.5 2.5 2.5-2.5 2.5M18.5 14.5l2.5 2.5-2.5 2.5" />
+    </Stroke>
+  ),
+  repeat: (p) => (
+    <Stroke {...p}>
+      <path d="M4 11V9.5A3.5 3.5 0 0 1 7.5 6H20m-3-3 3 3-3 3M20 13v1.5a3.5 3.5 0 0 1-3.5 3.5H4m3 3-3-3 3-3" />
+    </Stroke>
+  ),
+  repeatOne: (p) => (
+    <Stroke {...p}>
+      <path d="M4 11V9.5A3.5 3.5 0 0 1 7.5 6H20m-3-3 3 3-3 3M20 13v1.5a3.5 3.5 0 0 1-3.5 3.5H4m3 3-3-3 3-3" />
+      <path d="M11.3 10.6 12.6 9.8v5" strokeWidth={1.6} />
+    </Stroke>
+  ),
+  externalLink: (p) => (
+    <Stroke {...p}>
+      <path d="M14 4h6v6M20 4l-8.5 8.5M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10" />
+    </Stroke>
+  ),
+  expand: (p) => (
+    <Stroke {...p}>
+      <path d="M14 4h6v6M10 20H4v-6M20 4l-6.5 6.5M4 20l6.5-6.5" />
+    </Stroke>
+  ),
+  clock: (p) => (
+    <Stroke {...p}>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 7.5V12l3 2" />
+    </Stroke>
+  ),
+  music: (p) => (
+    <Stroke {...p}>
+      <path d="M9 18V6l11-2v12" />
+      <circle cx="6.5" cy="18" r="2.5" />
+      <circle cx="17.5" cy="16" r="2.5" />
+    </Stroke>
+  ),
 } satisfies Record<string, IconComponent>;
