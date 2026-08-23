@@ -8,8 +8,10 @@ import type {
   Lang,
   LocalizedValue,
   MenuItem,
+  PlaybackState,
   Point,
   Rect,
+  RepeatMode,
   Toast,
   ToastInput,
   WindowState,
@@ -74,9 +76,22 @@ export interface UiSlice {
   dismissToast: (id: string) => void;
 }
 
-export type OsStore = SettingsSlice & WindowsSlice & DesktopSlice & UiSlice;
+export interface MediaSlice {
+  playback: PlaybackState;
+  shuffle: boolean;
+  repeat: RepeatMode;
+  // 0–100
+  volume: number;
+  setPlayback: (patch: Partial<PlaybackState>) => void;
+  resetPlayback: () => void;
+  toggleShuffle: () => void;
+  cycleRepeat: () => void;
+  setVolume: (volume: number) => void;
+}
+
+export type OsStore = SettingsSlice & WindowsSlice & DesktopSlice & UiSlice & MediaSlice;
 
 export type SliceCreator<T> = StateCreator<OsStore, [['zustand/persist', unknown]], [], T>;
 
 // Persisted part of the store
-export type PersistedState = Pick<OsStore, 'lang' | 'muted' | 'welcomed' | 'iconPositions'>;
+export type PersistedState = Pick<OsStore, 'lang' | 'muted' | 'welcomed' | 'iconPositions' | 'shuffle' | 'repeat' | 'volume'>;
