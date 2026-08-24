@@ -28,6 +28,7 @@ export default {
       colors: {
         accent: { DEFAULT: '#5aa9ff', strong: '#3d8ef5' },
         danger: '#e5484d',
+        spotify: { DEFAULT: '#1ed760', strong: '#1db954' },
         success: '#4ade80',
         ink: {
           DEFAULT: '#ffffff',
@@ -97,6 +98,7 @@ export default {
         'boot-bar': { '0%': { transform: 'translateX(-100%)' }, '100%': { transform: 'translateX(250%)' } },
         'cal-next': { from: { opacity: '0', transform: 'translateX(18px)' }, to: { opacity: '1', transform: 'none' } },
         'cal-prev': { from: { opacity: '0', transform: 'translateX(-18px)' }, to: { opacity: '1', transform: 'none' } },
+        equalizer: { '0%,100%': { transform: 'scaleY(.3)' }, '50%': { transform: 'scaleY(1)' } },
         'wallpaper-fade': { from: { opacity: '0', transform: 'scale(1.04)' }, to: { opacity: '1', transform: 'scale(1)' } },
       },
       animation: {
@@ -109,6 +111,7 @@ export default {
         'boot-bar': 'boot-bar 1.1s ease-in-out infinite',
         'cal-next': 'cal-next .3s cubic-bezier(.16,1,.3,1) both',
         'cal-prev': 'cal-prev .3s cubic-bezier(.16,1,.3,1) both',
+        equalizer: 'equalizer .9s ease-in-out infinite',
       },
     },
   },

@@ -134,7 +134,22 @@ function Folder(p: IconSvgProps) {
   );
 }
 
+// Spotify logo (for the link to my own playlist)
+function Spotify(p: IconSvgProps) {
+  return (
+    <svg viewBox="0 0 64 64" {...p}>
+      <circle cx="32" cy="32" r="27" fill="#1ed760" />
+      <g fill="none" stroke="#121212" strokeLinecap="round">
+        <path d="M17.5 24.5c9.8-3 21.2-2.2 29.8 2.6" strokeWidth="4.4" />
+        <path d="M19.5 33c8-2.3 17.3-1.6 24.4 2.3" strokeWidth="3.6" />
+        <path d="M21.5 40.8c6.4-1.7 13.4-1.2 19 1.8" strokeWidth="3" />
+      </g>
+    </svg>
+  );
+}
+
 export const appIcons = {
+  spotify: Spotify,
   logo: Logo,
   trash: Trash,
   notepad: Notepad,
