@@ -10,7 +10,8 @@ export const spotifyStyles = {
   ambient: 'pointer-events-none absolute inset-x-0 top-0 h-[480px] overflow-hidden [mask-image:linear-gradient(to_bottom,black_30%,transparent)]',
   ambientImage: 'absolute inset-0 scale-125 bg-cover bg-center opacity-40 blur-3xl saturate-150',
   hero: 'relative flex flex-col gap-5 px-6 pb-4 pt-4 @[520px]:flex-row @[520px]:items-end',
-  video: 'relative aspect-video w-full max-w-[320px] shrink-0 overflow-hidden rounded-xl bg-black shadow-[0_18px_40px_rgba(0,0,0,.45)] @[520px]:w-[320px]',
+  // Minimum height of 200 px per YouTube API guidelines
+  video: 'relative aspect-video w-full max-w-[356px] shrink-0 overflow-hidden rounded-xl bg-black shadow-[0_18px_40px_rgba(0,0,0,.45)] @[520px]:w-[356px]',
   videoPoster: 'absolute inset-0 size-full object-cover opacity-60',
   // YouTube player (must be visible per YouTube guidelines) – filled by services/music/player.ts
   videoHost: 'absolute inset-0 [&_iframe]:size-full',
