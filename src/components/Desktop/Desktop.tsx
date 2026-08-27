@@ -1,6 +1,7 @@
 import { DesktopClock } from '../DesktopClock/DesktopClock';
 import { Wallpaper } from '../Wallpaper/Wallpaper';
 import { DesktopIcon } from '../DesktopIcon/DesktopIcon';
+import { WidgetLayer } from '../WidgetLayer/WidgetLayer';
 import { WindowLayer } from '../Window/WindowLayer';
 import { desktopStyles as s } from './Desktop.styles';
 import { useDesktop } from './useDesktop';
@@ -43,6 +44,7 @@ export function Desktop() {
         />
       )}
 
+      <WidgetLayer />
       <WindowLayer />
     </main>
   );

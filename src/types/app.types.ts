@@ -19,6 +19,11 @@ export interface AppWindowProps<TArgs = unknown> {
   args: TArgs;
 }
 
+// Props for the mini widget shown while the app window is minimized
+export interface AppWidgetProps {
+  windowId: string;
+}
+
 export interface AppWindowOptions extends Partial<Size> {
   minWidth?: number;
   minHeight?: number;
@@ -39,6 +44,8 @@ export interface AppDefinition<TArgs = unknown> {
   window?: AppWindowOptions;
   // Decides whether to open a new window or focus an existing one (same key → same window; default: one per app)
   instanceKey?: (args: TArgs) => string;
+  // Optional widget shown while the window is minimized
+  widget?: ComponentType<AppWidgetProps>;
 }
 
 export type AnyAppDefinition = AppDefinition<any>;
