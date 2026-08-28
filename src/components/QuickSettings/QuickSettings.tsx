@@ -1,6 +1,7 @@
 import { cn } from '@/lib/cn';
 import { Flyout } from '../Flyout/Flyout';
 import { Icon } from '../Icon/Icon';
+import { VolumeControl } from '../VolumeControl/VolumeControl';
 import { quickSettingsStyles as s } from './QuickSettings.styles';
 import { useQuickSettings } from './useQuickSettings';
 
@@ -26,6 +27,7 @@ export function QuickSettings() {
           </button>
         ))}
       </div>
+      <VolumeControl showValue className={s.volume} />
     </Flyout>
   );
 }
