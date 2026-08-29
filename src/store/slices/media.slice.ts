@@ -24,5 +24,10 @@ export const createMediaSlice: SliceCreator<MediaSlice> = (set) => ({
   resetPlayback: () => set({ playback: initialPlayback }),
   toggleShuffle: () => set((s) => ({ shuffle: !s.shuffle })),
   cycleRepeat: () => set((s) => ({ repeat: nextRepeat[s.repeat] })),
-  setVolume: (volume) => set({ volume: Math.round(clamp(volume, 0, 100)) }),
+  // Raising the volume unmutes (like Windows)
+  setVolume: (volume) =>
+    set((s) => {
+      const v = Math.round(clamp(volume, 0, 100));
+      return { volume: v, muted: v > 0 ? false : s.muted };
+    }),
 });
