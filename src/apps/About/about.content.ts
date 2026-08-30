@@ -9,7 +9,7 @@ export const aboutContent: AboutContent = {
     de: 'Willkommen in meinem Portfolio! Hier entsteht nach und nach ein Überblick über meine Projekte, Erfahrungen und Ideen – jede App auf diesem Desktop erzählt ein Stück davon.',
     en: 'Welcome to my portfolio! This is where an overview of my projects, experience and ideas is taking shape – every app on this desktop tells part of the story.',
   },
-  skills: ['TypeScript', 'React', 'Unity', 'C#'],
+  skills: ['TypeScript', 'React', 'Tailwind CSS', 'Unity', 'C#', 'XR', 'UI/UX'],
   contact: [
     { label: 'GitHub', href: 'https://github.com/' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/' },
