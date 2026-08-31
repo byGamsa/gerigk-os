@@ -55,6 +55,27 @@ src/
 
 Eigene Icons: eine Komponente in `components/Icon/icons/app.icons.tsx` ergänzen und in `appIcons` eintragen – der Name ist danach automatisch als `IconName` typisiert.
 
+## Spotify
+
+Die Musik-App zeigt eine öffentliche Spotify-Playlist und spielt die Songs **komplett über YouTube**
+ab (offizielle YouTube IFrame API) – ohne Login, mit Lautstärke und Mute.
+
+```bash
+npm run playlist:sync -- https://open.spotify.com/playlist/<id>   # Playlist setzen + Daten laden
+npm run playlist:sync                                            # neue Songs ergänzen
+npm run playlist:sync -- --refresh                               # alle YouTube-Treffer neu suchen
+```
+
+Das Skript speichert die URL in `src/config/spotify.config.json` und schreibt Titel, Interpreten,
+Dauer, Cover und passende YouTube-Videos nach `src/data/playlist.generated.json`. Gefundene Videos
+bleiben gespeichert; gesucht wird nur für neue Songs. `npm run build` synchronisiert automatisch.
+
+- **Treffer korrigieren:** `src/config/youtube.overrides.json` → `{ "<spotify-track-id>": "<youtube-video-id>" }`
+- **Offizielle Suche statt Suchseite:** `YOUTUBE_API_KEY=…` in `.env.local` (YouTube Data API v3)
+
+Wird das Fenster minimiert, erscheint unten links ein Mini-Player-Widget. Jede App kann über
+`widget` in `defineApp` ein eigenes Widget bekommen.
+
 ## Hintergrund (Unsplash)
 
 Bei jedem Laden erscheint ein zufälliges Unsplash-Foto in Bildschirmauflösung (inkl. Retina/4K,
