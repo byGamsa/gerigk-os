@@ -33,10 +33,13 @@ export function StartMenu() {
       </div>
 
       <div className={s.footer}>
-        <div className={s.user}>
+        <button type="button" className={s.user} onClick={m.openProfile} title={m.t('start.profile')}>
           <span className={s.avatar}>{m.initials}</span>
-          <span className={s.userName}>{m.owner}</span>
-        </div>
+          <span className={s.userText}>
+            <span className={s.userName}>{m.owner}</span>
+            <span className={s.userHint}>{m.t('start.profile')}</span>
+          </span>
+        </button>
         <button
           type="button"
           data-flyout-trigger="menu"

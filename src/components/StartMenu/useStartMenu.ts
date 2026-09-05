@@ -50,8 +50,11 @@ export function useStartMenu() {
     [t],
   );
 
+  const openProfile = useCallback((e: MouseEvent<HTMLButtonElement>) => launchApp('system', undefined, e.currentTarget), []);
+
   return {
     t,
+    openProfile,
     tr,
     inputRef,
     query,
