@@ -244,6 +244,49 @@ export const systemIcons = {
       <path d="M14 4h6v6M10 20H4v-6M20 4l-6.5 6.5M4 20l6.5-6.5" />
     </Stroke>
   ),
+  user: (p) => (
+    <Stroke {...p}>
+      <circle cx="12" cy="8.5" r="3.8" />
+      <path d="M4.5 20a7.5 7.5 0 0 1 15 0" />
+    </Stroke>
+  ),
+  mapPin: (p) => (
+    <Stroke {...p}>
+      <path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z" />
+      <circle cx="12" cy="10" r="2.3" />
+    </Stroke>
+  ),
+  shield: (p) => (
+    <Stroke {...p}>
+      <path d="M12 3.5 5 6.3v5.2c0 4.3 3 7.9 7 9 4-1.1 7-4.7 7-9V6.3z" />
+      <path d="m9.2 12.2 2 2 3.8-4" />
+    </Stroke>
+  ),
+  mail: (p) => (
+    <Stroke {...p}>
+      <rect x="3.5" y="5.5" width="17" height="13" rx="2.5" />
+      <path d="m4.5 7.5 7.5 5.5 7.5-5.5" />
+    </Stroke>
+  ),
+  scale: (p) => (
+    <Stroke {...p}>
+      <path d="M12 4v16M7 20h10M5 7h14" />
+      <path d="m5 7-2.5 6a2.5 2.5 0 0 0 5 0L5 7zM19 7l-2.5 6a2.5 2.5 0 0 0 5 0L19 7z" />
+    </Stroke>
+  ),
+  info: (p) => (
+    <Stroke {...p}>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 11v5.5" />
+      <circle cx="12" cy="7.8" r=".9" fill="currentColor" stroke="none" />
+    </Stroke>
+  ),
+  copy: (p) => (
+    <Stroke {...p}>
+      <rect x="8.5" y="8.5" width="11" height="11" rx="2.2" />
+      <path d="M15.5 8.5V6.2a1.7 1.7 0 0 0-1.7-1.7H6.2a1.7 1.7 0 0 0-1.7 1.7v7.6a1.7 1.7 0 0 0 1.7 1.7h2.3" />
+    </Stroke>
+  ),
   clock: (p) => (
     <Stroke {...p}>
       <circle cx="12" cy="12" r="8.5" />

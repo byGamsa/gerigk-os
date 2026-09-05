@@ -3,9 +3,10 @@ import { aboutApp } from './About';
 import { notepadApp } from './Notepad';
 import { explorerApp, recycleBinApp } from './Explorer';
 import { spotifyApp } from './Spotify';
+import { systemApp } from './System';
 
 // All installed apps – new apps: create a folder in `src/apps/`, use `defineApp` and register here
-export const apps: readonly AnyAppDefinition[] = [recycleBinApp, explorerApp, aboutApp, spotifyApp, notepadApp];
+export const apps: readonly AnyAppDefinition[] = [recycleBinApp, explorerApp, aboutApp, spotifyApp, notepadApp, systemApp];
 
 const byId = new Map(apps.map((app) => [app.id, app]));
 

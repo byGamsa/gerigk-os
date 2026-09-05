@@ -148,7 +148,20 @@ function Spotify(p: IconSvgProps) {
   );
 }
 
+// Settings/System – gear on a tile
+function System(p: IconSvgProps) {
+  return (
+    <Tile gradient={['#9aa6b8', '#4b5563']} {...p}>
+      <g fill="none" stroke="#fff" strokeWidth="3.4" strokeLinecap="round">
+        <circle cx="32" cy="32" r="6.5" />
+        <path d="M32 14.5v5M32 44.5v5M14.5 32h5M44.5 32h5M19.6 19.6l3.5 3.5M40.9 40.9l3.5 3.5M19.6 44.4l3.5-3.5M40.9 23.1l3.5-3.5" />
+      </g>
+    </Tile>
+  );
+}
+
 export const appIcons = {
+  system: System,
   spotify: Spotify,
   logo: Logo,
   trash: Trash,

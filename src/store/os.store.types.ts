@@ -51,6 +51,8 @@ export interface WindowsSlice {
   setWindowRect: (id: string, rect: Rect) => void;
   setWindowStatus: (id: string, status: WindowStatus) => void;
   setWindowTitle: (id: string, title: LocalizedValue) => void;
+  // Change the args of an open window (in-app navigation)
+  setWindowArgs: (id: string, args: unknown) => void;
   clearGeometryAnimation: (id: string) => void;
   fitWindowsToViewport: () => void;
 }

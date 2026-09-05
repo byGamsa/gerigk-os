@@ -136,6 +136,8 @@ export const createWindowsSlice: SliceCreator<WindowsSlice> = (set, get) => {
 
     setWindowTitle: (id, title) => patch(id, { title }),
 
+    setWindowArgs: (id, args) => patch(id, { args }),
+
     clearGeometryAnimation: (id) => patch(id, { animateGeometry: false }),
 
     fitWindowsToViewport: () =>
