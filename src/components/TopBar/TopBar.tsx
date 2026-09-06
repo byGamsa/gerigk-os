@@ -38,6 +38,13 @@ export function TopBar() {
         >
           {t('menu.games')}
         </button>
+        <span className={s.divider} />
+        <button type="button" className={s.button} onClick={(e) => bar.openLegal('info', e.currentTarget)}>
+          {t('legal.imprint')}
+        </button>
+        <button type="button" className={s.button} onClick={(e) => bar.openLegal('privacy', e.currentTarget)}>
+          {t('legal.privacy')}
+        </button>
       </div>
 
       <div className={s.group}>

@@ -8,6 +8,7 @@ import { formatTime, formatWeekdayShort } from '@/lib/format';
 import { anchorFromElement } from '@/lib/geometry';
 import { launchApp } from '@/services/launcher';
 import { useOsStore } from '@/store/os.store';
+import type { SystemArgs, SystemPage } from '@/apps/System/System.types';
 import type { AppCategory, FlyoutId, MenuItem } from '@/types';
 
 export function useTopBar() {
@@ -45,7 +46,14 @@ export function useTopBar() {
     [],
   );
 
+  // Legal notice/privacy – opens (or switches) the settings window to that page
+  const openLegal = useCallback(
+    (page: SystemPage, el: HTMLElement) => launchApp<SystemArgs>('system', { page }, el),
+    [],
+  );
+
   return {
+    openLegal,
     ...i18n,
     ...status,
     muted,

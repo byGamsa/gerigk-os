@@ -35,6 +35,8 @@ export const createWindowsSlice: SliceCreator<WindowsSlice> = (set, get) => {
       const key = `${app.id}:${app.instanceKey ? app.instanceKey(args) : 'main'}`;
       const existing = Object.values(get().windows).find((w) => w.key === key && w.status !== 'closing');
       if (existing) {
+        // Pass new args (e.g. a specific page) to the open window
+        if (args && typeof args === 'object' && Object.keys(args).length > 0) patch(existing.id, { args });
         get().focusWindow(existing.id);
         return existing.id;
       }
