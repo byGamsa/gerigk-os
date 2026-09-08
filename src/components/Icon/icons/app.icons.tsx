@@ -160,7 +160,18 @@ function System(p: IconSvgProps) {
   );
 }
 
+// Terminal: dark tile with prompt
+function Terminal(p: IconSvgProps) {
+  return (
+    <Tile gradient={['#3f3f46', '#111114']} {...p}>
+      <path d="M18 24l9 8-9 8" fill="none" stroke="#5af78e" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M31 41h14" stroke="#fff" strokeWidth="4" strokeLinecap="round" />
+    </Tile>
+  );
+}
+
 export const appIcons = {
+  terminal: Terminal,
   system: System,
   spotify: Spotify,
   logo: Logo,
