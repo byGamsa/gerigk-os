@@ -139,6 +139,14 @@ export function useTerminal(windowId: string) {
       const value = input;
       setInput('');
       void run(value);
+    } else if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      const list = history.current;
+      if (!list.length) return;
+      const current = historyIndex.current ?? list.length;
+      const next = Math.min(list.length, Math.max(0, current + (e.key === 'ArrowUp' ? -1 : 1)));
+      historyIndex.current = next === list.length ? null : next;
+      setInput(list[next] ?? '');
     }
   };
 
