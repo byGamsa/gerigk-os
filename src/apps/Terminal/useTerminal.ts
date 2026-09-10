@@ -2,6 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, typ
 import { osConfig } from '@/config/os.config';
 import { useWindowTitle } from '@/hooks/useWindowTitle';
 import { binNames, commands } from './shell/commands';
+import { complete } from './shell/completion';
 import { execute, type ShellEnv } from './shell/executor';
 import { InterruptError, type Line, type OutputLine, type Segment } from './shell/shell.types';
 import { createShellOs } from './shell/terminalOs';
@@ -147,6 +148,11 @@ export function useTerminal(windowId: string) {
       const next = Math.min(list.length, Math.max(0, current + (e.key === 'ArrowUp' ? -1 : 1)));
       historyIndex.current = next === list.length ? null : next;
       setInput(list[next] ?? '');
+    } else if (e.key === 'Tab') {
+      e.preventDefault();
+      const result = complete(input, cwdRef.current, fs);
+      if (result.options.length) print([...prompt(cwdRef.current), { text: input }], result.options.join('   '));
+      setInput(result.value);
     }
   };
 
