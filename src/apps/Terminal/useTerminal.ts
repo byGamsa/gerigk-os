@@ -9,6 +9,7 @@ import { createShellOs } from './shell/terminalOs';
 import { VirtualFs } from './shell/vfs';
 
 const MAX_LINES = 1000;
+const KONAMI = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
 
 const USER = osConfig.owner.toLowerCase().replace(/[^a-z0-9]/g, '') || 'user';
 const HOST = osConfig.name.toLowerCase().replace(/\s+/g, '-');
@@ -40,6 +41,7 @@ export function useTerminal(windowId: string) {
   const history = useRef<string[]>([]);
   const historyIndex = useRef<number | null>(null);
   const aborted = useRef(false);
+  const keys = useRef<string[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const rootRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -124,6 +126,16 @@ export function useTerminal(windowId: string) {
   // ---------- Keyboard ----------
 
   const onKeyDown = (e: KeyboardEvent<HTMLElement>) => {
+    // Konami code: ↑↑↓↓←→←→BA
+    keys.current = [...keys.current, e.key].slice(-KONAMI.length);
+    if (keys.current.join() === KONAMI.join()) {
+      keys.current = [];
+      e.preventDefault();
+      setInput('');
+      void run('konami');
+      return;
+    }
+
     if (e.ctrlKey && e.key.toLowerCase() === 'c') {
       e.preventDefault();
       if (running) aborted.current = true;
