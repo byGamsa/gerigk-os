@@ -43,7 +43,25 @@ A few tips:
 Enjoy looking around!
 `;
 
+const notAVirusDe = `Keine Sorge – das hier ist wirklich nur eine Textdatei. 😄
+
+Aber schön, dass du so neugierig bist. Schau doch mal in den Papierkorb …
+`;
+
+const notAVirusEn = `Don't worry – this really is just a text file. 😄
+
+But nice that you're this curious. Have a look in the recycle bin …
+`;
+
 export const files: readonly VirtualFile[] = [
+  {
+    id: 'dl-not-a-virus',
+    folder: 'downloads',
+    kind: 'text',
+    name: { de: 'definitiv-kein-virus.exe.txt', en: 'definitely-not-a-virus.exe.txt' },
+    content: { de: notAVirusDe, en: notAVirusEn },
+    modifiedAt: '2026-09-12T09:30:00',
+  },
   {
     id: 'trash-readme',
     folder: 'trash',
