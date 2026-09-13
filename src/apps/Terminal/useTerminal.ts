@@ -145,6 +145,11 @@ export function useTerminal(windowId: string) {
       }
       return;
     }
+    if (e.ctrlKey && e.key.toLowerCase() === 'l') {
+      e.preventDefault();
+      setLines([]);
+      return;
+    }
     if (running) return;
 
     if (e.key === 'Enter') {
