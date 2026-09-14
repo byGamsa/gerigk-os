@@ -1,7 +1,7 @@
-import { allNames, findCommand } from "./commands";
-import { distance, parseLine } from "./parser";
-import { InterruptError, type Line, type ShellContext } from "./shell.types";
-import { FsError } from "./vfs";
+import { allNames, findCommand } from './commands';
+import { distance, parseLine } from './parser';
+import { InterruptError, type Line, type ShellContext } from './shell.types';
+import { FsError } from './vfs';
 
 // Environment the terminal provides once per session
 export type ShellEnv = Omit<ShellContext, 'args' | 'name' | 'cwd'> & { getCwd: () => string };

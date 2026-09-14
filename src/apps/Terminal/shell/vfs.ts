@@ -1,9 +1,9 @@
-import { desktopApps } from "@/apps/registry";
-import { osConfig } from "@/config/os.config";
-import { entriesIn } from "@/data/fileSystem";
-import { resolveLocalized } from "@/i18n";
-import { useOsStore } from "@/store/os.store";
-import type { FolderId } from "@/types";
+import { desktopApps } from '@/apps/registry';
+import { osConfig } from '@/config/os.config';
+import { entriesIn } from '@/data/fileSystem';
+import { resolveLocalized } from '@/i18n';
+import { useOsStore } from '@/store/os.store';
+import type { FolderId } from '@/types';
 
 export interface FsNode {
   name: string;
