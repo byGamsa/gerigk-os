@@ -1,4 +1,5 @@
 export type * from './app.types';
+export type * from './browser.types';
 export type * from './fs.types';
 export type * from './geometry.types';
 export type * from './i18n.types';

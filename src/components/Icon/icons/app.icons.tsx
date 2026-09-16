@@ -160,6 +160,27 @@ function System(p: IconSvgProps) {
   );
 }
 
+// Brave browser: orange lion shield (simplified)
+function Brave(p: IconSvgProps) {
+  const g = useSvgId('brave');
+  return (
+    <svg viewBox="0 0 64 64" {...p}>
+      <defs>
+        <linearGradient id={g} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#ff6a3d" />
+          <stop offset="1" stopColor="#f1391e" />
+        </linearGradient>
+      </defs>
+      <path d="M20 6h24l5 6 6-1-3 9 1.5 5L48 48l-16 10-16-10-5.5-23L12 20 9 11l6 1z" fill={`url(#${g})`} />
+      <path
+        d="M32 22c-3 0-5.5-1.8-8-1.8-2.8 0-4.8 2.5-4.2 5l1.8 6.8c.4 1.6 1.4 2.8 2.8 3.6l4 2.4-2.6 3.2L32 47l6.2-5.8-2.6-3.2 4-2.4c1.4-.8 2.4-2 2.8-3.6l1.8-6.8c.6-2.5-1.4-5-4.2-5-2.5 0-5 1.8-8 1.8z"
+        fill="#fff"
+      />
+      <path d="M26.5 30.5 30 32M37.5 30.5 34 32" stroke="#f1391e" strokeWidth="2" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 // Terminal: dark tile with prompt
 function Terminal(p: IconSvgProps) {
   return (
@@ -172,6 +193,7 @@ function Terminal(p: IconSvgProps) {
 
 export const appIcons = {
   terminal: Terminal,
+  brave: Brave,
   system: System,
   spotify: Spotify,
   logo: Logo,

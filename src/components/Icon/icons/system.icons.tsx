@@ -244,6 +244,17 @@ export const systemIcons = {
       <path d="M14 4h6v6M10 20H4v-6M20 4l-6.5 6.5M4 20l6.5-6.5" />
     </Stroke>
   ),
+  plus: (p) => (
+    <Stroke {...p}>
+      <path d="M12 5v14M5 12h14" />
+    </Stroke>
+  ),
+  lock: (p) => (
+    <Stroke {...p}>
+      <rect x="5" y="10.5" width="14" height="9.5" rx="2.2" />
+      <path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" />
+    </Stroke>
+  ),
   user: (p) => (
     <Stroke {...p}>
       <circle cx="12" cy="8.5" r="3.8" />
