@@ -4,6 +4,7 @@ import { TabStrip } from './components/TabStrip/TabStrip';
 import { Toolbar } from './components/Toolbar/Toolbar';
 import { FramePage } from './pages/FramePage/FramePage';
 import { NewTabPage } from './pages/NewTabPage/NewTabPage';
+import { PreviewPage } from './pages/PreviewPage/PreviewPage';
 import { openExternal, useBrowser } from './useBrowser';
 
 // Brave-like browser with tabs, address bar and "New tab" page
@@ -35,6 +36,7 @@ export function Browser({ windowId, args }: AppWindowProps<BrowserArgs>) {
 
       <div className={s.content}>
         {view.kind === 'newtab' && <NewTabPage onOpen={b.navigate} onSearch={b.searchFromNewTab} />}
+        {view.kind === 'preview' && <PreviewPage url={view.url} site={view.site} onOpenExternal={() => openExternal(view.url)} />}
         {view.kind === 'frame' && <FramePage url={view.url} reloadKey={b.reloadKey} onOpenExternal={() => openExternal(view.url)} />}
       </div>
     </div>

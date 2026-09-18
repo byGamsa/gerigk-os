@@ -84,7 +84,12 @@ export function useBrowser(windowId: string, args: BrowserArgs) {
 
   // ---------- View ----------
 
-  const view: TabView = isNewTab(url) ? { kind: 'newtab' } : { kind: 'frame', url };
+  const site = siteInfo(url);
+  const view: TabView = isNewTab(url)
+    ? { kind: 'newtab' }
+    : site && !site.embeddable
+      ? { kind: 'preview', url, site }
+      : { kind: 'frame', url };
 
   const tabSummaries: TabSummary[] = tabs.map((tab) => {
     const tabUrl = tab.history[tab.index] ?? NEW_TAB;
