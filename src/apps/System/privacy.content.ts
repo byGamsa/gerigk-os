@@ -53,6 +53,12 @@ function paragraphs(lang: Lang): Record<string, InfoParagraph[]> {
           'Die Cover der Songs werden von Servern von Spotify (Spotify AB, Regeringsgatan 19, 111 53 Stockholm, Schweden) geladen; dabei wird deine IP-Adresse an Spotify übermittelt. Die Titelinformationen selbst sind Teil dieser Website. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Datenschutzerklärung von Spotify: https://www.spotify.com/de/legal/privacy-policy/',
         ),
       ],
+      browser: [
+        p(
+          'Browser-App',
+          'Die Browser-App ist eine Nachbildung eines Browsers. Websites, die eine Einbettung erlauben, werden direkt in einem Rahmen (iframe) geladen; dabei stellt dein Browser eine Verbindung zum jeweiligen Anbieter her und übermittelt u. a. deine IP-Adresse – es gelten dessen Datenschutzbestimmungen. Websites, die keine Einbettung erlauben (z. B. dendree.de), werden nur als Vorschau angezeigt und erst auf deinen Klick in einem neuen Tab deines Browsers geöffnet. Suchanfragen werden an Brave Search (Brave Software, Inc., San Francisco, USA) übergeben und ebenfalls in einem neuen Tab geöffnet. Die Symbole der Lesezeichen sind lokal gespeichert. Datenschutzerklärung von Brave Search: https://search.brave.com/help/privacy-policy',
+        ),
+      ],
       fonts: [
         p(
           'Schriftarten',
@@ -116,6 +122,12 @@ function paragraphs(lang: Lang): Record<string, InfoParagraph[]> {
           'Song artwork is loaded from Spotify servers (Spotify AB, Regeringsgatan 19, 111 53 Stockholm, Sweden), which transmits your IP address to Spotify. The track information itself is part of this website. Legal basis: Art. 6 (1) (f) GDPR. Spotify privacy policy: https://www.spotify.com/legal/privacy-policy/',
         ),
       ],
+      browser: [
+        p(
+          'Browser app',
+          'The browser app is a replica of a web browser. Websites that allow embedding are loaded directly in a frame (iframe); your browser connects to the respective provider and transmits, among other things, your IP address – their privacy policy applies. Websites that do not allow embedding (e.g. dendree.de) are only shown as a preview and open in a new tab of your browser once you click. Search queries are passed to Brave Search (Brave Software, Inc., San Francisco, USA) and also open in a new tab. Bookmark icons are stored locally. Brave Search privacy policy: https://search.brave.com/help/privacy-policy',
+        ),
+      ],
       fonts: [
         p(
           'Fonts',
@@ -171,6 +183,7 @@ export function buildPrivacyContent(lang: Lang): PrivacyContent {
       { id: 'storage', icon: 'grid', title: de ? 'Cookies & lokaler Speicher' : 'Cookies & local storage', paragraphs: t.storage },
       { id: 'unsplash', icon: 'image', title: de ? 'Hintergrundbilder' : 'Wallpapers', paragraphs: t.unsplash },
       { id: 'music', icon: 'music', title: de ? 'Musik-Player' : 'Music player', paragraphs: t.music },
+      { id: 'browser', icon: 'globe', title: de ? 'Browser-App' : 'Browser app', paragraphs: t.browser },
       { id: 'fonts', icon: 'document', title: de ? 'Schriftarten' : 'Fonts', paragraphs: t.fonts },
       { id: 'links', icon: 'externalLink', title: de ? 'Externe Links' : 'External links', paragraphs: t.links },
       { id: 'rights', icon: 'scale', title: de ? 'Deine Rechte' : 'Your rights', paragraphs: t.rights },
