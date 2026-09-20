@@ -43,6 +43,46 @@ A few tips:
 Enjoy looking around!
 `;
 
+const cvDe = `LEBENSLAUF
+==========
+
+Name ........ Gerigk
+Rolle ....... Entwickler · Designer
+
+Ausbildung
+  • [Hochschule / Studiengang]
+  • [Schule / Abschluss]
+
+Erfahrung
+  • [Position] – [Firma], [Zeitraum]
+  • [Position] – [Firma], [Zeitraum]
+
+Skills
+  TypeScript · React · Tailwind CSS · Unity · C# · XR · UI/UX
+
+(Platzhalter – Inhalt in src/data/fs/files.ts anpassen)
+`;
+
+const cvEn = `CURRICULUM VITAE
+================
+
+Name ........ Gerigk
+Role ........ Developer · Designer
+
+Education
+  • [University / programme]
+  • [School / degree]
+
+Experience
+  • [Position] – [Company], [period]
+  • [Position] – [Company], [period]
+
+Skills
+  TypeScript · React · Tailwind CSS · Unity · C# · XR · UI/UX
+
+(Placeholder – edit the content in src/data/fs/files.ts)
+`;
+
 const notAVirusDe = `Keine Sorge – das hier ist wirklich nur eine Textdatei. 😄
 
 Aber schön, dass du so neugierig bist. Schau doch mal in den Papierkorb …
@@ -54,6 +94,14 @@ But nice that you're this curious. Have a look in the recycle bin …
 `;
 
 export const files: readonly VirtualFile[] = [
+  {
+    id: 'doc-cv',
+    folder: 'documents',
+    kind: 'text',
+    name: { de: 'Lebenslauf.txt', en: 'CV.txt' },
+    content: { de: cvDe, en: cvEn },
+    modifiedAt: '2026-09-20T10:12:00',
+  },
   {
     id: 'dl-not-a-virus',
     folder: 'downloads',
