@@ -83,6 +83,36 @@ Skills
 (Placeholder – edit the content in src/data/fs/files.ts)
 `;
 
+const projectsDe = `PROJEKTE
+========
+
+1. Gerigk OS
+   Dieses Portfolio – ein Desktop im Browser mit Fenstern, Taskleiste,
+   Explorer, Musik-Player und zufälligen Unsplash-Hintergründen.
+   React · TypeScript · Tailwind CSS · Zustand
+
+2. [Projektname]
+   [Kurzbeschreibung, Rolle, Technologien]
+
+3. [Projektname]
+   [Kurzbeschreibung, Rolle, Technologien]
+`;
+
+const projectsEn = `PROJECTS
+========
+
+1. Gerigk OS
+   This portfolio – a desktop in the browser with windows, taskbar,
+   explorer, music player and random Unsplash wallpapers.
+   React · TypeScript · Tailwind CSS · Zustand
+
+2. [Project name]
+   [Short description, role, technologies]
+
+3. [Project name]
+   [Short description, role, technologies]
+`;
+
 const notAVirusDe = `Keine Sorge – das hier ist wirklich nur eine Textdatei. 😄
 
 Aber schön, dass du so neugierig bist. Schau doch mal in den Papierkorb …
@@ -101,6 +131,14 @@ export const files: readonly VirtualFile[] = [
     name: { de: 'Lebenslauf.txt', en: 'CV.txt' },
     content: { de: cvDe, en: cvEn },
     modifiedAt: '2026-09-20T10:12:00',
+  },
+  {
+    id: 'doc-projects',
+    folder: 'documents',
+    kind: 'text',
+    name: { de: 'Projekte.txt', en: 'Projects.txt' },
+    content: { de: projectsDe, en: projectsEn },
+    modifiedAt: '2026-09-24T18:40:00',
   },
   {
     id: 'dl-not-a-virus',
