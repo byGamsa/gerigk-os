@@ -113,6 +113,24 @@ const projectsEn = `PROJECTS
    [Short description, role, technologies]
 `;
 
+const ideasDe = `Ideen für neue Apps auf diesem Desktop
+--------------------------------------
+[ ] Projekt-Galerie mit Screenshots
+[x] Terminal mit ein paar versteckten Befehlen
+[ ] Kleines Spiel für den „Spiele“-Ordner
+[x] Musik-Player
+[x] Explorer
+`;
+
+const ideasEn = `Ideas for new apps on this desktop
+----------------------------------
+[ ] Project gallery with screenshots
+[x] Terminal with a few hidden commands
+[ ] A small game for the "Games" menu
+[x] Music player
+[x] Explorer
+`;
+
 const notAVirusDe = `Keine Sorge – das hier ist wirklich nur eine Textdatei. 😄
 
 Aber schön, dass du so neugierig bist. Schau doch mal in den Papierkorb …
@@ -139,6 +157,14 @@ export const files: readonly VirtualFile[] = [
     name: { de: 'Projekte.txt', en: 'Projects.txt' },
     content: { de: projectsDe, en: projectsEn },
     modifiedAt: '2026-09-24T18:40:00',
+  },
+  {
+    id: 'doc-ideas',
+    folder: 'documents',
+    kind: 'text',
+    name: { de: 'Ideen.txt', en: 'Ideas.txt' },
+    content: { de: ideasDe, en: ideasEn },
+    modifiedAt: '2026-09-26T21:05:00',
   },
   {
     id: 'dl-not-a-virus',
