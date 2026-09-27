@@ -92,7 +92,10 @@ nur 50 Aufrufe/Stunde). Rechtsklick auf den Desktop → „Neuer Hintergrund“.
 ## Anpassen
 
 - **Name / Wallpaper:** `src/config/os.config.ts` (eigenes Foto z. B. als `public/wallpaper.jpg`)
+- **Impressum & Datenschutz:** `src/config/legal.config.ts` (Pflichtangaben inkl. Hosting-Anbieter – solange Platzhalter drin sind, warnt das Einstellungen-Fenster). Texte der Datenschutzerklärung: `src/apps/System/privacy.content.ts` – bei neuen Drittanbietern ergänzen!
 - **Über mich:** `src/apps/About/about.content.ts`
+- **Browser (Startseite, Lesezeichen, bekannte Seiten):** `src/config/browser.config.ts`
+- **Terminal-Befehle:** `src/apps/Terminal/shell/commands/` (`core` · `system` · `fun` für Easter Eggs mit `hidden: true`)
 - **Dateien im Explorer** (Dokumente, Downloads, Papierkorb …): `src/data/fs/files.ts`
 - **Texte:** `src/i18n/de.ts` + `src/i18n/en.ts`
 - **Farben, Radien, Schatten, Glas-Effekt:** `tailwind.config.ts`
