@@ -167,7 +167,67 @@
         "GJNdR_MKuDM",
         "BYFcaFQfTr8"
       ]
+    },
+    {
+      "uri": "spotify:track:2FAZskT9yRjp2Oow9szJD8",
+      "id": "2FAZskT9yRjp2Oow9szJD8",
+      "title": "The Days - NOTION Remix",
+      "artist": "Chrystal, NOTION",
+      "durationMs": 233229,
+      "explicit": false,
+      "cover": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e029041b9965925059507fb44af",
+      "videoIds": [
+        "XmOrox0l6Vs",
+        "t-knFuqQdGc",
+        "o8RcHrz2-uU",
+        "N0lgzxjQh64"
+      ]
+    },
+    {
+      "uri": "spotify:track:33lL8HLB8YO834kMoQeoZd",
+      "id": "33lL8HLB8YO834kMoQeoZd",
+      "title": "Show Me Love",
+      "artist": "WizTheMc, bees & honey",
+      "durationMs": 176965,
+      "explicit": false,
+      "cover": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e0212a333a62cf1a898ce04218a",
+      "videoIds": [
+        "qipBFmZDJmo",
+        "1NqIvsmUR2I",
+        "fbN6cG6_iGk",
+        "TeJ0fPMZLBU"
+      ]
+    },
+    {
+      "uri": "spotify:track:3ld1FzyNgpZwGn4h9cOXrq",
+      "id": "3ld1FzyNgpZwGn4h9cOXrq",
+      "title": "Love Me Not (feat. Rex Orange County)",
+      "artist": "Ravyn Lenae, Rex Orange County",
+      "durationMs": 188198,
+      "explicit": false,
+      "cover": "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e02084cd39fc4059e42cd19d61b",
+      "videoIds": [
+        "ES5nF0bvCtc",
+        "kugYXtEpMeM",
+        "F_zyjrrk_Xs",
+        "Lk4D51Wgm1Y"
+      ]
+    },
+    {
+      "uri": "spotify:track:5ViLKrbyL3HD6wsq3AB9eI",
+      "id": "5ViLKrbyL3HD6wsq3AB9eI",
+      "title": "White Keys",
+      "artist": "Dominic Fike",
+      "durationMs": 144101,
+      "explicit": false,
+      "cover": "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e023696096119ef08824cf85ede",
+      "videoIds": [
+        "Cz200209hOs",
+        "75qIYkMUGVE",
+        "1VCX0lreyEc",
+        "ekjEJBHoU-0"
+      ]
     }
   ],
-  "syncedAt": "2026-08-22T17:26:41.512Z"
+  "syncedAt": "2026-09-27T22:28:57.253Z"
 }
