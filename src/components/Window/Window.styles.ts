@@ -42,7 +42,9 @@ export const resizeHandleStyles: Record<ResizeDirection, string> = {
 };
 
 export const snapPreviewStyles = {
-  root: 'glass pointer-events-none fixed z-snap rounded-xl transition-all duration-300 ease-out',
+  root: 'glass pointer-events-none fixed z-snap rounded-xl duration-300 ease-out',
+  fade: 'transition-[opacity,transform]',
+  move: 'transition-all',
   visible: 'opacity-100 scale-100',
   hidden: 'opacity-0 scale-[.96]',
 } as const;
