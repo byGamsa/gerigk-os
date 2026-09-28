@@ -10,6 +10,7 @@ export function useWindowResize(id: string) {
       const win = useOsStore.getState().windows[id];
       if (e.button !== 0 || !win || win.maximized) return;
       e.stopPropagation();
+      if (win.snapped) useOsStore.getState().unmaximizeTo(id, win.rect);
       const handle = e.currentTarget;
       handle.setPointerCapture(e.pointerId);
 

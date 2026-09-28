@@ -1,5 +1,5 @@
 import { layout } from '@/config/layout';
-import type { AnchorRect, Point, Rect, Size } from '@/types';
+import type { AnchorRect, Point, Rect, Size, SnapTarget } from '@/types';
 import { clamp } from './math';
 
 // Area between top bar and taskbar – target area for maximized windows
@@ -11,6 +11,24 @@ export function getDeskArea(): Rect {
 }
 
 export const isMobileViewport = () => window.innerWidth < layout.mobileBreakpoint;
+
+// Pointer distance to the left/right screen edge that triggers half snapping
+const SNAP_EDGE = 6;
+
+// Target area of a snapped window: whole desk area or one half of it
+export function snapRect(target: SnapTarget, area: Rect = getDeskArea()): Rect {
+  if (target === 'max') return area;
+  const width = Math.round((area.width - layout.windowGap) / 2);
+  return { ...area, width, x: target === 'left' ? area.x : area.x + area.width - width };
+}
+
+// Snap target under the pointer while dragging: top bar → maximize, left/right edge → half
+export function snapTargetAt(x: number, y: number, area: Rect): SnapTarget | null {
+  if (x <= SNAP_EDGE) return 'left';
+  if (x >= window.innerWidth - 1 - SNAP_EDGE) return 'right';
+  if (y < area.y - 4) return 'max';
+  return null;
+}
 
 // Centered, slightly offset start position for new windows
 export function cascadeRect(size: Size, area: Rect, index: number): Rect {

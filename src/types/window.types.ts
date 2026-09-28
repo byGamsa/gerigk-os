@@ -6,6 +6,11 @@ export type WindowStatus = 'opening' | 'normal' | 'minimized' | 'closing';
 
 export type ResizeDirection = 'n' | 's' | 'e' | 'w' | 'ne' | 'nw' | 'se' | 'sw';
 
+export type SnapSide = 'left' | 'right';
+
+// Drop target while dragging a window: top edge maximizes, side edges fill one half
+export type SnapTarget = 'max' | SnapSide;
+
 export interface WindowState {
   id: string;
   appId: AppId;
@@ -18,6 +23,8 @@ export interface WindowState {
   prevRect: Rect | null;
   minSize: Size;
   maximized: boolean;
+  // Snapped to one half of the desk area (dragging restores prevRect)
+  snapped: SnapSide | null;
   status: WindowStatus;
   // Animate geometry changes (maximize / restore)
   animateGeometry: boolean;

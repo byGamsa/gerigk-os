@@ -1,6 +1,6 @@
 import { useShallow } from 'zustand/react/shallow';
 import { cn } from '@/lib/cn';
-import { getDeskArea } from '@/lib/geometry';
+import { snapRect } from '@/lib/geometry';
 import { useOsStore } from '@/store/os.store';
 import { snapPreviewStyles as s } from './Window.styles';
 import { Window } from './Window';
@@ -9,7 +9,7 @@ import { Window } from './Window';
 export function WindowLayer() {
   const ids = useOsStore(useShallow((st) => Object.keys(st.windows)));
   const snapPreview = useOsStore((st) => st.snapPreview);
-  const area = snapPreview ? getDeskArea() : null;
+  const area = snapPreview ? snapRect(snapPreview) : null;
 
   return (
     <>

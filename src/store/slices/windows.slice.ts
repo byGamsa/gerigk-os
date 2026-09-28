@@ -1,5 +1,5 @@
 import { layout } from '@/config/layout';
-import { cascadeRect, getDeskArea, isMobileViewport, keepInViewport, positionedRect } from '@/lib/geometry';
+import { cascadeRect, getDeskArea, isMobileViewport, keepInViewport, positionedRect, snapRect } from '@/lib/geometry';
 import { createId } from '@/lib/math';
 import type { WindowState } from '@/types';
 import type { SliceCreator, WindowsSlice } from '../os.store.types';
@@ -66,6 +66,7 @@ export const createWindowsSlice: SliceCreator<WindowsSlice> = (set, get) => {
           height: app.window?.minHeight ?? layout.window.minHeight,
         },
         maximized: mobile,
+        snapped: null,
         status: 'opening',
         animateGeometry: false,
         z,
@@ -125,9 +126,24 @@ export const createWindowsSlice: SliceCreator<WindowsSlice> = (set, get) => {
     },
 
     maximizeWindow: (id) =>
-      patch(id, (w) => ({ maximized: true, prevRect: w.rect, rect: getDeskArea(), animateGeometry: true })),
+      patch(id, (w) => ({
+        maximized: true,
+        snapped: null,
+        prevRect: w.snapped ? (w.prevRect ?? w.rect) : w.rect,
+        rect: getDeskArea(),
+        animateGeometry: true,
+      })),
 
-    unmaximizeTo: (id, rect) => patch(id, { maximized: false, rect, animateGeometry: false }),
+    snapWindow: (id, side) =>
+      patch(id, (w) => ({
+        maximized: false,
+        snapped: side,
+        prevRect: w.maximized || w.snapped ? (w.prevRect ?? w.rect) : w.rect,
+        rect: snapRect(side),
+        animateGeometry: true,
+      })),
+
+    unmaximizeTo: (id, rect) => patch(id, { maximized: false, snapped: null, rect, animateGeometry: false }),
 
     setWindowRect: (id, rect) => patch(id, { rect }),
 
@@ -145,7 +161,7 @@ export const createWindowsSlice: SliceCreator<WindowsSlice> = (set, get) => {
         const windows = Object.fromEntries(
           Object.entries(s.windows).map(([id, w]) => [
             id,
-            { ...w, rect: w.maximized ? area : keepInViewport(w.rect, area) },
+            { ...w, rect: w.maximized ? area : w.snapped ? snapRect(w.snapped, area) : keepInViewport(w.rect, area) },
           ]),
         );
         return { windows };

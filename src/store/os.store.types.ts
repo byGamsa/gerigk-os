@@ -12,6 +12,8 @@ import type {
   Point,
   Rect,
   RepeatMode,
+  SnapSide,
+  SnapTarget,
   Toast,
   ToastInput,
   WindowState,
@@ -46,6 +48,7 @@ export interface WindowsSlice {
   blurWindows: () => void;
   toggleMaximize: (id: string) => void;
   maximizeWindow: (id: string) => void;
+  snapWindow: (id: string, side: SnapSide) => void;
   // Un-maximize without animation (e.g. while dragging)
   unmaximizeTo: (id: string, rect: Rect) => void;
   setWindowRect: (id: string, rect: Rect) => void;
@@ -59,12 +62,12 @@ export interface WindowsSlice {
 
 export interface DesktopSlice {
   iconPositions: Record<string, GridCell>;
-  snapPreview: boolean;
+  snapPreview: SnapTarget | null;
   // Increment → new random wallpaper
   wallpaperNonce: number;
   setIconPosition: (appId: string, cell: GridCell) => void;
   resetIconPositions: () => void;
-  setSnapPreview: (visible: boolean) => void;
+  setSnapPreview: (target: SnapTarget | null) => void;
   nextWallpaper: () => void;
 }
 
