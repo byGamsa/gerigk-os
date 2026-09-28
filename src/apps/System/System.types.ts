@@ -34,7 +34,7 @@ export interface InfoParagraph {
   text: string;
 }
 
-// Collapsible section with a "Copy" button
+// Collapsible section
 export interface InfoSectionData {
   id: string;
   icon: IconName;

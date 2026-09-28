@@ -96,7 +96,10 @@ export const de = {
   'about.title': 'Über mich',
   'about.skills': 'Skills',
   'about.contact': 'Kontakt',
-  'about.note': 'Platzhalter – Inhalte in src/apps/About/about.content.ts anpassen.',
+  'about.highlights': 'Highlights',
+  'about.experience': 'Erfahrung',
+  'about.education': 'Ausbildung',
+  'about.volunteering': 'Ehrenamt',
 
   'spotify.title': 'Spotify',
   'spotify.playlist': 'Öffentliche Playlist',
@@ -118,10 +121,6 @@ export const de = {
   'spotify.unavailable': 'Für „{title}“ wurde kein abspielbares Video gefunden.',
   'spotify.seek': 'Position',
 
-  'system.copy': 'Kopieren',
-  'system.copyImprint': 'Impressum kopieren',
-  'system.copied': 'In die Zwischenablage kopiert.',
-  'system.copyFailed': 'Kopieren nicht möglich – bitte Text markieren.',
   'system.expand': 'Aufklappen',
   'system.collapse': 'Zuklappen',
   'system.related': 'Verwandte Links',

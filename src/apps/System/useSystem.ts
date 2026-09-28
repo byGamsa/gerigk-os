@@ -7,7 +7,7 @@ import { localize } from '@/i18n';
 import { launchApp } from '@/services/launcher';
 import { useOsStore } from '@/store/os.store';
 import { buildPrivacyContent } from './privacy.content';
-import { buildSystemContent, isPlaceholder, sectionToText } from './system.content';
+import { buildSystemContent, isPlaceholder } from './system.content';
 import type { SystemArgs, SystemNavItem, SystemPage } from './System.types';
 
 // Page navigation and content of the settings window (legal notice & privacy)
@@ -31,17 +31,6 @@ export function useSystem(windowId: string, args: SystemArgs) {
     { id: 'privacy', icon: 'shield', label: t('system.nav.privacy') },
   ];
 
-  const imprint = info.sections.find((s) => s.id === 'imprint');
-  const copyImprint = useCallback(async () => {
-    if (!imprint) return;
-    try {
-      await navigator.clipboard.writeText(sectionToText(imprint.title, imprint.rows));
-      useOsStore.getState().notify({ text: localize('system.copied'), icon: 'copy' });
-    } catch {
-      useOsStore.getState().notify({ text: localize('system.copyFailed'), icon: 'copy' });
-    }
-  }, [imprint]);
-
   const name = isPlaceholder(legalConfig.name) ? osConfig.owner : legalConfig.name;
   const missing = page === 'privacy' ? [...info.missing, ...privacy.missing] : info.missing;
 
@@ -61,7 +50,6 @@ export function useSystem(windowId: string, args: SystemArgs) {
     missingText: missing.length ? t('system.incompleteHint', { fields: missing.join(', ') }) : null,
     deviceName: osConfig.name.toUpperCase().replace(/\s+/g, '-'),
     deviceSubtitle: `Portfolio · Version ${__APP_VERSION__}`,
-    copyImprint,
   };
 }
 

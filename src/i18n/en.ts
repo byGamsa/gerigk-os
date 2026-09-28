@@ -98,7 +98,10 @@ export const en: Dictionary = {
   'about.title': 'About me',
   'about.skills': 'Skills',
   'about.contact': 'Contact',
-  'about.note': 'Placeholder – edit the content in src/apps/About/about.content.ts.',
+  'about.highlights': 'Highlights',
+  'about.experience': 'Experience',
+  'about.education': 'Education',
+  'about.volunteering': 'Volunteering',
 
   'spotify.title': 'Spotify',
   'spotify.playlist': 'Public playlist',
@@ -120,10 +123,6 @@ export const en: Dictionary = {
   'spotify.unavailable': 'No playable video found for “{title}”.',
   'spotify.seek': 'Position',
 
-  'system.copy': 'Copy',
-  'system.copyImprint': 'Copy legal notice',
-  'system.copied': 'Copied to clipboard.',
-  'system.copyFailed': 'Copying failed – please select the text.',
   'system.expand': 'Expand',
   'system.collapse': 'Collapse',
   'system.related': 'Related links',

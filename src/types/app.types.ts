@@ -1,7 +1,7 @@
 import type { ComponentType } from 'react';
 import type { IconName } from '@/components/Icon/Icon.types';
 import type { LocalizedValue } from './i18n.types';
-import type { Size } from './geometry.types';
+import type { Point, Size } from './geometry.types';
 
 export type AppId = string;
 
@@ -27,6 +27,8 @@ export interface AppWidgetProps {
 export interface AppWindowOptions extends Partial<Size> {
   minWidth?: number;
   minHeight?: number;
+  // Start position relative to the desk area (default: centered, cascading)
+  position?: Point;
 }
 
 export interface AppDefinition<TArgs = unknown> {
@@ -41,6 +43,8 @@ export interface AppDefinition<TArgs = unknown> {
   desktop?: boolean | GridCell;
   // Hide from the start menu
   hidden?: boolean;
+  // Opened automatically after booting
+  autostart?: boolean;
   window?: AppWindowOptions;
   // Decides whether to open a new window or focus an existing one (same key → same window; default: one per app)
   instanceKey?: (args: TArgs) => string;

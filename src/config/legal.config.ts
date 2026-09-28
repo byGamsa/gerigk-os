@@ -1,20 +1,20 @@
 import type { LegalInfo } from '@/types';
 
-// Legal notice details – enter your real data; [bracketed] values are placeholders and trigger a warning
+// Legal notice details – [bracketed] values are placeholders and trigger a warning
 export const legalConfig: LegalInfo = {
-  name: '[Vor- und Nachname]',
+  name: 'Lars Gerigk',
   address: {
-    street: '[Straße und Hausnummer]',
-    postalCode: '[PLZ]',
-    city: '[Ort]',
+    street: 'c/o Dendree, Kipperweg 10',
+    postalCode: '70569',
+    city: 'Stuttgart',
     country: 'Deutschland',
   },
-  email: '[E-Mail-Adresse]',
-  phone: '[Telefonnummer]',
+  email: 'larsgerigk@gmx.de',
+  phone: null,
   responsible: null,
   hosting: {
-    name: '[Hosting-Anbieter, z. B. Netlify, Vercel, Strato]',
-    address: '[Anschrift des Hosting-Anbieters]',
+    name: 'IONOS SE',
+    address: 'Elgendorfer Str. 57, 56410 Montabaur, Deutschland',
   },
   privacyUpdated: 'September 2026',
 };

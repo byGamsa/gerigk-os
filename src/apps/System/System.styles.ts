@@ -19,7 +19,6 @@ export const systemStyles = {
   device: 'mt-8 flex items-center justify-between gap-4 rounded-xl bg-white/[.05] px-5 py-4 shadow-[inset_0_0_0_1px_rgba(255,255,255,.05)]',
   deviceName: 'truncate text-[15px] font-medium',
   deviceSubtitle: 'truncate text-[12.5px] text-ink-dim',
-  deviceButton: `inline-flex h-9 shrink-0 items-center rounded-lg bg-white/[.08] px-4 text-[13.5px] transition-colors hover:bg-white/[.13] ${tokens.focusRing}`,
 
   intro: 'mt-4 max-w-[72ch] text-[13.5px] leading-relaxed text-ink-dim',
   sections: 'mt-1.5 flex flex-col gap-1.5',

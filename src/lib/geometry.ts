@@ -25,6 +25,18 @@ export function cascadeRect(size: Size, area: Rect, index: number): Rect {
   };
 }
 
+// Fixed start position relative to the desk area, kept inside it
+export function positionedRect(size: Size, area: Rect, position: Point): Rect {
+  const width = Math.min(size.width, area.width);
+  const height = Math.min(size.height, area.height);
+  return {
+    width,
+    height,
+    x: clamp(area.x + position.x, area.x, area.x + area.width - width),
+    y: clamp(area.y + position.y, area.y, area.y + area.height - height),
+  };
+}
+
 // Keeps a window in the viewport with enough visible area
 export function keepInViewport(rect: Rect, area: Rect): Rect {
   return {

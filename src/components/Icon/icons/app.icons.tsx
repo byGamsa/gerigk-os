@@ -152,9 +152,9 @@ function Spotify(p: IconSvgProps) {
 function System(p: IconSvgProps) {
   return (
     <Tile gradient={['#9aa6b8', '#4b5563']} {...p}>
-      <g fill="none" stroke="#fff" strokeWidth="3.4" strokeLinecap="round">
-        <circle cx="32" cy="32" r="6.5" />
-        <path d="M32 14.5v5M32 44.5v5M14.5 32h5M44.5 32h5M19.6 19.6l3.5 3.5M40.9 40.9l3.5 3.5M19.6 44.4l3.5-3.5M40.9 23.1l3.5-3.5" />
+      <g fill="none" stroke="#fff">
+        <circle cx="32" cy="32" r="11.5" strokeWidth="5" />
+        <path d="M32 15v6M32 43v6M15 32h6M43 32h6M20 20l4.3 4.3M39.7 39.7L44 44M20 44l4.3-4.3M39.7 24.3L44 20" strokeWidth="6.5" />
       </g>
     </Tile>
   );

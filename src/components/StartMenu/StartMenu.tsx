@@ -33,11 +33,11 @@ export function StartMenu() {
       </div>
 
       <div className={s.footer}>
-        <button type="button" className={s.user} onClick={m.openProfile} title={m.t('start.profile')}>
+        <button type="button" className={s.user} onClick={m.openProfile} title={m.t('about.title')}>
           <span className={s.avatar}>{m.initials}</span>
           <span className={s.userText}>
             <span className={s.userName}>{m.owner}</span>
-            <span className={s.userHint}>{m.t('start.profile')}</span>
+            <span className={s.userHint}>{m.t('about.title')}</span>
           </span>
         </button>
         <button

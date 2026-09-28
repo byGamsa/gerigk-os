@@ -122,14 +122,3 @@ export function buildSystemContent(lang: Lang, openAbout: () => void): SystemCon
     ],
   };
 }
-
-// Section as plain text for the clipboard
-export function sectionToText(title: string, rows?: readonly InfoRow[], paragraphs?: readonly InfoParagraph[]): string {
-  const lines = [title, ''];
-  rows?.forEach((r) => {
-    const value = typeof r.value === 'string' ? r.value : r.value.join(', ');
-    lines.push(`${r.label}: ${value}`);
-  });
-  paragraphs?.forEach((p) => lines.push(p.heading, p.text, ''));
-  return lines.join('\n').trim();
-}

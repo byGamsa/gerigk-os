@@ -8,5 +8,6 @@ export const aboutApp = defineApp({
   category: 'portfolio',
   component: About,
   pinned: true,
-  window: { width: 640, height: 560 },
+  autostart: true,
+  window: { width: 760, height: 660, position: { x: 34, y: 37 } },
 });

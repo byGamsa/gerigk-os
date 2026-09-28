@@ -17,3 +17,5 @@ export const getApp = (id: AppId): AnyAppDefinition | undefined => byId.get(id);
 export const pinnedApps = apps.filter((app) => app.pinned);
 
 export const desktopApps = apps.filter((app) => app.desktop);
+
+export const autostartApps = apps.filter((app) => app.autostart);

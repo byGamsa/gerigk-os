@@ -1,5 +1,5 @@
 import { layout } from '@/config/layout';
-import { cascadeRect, getDeskArea, isMobileViewport, keepInViewport } from '@/lib/geometry';
+import { cascadeRect, getDeskArea, isMobileViewport, keepInViewport, positionedRect } from '@/lib/geometry';
 import { createId } from '@/lib/math';
 import type { WindowState } from '@/types';
 import type { SliceCreator, WindowsSlice } from '../os.store.types';
@@ -44,14 +44,11 @@ export const createWindowsSlice: SliceCreator<WindowsSlice> = (set, get) => {
       const id = createId('win');
       const area = getDeskArea();
       const openCount = Object.keys(get().windows).length;
-      const rect = cascadeRect(
-        {
-          width: app.window?.width ?? layout.window.defaultWidth,
-          height: app.window?.height ?? layout.window.defaultHeight,
-        },
-        area,
-        openCount,
-      );
+      const size = {
+        width: app.window?.width ?? layout.window.defaultWidth,
+        height: app.window?.height ?? layout.window.defaultHeight,
+      };
+      const rect = app.window?.position ? positionedRect(size, area, app.window.position) : cascadeRect(size, area, openCount);
       const mobile = isMobileViewport();
       const z = get().zTop + 1;
       const focusedAt = get().focusSeq + 1;

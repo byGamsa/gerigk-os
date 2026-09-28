@@ -32,10 +32,6 @@ export function InfoSection(props: InfoSectionProps) {
       <header className={s.header}>
         <Icon name={section.icon} className={s.headerIcon} />
         <h2 className={s.title}>{section.title}</h2>
-        <button type="button" className={s.copyButton} onClick={sec.copy} title={sec.t('system.copy')}>
-          <Icon name="copy" className={s.copyIcon} />
-          <span className={s.copyLabel}>{sec.t('system.copy')}</span>
-        </button>
         <button
           type="button"
           className={s.toggle}

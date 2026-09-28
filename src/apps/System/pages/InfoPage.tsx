@@ -5,7 +5,7 @@ import type { SystemApi } from '../useSystem';
 
 // System › About – tiles, legal notice, disclaimer, credits, system info
 export function InfoPage({ sys }: { sys: SystemApi }) {
-  const { info, t } = sys;
+  const { info } = sys;
 
   return (
     <>
@@ -20,9 +20,6 @@ export function InfoPage({ sys }: { sys: SystemApi }) {
           <div className={s.deviceName}>{sys.deviceName}</div>
           <div className={s.deviceSubtitle}>{sys.deviceSubtitle}</div>
         </div>
-        <button type="button" className={s.deviceButton} onClick={sys.copyImprint}>
-          {t('system.copyImprint')}
-        </button>
       </div>
 
       <div className={s.sections}>
