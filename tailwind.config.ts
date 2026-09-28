@@ -79,8 +79,9 @@ export default {
         clock: '1',
         icons: '2',
         selection: '3',
-        widgets: '5',
         windows: '10',
+        // Mini players etc. stay above all windows
+        widgets: '20',
         snap: '900',
         bar: '1000',
         flyout: '1001',
