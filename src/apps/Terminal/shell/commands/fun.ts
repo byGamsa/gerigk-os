@@ -1,22 +1,43 @@
+import type { Localized } from '@/types';
 import type { Command, Line, Segment, Tone } from '../shell.types';
 
-// Easter eggs – intentionally hidden from `help` (hidden: true), hinted in ~/.secret
+// Easter eggs – intentionally hidden from `help` and /bin (hidden: true)
 
 const pick = <T,>(list: readonly T[]): T => list[Math.floor(Math.random() * list.length)]!;
 
-const FORTUNES = [
-  'Es funktioniert auf meinem Rechner. Dann liefern wir eben meinen Rechner aus.',
-  'Ein Bug ist nur ein Feature, das noch keinen Namen hat.',
-  'Es gibt 10 Arten von Menschen: die, die Binär verstehen, und die anderen.',
-  'Der schnellste Code ist der, der nie geschrieben wurde.',
-  'Heute ist ein guter Tag, um git push --force zu vermeiden.',
-  'Naming things ist schwer. Deshalb heißt diese Variable „data2_final“.',
-  'CSS ist einfach. Bis man versucht, etwas zu zentrieren.',
-  'Kaffee → Code → Bugs → mehr Kaffee. Ein stabiler Kreislauf.',
-  'Das Deadline-Monster lauert hinter dem nächsten Commit.',
-  '99 kleine Bugs im Code … einen gefixt, neu kompiliert … 127 kleine Bugs im Code.',
-  'Wenn Debuggen das Entfernen von Bugs ist, ist Programmieren das Hinzufügen.',
-  'Tipp: Der Papierkorb auf dem Desktop enthält mehr als nur Müll.',
+const FORTUNES: readonly Localized[] = [
+  {
+    de: 'Auf meinem Rechner funktioniert es. – Gut, dann liefern wir deinen Rechner aus.',
+    en: "It works on my machine. – Great, then we'll ship your machine.",
+  },
+  {
+    de: 'Es gibt 10 Arten von Menschen: die, die Binär verstehen, und die anderen.',
+    en: "There are 10 kinds of people: those who understand binary and those who don't.",
+  },
+  {
+    de: 'Es gibt nur zwei schwierige Dinge in der Informatik: Cache-Invalidierung, Dinge benennen und Off-by-one-Fehler.',
+    en: 'There are only two hard things in computer science: cache invalidation, naming things and off-by-one errors.',
+  },
+  {
+    de: '99 kleine Bugs im Code … einen gefixt, neu kompiliert … 127 kleine Bugs im Code.',
+    en: '99 little bugs in the code … take one down, patch it around … 127 little bugs in the code.',
+  },
+  {
+    de: 'Warum verwechseln Programmierer Halloween und Weihnachten? Weil OCT 31 == DEC 25.',
+    en: 'Why do programmers confuse Halloween and Christmas? Because OCT 31 == DEC 25.',
+  },
+  {
+    de: 'Eine SQL-Query geht in eine Bar, geht zu zwei Tabellen und fragt: „Darf ich euch joinen?“',
+    en: 'A SQL query walks into a bar, goes up to two tables and asks: "Can I join you?"',
+  },
+  {
+    de: 'Wenn Debuggen das Entfernen von Bugs ist, dann ist Programmieren das Hinzufügen.',
+    en: 'If debugging is the process of removing bugs, then programming must be the process of putting them in.',
+  },
+  {
+    de: 'CSS ist einfach. Bis man versucht, etwas vertikal zu zentrieren.',
+    en: 'CSS is easy. Until you try to center something vertically.',
+  },
 ];
 
 // Speech bubble for cowsay
@@ -71,25 +92,22 @@ export const funCommands: Command[] = [
   {
     name: 'sudo',
     hidden: true,
-    summary: 'Superuser werden (vielleicht)',
+    summary: { de: 'Superuser werden (vielleicht)', en: 'Become superuser (maybe)' },
     run: async (ctx) => {
-      const request = ctx.args.join(' ');
-      if (request === 'make me a sandwich') {
+      if (ctx.args.join(' ') === 'make me a sandwich') {
         ctx.print('Okay. 🥪');
         return;
       }
       ctx.print(`[sudo] password for ${ctx.user}: `);
       await ctx.sleep(1200);
       ctx.print([{ text: `${ctx.user} is not in the sudoers file. This incident will be reported.`, tone: 'red' }]);
-      await ctx.sleep(600);
-      ctx.print([{ text: '… an den Papierkorb. Der erzählt es niemandem. 🤫', tone: 'dim' }]);
       return 1;
     },
   },
   {
     name: 'sl',
     hidden: true,
-    summary: 'Dampflok (Tippfehler von ls?)',
+    summary: { de: 'Dampflok', en: 'Steam locomotive' },
     run: async (ctx) => {
       const width = 70;
       for (let offset = width; offset > -TRAIN[3]!.length; offset -= 2) {
@@ -102,28 +120,24 @@ export const funCommands: Command[] = [
         await ctx.sleep(45);
       }
       ctx.live(null);
-      ctx.print([{ text: 'Du meintest wohl ls. 🚂', tone: 'dim' }]);
     },
   },
   {
     name: 'cowsay',
     hidden: true,
-    summary: 'Eine Kuh sagt etwas',
-    run: (ctx) => {
-      const text = ctx.args.join(' ') || 'Muuuh! Tippe cowsay <text>';
-      ctx.print(...bubble(text), ...COW);
-    },
+    summary: { de: 'Eine Kuh sagt etwas', en: 'A cow says something' },
+    run: (ctx) => ctx.print(...bubble(ctx.args.join(' ') || ctx.t({ de: 'Muh.', en: 'Moo.' })), ...COW),
   },
   {
     name: 'fortune',
     hidden: true,
-    summary: 'Weisheit des Tages',
-    run: (ctx) => ctx.print([{ text: pick(FORTUNES), tone: 'yellow' }]),
+    summary: { de: 'Weisheit des Tages', en: 'Wisdom of the day' },
+    run: (ctx) => ctx.print([{ text: ctx.t(pick(FORTUNES)), tone: 'yellow' }]),
   },
   {
     name: 'matrix',
     hidden: true,
-    summary: 'Folge dem weißen Kaninchen',
+    summary: { de: 'Folge dem weißen Kaninchen', en: 'Follow the white rabbit' },
     run: async (ctx) => {
       const chars = 'アイウエオカキクケコサシスセソタチツテト0123456789ABCDEF';
       const cols = 64;
@@ -147,7 +161,7 @@ export const funCommands: Command[] = [
     name: 'hack',
     aliases: ['hollywood'],
     hidden: true,
-    summary: 'Wie im Film',
+    summary: { de: 'Wie im Film', en: 'Like in the movies' },
     run: async (ctx) => {
       const steps = ['Bypassing firewall', 'Decrypting mainframe', 'Downloading more RAM', 'Enhancing … enhance!', 'Rerouting through 7 proxies'];
       for (const step of steps) {
@@ -161,17 +175,18 @@ export const funCommands: Command[] = [
       }
       await ctx.sleep(400);
       ctx.print('', [{ text: '>>> ACCESS GRANTED <<<', tone: 'green' }]);
-      await ctx.sleep(900);
-      ctx.print([{ text: '… zum Papierkorb. Hier gibt es nichts Geheimes. 😄', tone: 'dim' }]);
     },
   },
   {
     name: 'coffee',
     aliases: ['brew'],
     hidden: true,
-    summary: 'Kaffee kochen',
+    summary: { de: 'Kaffee kochen', en: 'Brew coffee' },
     run: (ctx) => {
-      ctx.print([{ text: "HTTP/1.1 418 I'm a teapot", tone: 'yellow' }], 'Ich bin eine Teekanne. Tee gibt es, Kaffee nicht. 🫖');
+      ctx.print(
+        [{ text: "HTTP/1.1 418 I'm a teapot", tone: 'yellow' }],
+        ctx.t({ de: 'Ich bin eine Teekanne. Tee ja, Kaffee nein. 🫖', en: "I'm a teapot. Tea, yes. Coffee, no. 🫖" }),
+      );
       return 1;
     },
   },
@@ -179,23 +194,26 @@ export const funCommands: Command[] = [
     name: 'vim',
     aliases: ['vi', 'nano', 'emacs'],
     hidden: true,
-    summary: 'Editor',
+    summary: { de: 'Editor', en: 'Editor' },
     run: async (ctx) => {
       ctx.live([...Array.from({ length: 8 }, () => [{ text: '~', tone: 'blue' as const }]), [{ text: '-- INSERT --', tone: 'bold' as const }]]);
       await ctx.sleep(1600);
       ctx.live(null);
-      ctx.print('Du bist im Editor gefangen. Versuch :q … :q! … :wq …', [{ text: 'Keine Sorge, ich hab dich rausgeholt. Probier lieber: open notepad', tone: 'dim' }]);
+      ctx.print(
+        ':q',
+        ':q!',
+        ':wq',
+        ctx.t({ de: 'Du bist seit 2 Sekunden in vim gefangen. Manche schaffen es nie hinaus.', en: "You've been stuck in vim for 2 seconds. Some never make it out." }),
+      );
     },
   },
   {
     name: 'make',
     hidden: true,
-    summary: 'Bauen',
+    summary: { de: 'Bauen', en: 'Build' },
     run: (ctx) => {
-      const target = ctx.args[0];
-      if (target === 'love') ctx.print("make: *** No rule to make target 'love'.  Not war?");
-      else if (target === 'coffee') ctx.print("make: *** Siehe 'coffee'.");
-      else ctx.print(`make: *** No targets specified and no makefile found.  Stop.`);
+      if (ctx.args[0] === 'love') ctx.print("make: *** No rule to make target 'love'.  Not war?");
+      else ctx.print('make: *** No targets specified and no makefile found.  Stop.');
       return 2;
     },
   },
@@ -203,22 +221,29 @@ export const funCommands: Command[] = [
     name: '42',
     aliases: ['answer'],
     hidden: true,
-    summary: 'Die Antwort',
-    run: (ctx) => ctx.print('Die Antwort auf die Frage nach dem Leben, dem Universum und dem ganzen Rest.', 'Jetzt musst du nur noch die Frage herausfinden. 🐬'),
+    summary: { de: 'Die Antwort', en: 'The answer' },
+    run: (ctx) =>
+      ctx.print(
+        ctx.t({
+          de: 'Die Antwort auf die Frage nach dem Leben, dem Universum und dem ganzen Rest.',
+          en: 'The answer to the ultimate question of life, the universe and everything.',
+        }),
+        ctx.t({ de: 'Jetzt fehlt nur noch die Frage. 🐬', en: 'Now all you need is the question. 🐬' }),
+      ),
   },
   {
     name: 'hello',
     aliases: ['hi', 'hallo', 'moin', 'servus'],
     hidden: true,
-    summary: 'Hallo sagen',
-    run: (ctx) => ctx.print(pick(['Hallo! 👋', 'Moin! ⚓', 'Hey, schön dass du da bist!', 'Servus! 🏔️'])),
+    summary: { de: 'Hallo sagen', en: 'Say hello' },
+    run: (ctx) => ctx.print(ctx.t(pick<Localized>([{ de: 'Hallo! 👋', en: 'Hello! 👋' }, { de: 'Moin! ⚓', en: 'Ahoy! ⚓' }, { de: 'Servus! 🏔️', en: 'Howdy! 🤠' }]))),
   },
   {
     name: 'party',
     hidden: true,
     summary: '🎉',
     run: async (ctx) => {
-      const text = '🎉  PARTY IN DER SHELL  🎉';
+      const text = ctx.t({ de: '🎉  PARTY IN DER SHELL  🎉', en: '🎉  PARTY IN THE SHELL  🎉' });
       for (let frame = 0; frame < 24; frame++) {
         ctx.live([[...text].map((ch, i): Segment => ({ text: ch, tone: RAINBOW[(i + frame) % RAINBOW.length] }))]);
         await ctx.sleep(90);
@@ -230,14 +255,14 @@ export const funCommands: Command[] = [
   {
     name: 'git',
     hidden: true,
-    summary: 'Versionsverwaltung',
+    summary: { de: 'Versionsverwaltung', en: 'Version control' },
     run: (ctx) => {
       const sub = ctx.args[0];
       const replies: Record<string, Line[]> = {
-        blame: ['Es war der Praktikant. Es ist immer der Praktikant.'],
-        push: [[{ text: 'To portfolio.git', tone: 'dim' }], ' ! [rejected]  main -> main (Freitagnachmittag)'],
-        status: ['On branch main', 'Your branch is up to date with \'origin/main\'.', '', 'nothing to commit, working tree clean ✨'],
-        commit: ['[main 4a2c1f0] final final v3 (wirklich)'],
+        blame: [ctx.t({ de: 'Es war der Praktikant. Es ist immer der Praktikant.', en: 'It was the intern. It is always the intern.' })],
+        push: [[{ text: 'To portfolio.git', tone: 'dim' }], ` ! [rejected]  main -> main (${ctx.t({ de: 'Freitag, 17:59 Uhr', en: 'Friday, 5:59 pm' })})`],
+        status: ['On branch main', "Your branch is up to date with 'origin/main'.", '', 'nothing to commit, working tree clean ✨'],
+        commit: [`[main 4a2c1f0] final final v3 (${ctx.t({ de: 'wirklich', en: 'really' })})`],
       };
       ctx.print(...(replies[sub ?? ''] ?? [`git: '${sub ?? ''}' is not a git command. Try 'git status'.`]));
     },
@@ -246,15 +271,18 @@ export const funCommands: Command[] = [
     name: 'weather',
     aliases: ['wetter'],
     hidden: true,
-    summary: 'Wetter',
-    run: (ctx) => ctx.print('☀️  localhost: 21 °C, sonnig. Wie immer.'),
+    summary: { de: 'Wetter', en: 'Weather' },
+    run: (ctx) => ctx.print(ctx.t({ de: '☀️  localhost: 21 °C. Auf localhost scheint immer die Sonne.', en: "☀️  localhost: 21 °C. It's always sunny on localhost." })),
   },
   {
     name: 'konami',
     hidden: true,
     summary: '↑↑↓↓←→←→BA',
     run: (ctx) => {
-      ctx.print([{ text: '↑ ↑ ↓ ↓ ← → ← → B A', tone: 'magenta' }], [{ text: 'Cheat aktiviert: +30 Leben 🎮', tone: 'green' }]);
+      ctx.print(
+        [{ text: '↑ ↑ ↓ ↓ ← → ← → B A', tone: 'magenta' }],
+        [{ text: ctx.t({ de: 'Cheat aktiviert: +30 Leben 🎮', en: 'Cheat activated: +30 lives 🎮' }), tone: 'green' }],
+      );
     },
   },
 ];

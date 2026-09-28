@@ -36,7 +36,7 @@ export async function execute(input: string, env: ShellEnv): Promise<number> {
     if (!def) {
       const hint = suggest(name);
       env.print([{ text: `gsh: command not found: ${name}`, tone: 'red' }]);
-      if (hint) env.print([{ text: `Meintest du: `, tone: 'dim' }, { text: hint, tone: 'green' }, { text: '?', tone: 'dim' }]);
+      if (hint) env.print([{ text: env.t({ de: 'Meintest du: ', en: 'Did you mean: ' }), tone: 'dim' }, { text: hint, tone: 'green' }, { text: '?', tone: 'dim' }]);
       status = 127;
       continue;
     }

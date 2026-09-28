@@ -60,20 +60,25 @@ git commit -m "final final v2 (really)"
 git push --force   # sorry
 `;
 
-const SECRET = `
+const SECRET = () =>
+  lang() === 'de'
+    ? `
   Psst … du hast eine versteckte Datei gefunden. 🕵️
 
   Ein paar Befehle, die in keiner Hilfe stehen:
     sl · cowsay · fortune · matrix · hack · coffee · vim · 42
     sudo make me a sandwich · make love · rm -rf /
+`
+    : `
+  Psst … you found a hidden file. 🕵️
 
-  Und probier mal den Konami-Code im Terminal: ↑ ↑ ↓ ↓ ← → ← → B A
+  A few commands you won't find in any help:
+    sl · cowsay · fortune · matrix · hack · coffee · vim · 42
+    sudo make me a sandwich · make love · rm -rf /
 `;
 
 const MOTD = () =>
-  lang() === 'de'
-    ? `Willkommen bei ${osConfig.name}! Tipp: 'help' zeigt alle Befehle, 'ls -a' auch versteckte Dateien.\n`
-    : `Welcome to ${osConfig.name}! Tip: 'help' lists all commands, 'ls -a' shows hidden files too.\n`;
+  lang() === 'de' ? `Willkommen bei ${osConfig.name}! 'help' zeigt alle Befehle.\n` : `Welcome to ${osConfig.name}! Type 'help' to see all commands.\n`;
 
 // Virtual file system of a terminal session
 export class VirtualFs {
@@ -85,15 +90,15 @@ export class VirtualFs {
     const { root } = this;
 
     const bin = add(root, dir('bin'));
-    commandNames.forEach((name) => add(bin, file(name, () => `\u0000ELF binary – ${name}: sieht gut aus, lässt sich aber nicht lesen 😉\n`)));
+    commandNames.forEach((name) => add(bin, file(name, () => `\u007fELF\u0002\u0001\u0001 ${name}: binary file\n`)));
 
     const etc = add(root, dir('etc'));
     add(etc, file('motd', MOTD));
     add(etc, file('hostname', () => `${osConfig.name.toLowerCase().replace(/\s+/g, '-')}\n`));
     add(etc, file('os-release', () => `NAME="${osConfig.name}"\nVERSION="${__APP_VERSION__}"\nPRETTY_NAME="${osConfig.name} ${__APP_VERSION__} (Liquid Glass)"\nHOME_URL="https://${location.host}"\n`));
-    add(etc, file('passwd', () => `root:x:0:0:root:/root:/bin/gsh\n${user}:x:1000:1000:${osConfig.owner}:/home/${user}:/bin/gsh\nnobody:x:65534:65534:Niemand, wirklich niemand:/nonexistent:/usr/sbin/nologin\n`));
+    add(etc, file('passwd', () => `root:x:0:0:root:/root:/bin/gsh\n${user}:x:1000:1000:${osConfig.owner}:/home/${user}:/bin/gsh\nnobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin\n`));
     add(etc, file('shadow', () => {
-      throw new FsError('Permission denied (netter Versuch)');
+      throw new FsError('Permission denied');
     }));
 
     add(root, dir('tmp', false));
@@ -122,7 +127,7 @@ export class VirtualFs {
     });
 
     add(homeDir, file('.bash_history', () => BASH_HISTORY));
-    add(homeDir, file('.secret', () => SECRET));
+    add(homeDir, file('.secret', SECRET));
     homeDir.readonly = false;
   }
 

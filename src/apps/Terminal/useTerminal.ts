@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type KeyboardEvent } from 'react';
 import { osConfig } from '@/config/os.config';
 import { useWindowTitle } from '@/hooks/useWindowTitle';
+import { resolveLocalized } from '@/i18n';
 import { binNames, commands } from './shell/commands';
 import { complete } from './shell/completion';
 import { execute, type ShellEnv } from './shell/executor';
@@ -86,6 +87,7 @@ export function useTerminal(windowId: string) {
       },
       fs,
       print,
+      t: (value) => resolveLocalized(os.lang(), value),
       live: (out) => setLive(out ? out.map(toOutput) : null),
       clear: () => setLines([]),
       sleep: (ms) =>

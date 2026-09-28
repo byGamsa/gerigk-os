@@ -1,3 +1,4 @@
+import type { LocalizedValue } from '@/types';
 import type { VirtualFs } from './vfs';
 
 // Color/style of a text segment in the terminal
@@ -44,6 +45,8 @@ export interface ShellContext {
   setCwd: (path: string) => void;
   fs: VirtualFs;
   print: (...lines: Line[]) => void;
+  // Text in the current system language
+  t: (value: LocalizedValue) => string;
   // Live area below the output (for animations); `null` clears it
   live: (lines: Line[] | null) => void;
   clear: () => void;
@@ -60,7 +63,7 @@ export interface ShellContext {
 export interface Command {
   name: string;
   aliases?: string[];
-  summary: string;
+  summary: LocalizedValue;
   usage?: string;
   // Don't list in `help` (easter eggs)
   hidden?: boolean;
