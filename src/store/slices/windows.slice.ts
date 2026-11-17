@@ -1,4 +1,5 @@
 import { layout } from '@/config/layout';
+import { closeGuards } from '@/lib/closeGuards';
 import { cascadeRect, getDeskArea, isMobileViewport, keepInViewport, positionedRect, snapRect } from '@/lib/geometry';
 import { createId } from '@/lib/math';
 import type { WindowState } from '@/types';
@@ -79,7 +80,8 @@ export const createWindowsSlice: SliceCreator<WindowsSlice> = (set, get) => {
       return id;
     },
 
-    closeWindow: (id) => {
+    closeWindow: (id, force = false) => {
+      if (!force && closeGuards.intercept(id)) return;
       const { windows, activeId } = get();
       if (!windows[id] || windows[id].status === 'closing') return;
       const next = activeId === id ? topVisible(windows, id) : null;

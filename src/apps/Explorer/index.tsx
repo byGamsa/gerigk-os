@@ -30,3 +30,18 @@ export const recycleBinApp = defineApp<ExplorerArgs>({
   desktop: { col: -1, row: -1 },
   window: explorerWindow,
 });
+
+// Guestbook on the desktop – same explorer, starts in the guestbook folder
+export const guestbookApp = defineApp<ExplorerArgs>({
+  id: 'guestbook',
+  title: { de: 'Gästebuch', en: 'Guestbook' },
+  icon: 'folder',
+  category: 'portfolio',
+  // Just a folder: no entry in start menu or top-bar app menu
+  hidden: true,
+  component: ({ windowId, args }: AppWindowProps<ExplorerArgs>) => (
+    <Explorer windowId={windowId} initialFolder={args.folder ?? 'guestbook'} />
+  ),
+  desktop: true,
+  window: explorerWindow,
+});

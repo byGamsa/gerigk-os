@@ -7,6 +7,7 @@ export const folders: readonly FolderDefinition[] = [
   { id: 'downloads', name: { de: 'Downloads', en: 'Downloads' }, icon: 'download' },
   { id: 'pictures', name: { de: 'Bilder', en: 'Pictures' }, icon: 'image' },
   { id: 'trash', name: { de: 'Papierkorb', en: 'Recycle Bin' }, icon: 'trashSmall' },
+  { id: 'guestbook', name: { de: 'Gästebuch', en: 'Guestbook' }, icon: 'folderSmall', pinned: true },
 ];
 
 const byId = new Map(folders.map((f) => [f.id, f]));

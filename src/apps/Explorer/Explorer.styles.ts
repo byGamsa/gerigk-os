@@ -25,14 +25,16 @@ export const explorerStyles = {
   tabActive: 'bg-surface-active',
   tabIcon: 'size-3.5',
 
-  actions: 'flex gap-1.5 border-t border-surface-line px-3 py-2',
+  actions: 'flex flex-wrap gap-1.5 border-t border-surface-line px-3 py-2',
   action: `inline-flex h-[30px] items-center gap-2 rounded-lg px-3 text-[13px] ${tokens.hover} ${tokens.focusRing} disabled:pointer-events-none disabled:opacity-40`,
   actionIcon: 'size-4',
+  actionsDivider: 'mx-1 w-px self-stretch bg-surface-line',
 
   main: 'flex min-h-0 flex-1 border-t border-surface-line',
   sidebar: `hidden w-44 shrink-0 flex-col gap-0.5 border-r border-surface-line p-2 ${tokens.scroll} @[560px]:flex`,
   sideItem: `flex h-8 items-center gap-2.5 rounded-lg px-2.5 text-left text-[13px] ${tokens.hover} ${tokens.focusRing}`,
   sideItemActive: 'bg-surface-active hover:bg-surface-active',
+  sideDivider: 'mx-2 my-1.5 h-px shrink-0 bg-surface-line',
   sideIcon: 'size-[18px] shrink-0 opacity-90',
 
   list: `min-w-0 flex-1 p-2 ${tokens.scroll}`,

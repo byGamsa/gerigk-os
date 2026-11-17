@@ -1,18 +1,29 @@
-import { useCallback, useMemo, useState, type KeyboardEvent, type MouseEvent, type PointerEvent } from 'react';
+import { useCallback, useEffect, useMemo, useState, type KeyboardEvent, type MouseEvent, type PointerEvent } from 'react';
 import { getApp } from '@/apps/registry';
-import { entriesIn, folders, getFolder } from '@/data/fileSystem';
+import { entriesIn, folders, getFolder, guestbookEntryId } from '@/data/fileSystem';
 import { useT } from '@/hooks/useT';
 import { useWindowTitle } from '@/hooks/useWindowTitle';
 import { localize } from '@/i18n';
 import { formatDateTime, formatFileSize } from '@/lib/format';
+import { deleteEntry, guestbookEnabled, setEntryStatus } from '@/services/guestbook/guestbookService';
+import { refreshGuestbook, serverIdOf, useGuestbookState } from '@/services/guestbook/guestbookStore';
 import { launchApp } from '@/services/launcher';
 import { useOsStore } from '@/store/os.store';
-import type { FolderId, FsEntry } from '@/types';
+import type { AppId, FolderId, FsEntry, GuestbookStatus, TranslationKey } from '@/types';
 import type { NotepadArgs } from '../Notepad/Notepad.types';
 import type { ExplorerColumn, ExplorerHistory, ExplorerRow } from './Explorer.types';
 
 const TRASH_COLUMNS: readonly ExplorerColumn[] = ['name', 'origin', 'deleted', 'size'];
 const DEFAULT_COLUMNS: readonly ExplorerColumn[] = ['name', 'modified', 'type', 'size'];
+
+// Desktop shortcuts that are really folders – opening them navigates inside the explorer
+const FOLDER_APPS: Partial<Record<AppId, FolderId>> = { 'recycle-bin': 'trash', guestbook: 'guestbook' };
+
+const STATUS_LABEL: Record<GuestbookStatus, TranslationKey> = {
+  approved: 'guestbook.status.approved',
+  pending: 'guestbook.status.pending',
+  rejected: 'guestbook.status.rejected',
+};
 
 // File explorer logic: navigation with history, search, selection, opening
 export function useExplorer(windowId: string, initialFolder: FolderId) {
@@ -24,9 +35,16 @@ export function useExplorer(windowId: string, initialFolder: FolderId) {
   const folderId = history.stack[history.index] ?? initialFolder;
   const folder = getFolder(folderId);
   const isTrash = folderId === 'trash';
+  const isGuestbook = folderId === 'guestbook';
+  const guestbook = useGuestbookState();
   const columns = isTrash ? TRASH_COLUMNS : DEFAULT_COLUMNS;
 
   useWindowTitle(windowId, folder.name);
+
+  // Guestbook files live in Supabase – reload whenever the folder is opened
+  useEffect(() => {
+    if (isGuestbook) void refreshGuestbook();
+  }, [isGuestbook]);
 
   // ---------- Navigation ----------
 
@@ -84,20 +102,26 @@ export function useExplorer(windowId: string, initialFolder: FolderId) {
             origin: entry.originalPath ? tr(entry.originalPath) : '',
             deleted: entry.deletedAt ? formatDateTime(new Date(entry.deletedAt), lang) : '',
             modified: formatDateTime(new Date(entry.modifiedAt), lang),
-            type: t('explorer.type.text'),
+            type: entry.guestbookStatus ? `${t('explorer.type.text')} · ${t(STATUS_LABEL[entry.guestbookStatus])}` : t('explorer.type.text'),
             size: formatFileSize(new Blob([tr(entry.content)]).size),
           },
         };
       })
       .filter((row) => row.cells.name.toLowerCase().includes(q));
-  }, [folderId, lang, query, t, tr]);
+    // guestbook.*: re-render the guestbook folder when Supabase data or own files change
+  }, [folderId, lang, query, t, tr, guestbook.entries, guestbook.own]);
 
   // ---------- Opening ----------
 
-  const open = useCallback((entry: FsEntry, el: Element) => {
-    if (entry.kind === 'shortcut') launchApp(entry.appId, undefined, el);
-    else launchApp<NotepadArgs>('notepad', { fileId: entry.id }, el);
-  }, []);
+  const open = useCallback(
+    (entry: FsEntry, el: Element) => {
+      const folderApp = entry.kind === 'shortcut' ? FOLDER_APPS[entry.appId] : undefined;
+      if (folderApp) navigate(folderApp);
+      else if (entry.kind === 'shortcut') launchApp(entry.appId, undefined, el);
+      else launchApp<NotepadArgs>('notepad', { fileId: entry.id }, el);
+    },
+    [navigate],
+  );
 
   const rowHandlers = useCallback(
     (entry: FsEntry) => ({
@@ -113,10 +137,54 @@ export function useExplorer(windowId: string, initialFolder: FolderId) {
     [open],
   );
 
+  const openSelected = useCallback(
+    (el: Element) => {
+      const entry = entriesIn(folderId).find((e) => e.id === selectedId);
+      if (entry) open(entry, el);
+    },
+    [folderId, selectedId, open],
+  );
+
   const emptyBin = useCallback(
     () => useOsStore.getState().notify({ text: localize('trash.emptyNope'), icon: 'trash' }),
     [],
   );
+
+  // ---------- Guestbook ----------
+
+  const selectedEntry = isGuestbook && selectedId ? guestbookEntryId(selectedId) : null;
+  // Own files are moderated through their server copy
+  const selectedEntryId = selectedEntry ? serverIdOf(selectedEntry) : null;
+
+  const newGuestbookFile = useCallback(
+    (el: Element) => launchApp<NotepadArgs>('notepad', { compose: 'guestbook' }, el),
+    [],
+  );
+
+  const moderate = useCallback(
+    async (action: 'approve' | 'reject' | 'delete') => {
+      if (!selectedEntryId) return;
+      try {
+        if (action === 'delete') await deleteEntry(selectedEntryId);
+        else await setEntryStatus(selectedEntryId, action === 'approve' ? 'approved' : 'rejected');
+        if (action === 'delete') setSelectedId(null);
+        await refreshGuestbook();
+      } catch {
+        useOsStore.getState().notify({ text: localize('guestbook.admin.actionFailed'), icon: 'folder' });
+      }
+    },
+    [selectedEntryId],
+  );
+
+  const emptyText = !isGuestbook
+    ? t('explorer.empty')
+    : !guestbookEnabled
+      ? t('guestbook.notConfigured')
+      : guestbook.failed
+        ? t('guestbook.loadFailed')
+        : guestbook.loading
+          ? t('guestbook.loading')
+          : t('guestbook.empty');
 
   const columnLabel: Record<ExplorerColumn, string> = {
     name: t('explorer.col.name'),
@@ -132,6 +200,10 @@ export function useExplorer(windowId: string, initialFolder: FolderId) {
     tr,
     folder,
     folders,
+    regularFolders: folders.filter((f) => !f.pinned),
+    pinnedFolders: folders.filter((f) => f.pinned),
+    hasSelection: selectedId !== null,
+    openSelected,
     isTrash,
     columns,
     columnLabel,
@@ -147,5 +219,13 @@ export function useExplorer(windowId: string, initialFolder: FolderId) {
     goBack,
     goForward,
     emptyBin,
+    emptyText,
+    isGuestbook,
+    guestbookEnabled,
+    guestbookAdmin: guestbook.admin,
+    canModerate: selectedEntryId !== null,
+    newGuestbookFile,
+    refreshGuestbook: () => void refreshGuestbook(),
+    moderate,
   };
 }

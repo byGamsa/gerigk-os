@@ -175,6 +175,11 @@ export const systemIcons = {
       <path d="m20.5 16-5-5-8.5 8.5" />
     </Stroke>
   ),
+  folderSmall: (p) => (
+    <Stroke {...p}>
+      <path d="M3.5 7.5a2 2 0 0 1 2-2h4l2 2.5h7a2 2 0 0 1 2 2v7.5a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z" />
+    </Stroke>
+  ),
   restoreFile: (p) => (
     <Stroke {...p}>
       <path d="M4 12a8 8 0 1 0 2.4-5.7" />
@@ -309,6 +314,11 @@ export const systemIcons = {
       <path d="M9 18V6l11-2v12" />
       <circle cx="6.5" cy="18" r="2.5" />
       <circle cx="17.5" cy="16" r="2.5" />
+    </Stroke>
+  ),
+  code: (p) => (
+    <Stroke {...p}>
+      <path d="m8.5 7-5 5 5 5M15.5 7l5 5-5 5M13.5 4.5l-3 15" />
     </Stroke>
   ),
 } satisfies Record<string, IconComponent>;

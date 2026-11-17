@@ -11,5 +11,5 @@ export const notepadApp = defineApp<NotepadArgs>({
   pinned: true,
   window: { width: 680, height: 500 },
   // One window per file
-  instanceKey: (args) => args.fileId ?? 'untitled',
+  instanceKey: (args) => (args.compose ? `compose-${args.compose}` : (args.fileId ?? 'untitled')),
 });

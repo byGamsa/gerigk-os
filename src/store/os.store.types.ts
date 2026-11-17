@@ -40,7 +40,8 @@ export interface WindowsSlice {
   focusSeq: number;
   // Opens a window – or focuses the existing one with the same instance key
   openWindow: (app: AnyAppDefinition, args: unknown, origin: Point | null) => string;
-  closeWindow: (id: string) => void;
+  // `force` skips close guards (e.g. "Don't save" in the editor)
+  closeWindow: (id: string, force?: boolean) => void;
   removeWindow: (id: string) => void;
   minimizeWindow: (id: string) => void;
   restoreWindow: (id: string) => void;

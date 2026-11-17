@@ -44,6 +44,7 @@ const HOME_FOLDERS: Record<Exclude<FolderId, 'desktop'>, string> = {
   documents: 'Documents',
   downloads: 'Downloads',
   pictures: 'Pictures',
+  guestbook: 'Guestbook',
   trash: '.Trash',
 };
 

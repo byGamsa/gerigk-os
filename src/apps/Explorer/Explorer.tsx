@@ -47,6 +47,15 @@ export function Explorer({ windowId, initialFolder }: ExplorerProps) {
         ))}
       </nav>
 
+      {!ex.isTrash && !ex.isGuestbook && (
+        <div className={s.actions}>
+          <button type="button" className={s.action} onClick={(e) => ex.openSelected(e.currentTarget)} disabled={!ex.hasSelection}>
+            <Icon name="expand" className={s.actionIcon} />
+            {t('explorer.open')}
+          </button>
+        </div>
+      )}
+
       {ex.isTrash && (
         <div className={s.actions}>
           <button type="button" className={s.action} onClick={ex.emptyBin}>
@@ -60,20 +69,52 @@ export function Explorer({ windowId, initialFolder }: ExplorerProps) {
         </div>
       )}
 
+      {ex.isGuestbook && (
+        <div className={s.actions}>
+          <button type="button" className={s.action} onClick={(e) => ex.newGuestbookFile(e.currentTarget)} disabled={!ex.guestbookEnabled}>
+            <Icon name="plus" className={s.actionIcon} />
+            {t('guestbook.newFile')}
+          </button>
+          <button type="button" className={s.action} onClick={ex.refreshGuestbook} disabled={!ex.guestbookEnabled}>
+            <Icon name="refresh" className={s.actionIcon} />
+            {t('guestbook.refresh')}
+          </button>
+          {ex.guestbookAdmin && (
+            <>
+              <span className={s.actionsDivider} />
+              <button type="button" className={s.action} onClick={() => ex.moderate('approve')} disabled={!ex.canModerate}>
+                {t('guestbook.admin.approve')}
+              </button>
+              <button type="button" className={s.action} onClick={() => ex.moderate('reject')} disabled={!ex.canModerate}>
+                {t('guestbook.admin.reject')}
+              </button>
+              <button type="button" className={s.action} onClick={() => ex.moderate('delete')} disabled={!ex.canModerate}>
+                <Icon name="trashSmall" className={s.actionIcon} />
+                {t('guestbook.admin.delete')}
+              </button>
+            </>
+          )}
+        </div>
+      )}
+
       <div className={s.main}>
         <nav className={s.sidebar} aria-label={t('explorer.thisPc')}>
-          {ex.folders.map((f) => (
-            <button
-              key={f.id}
-              type="button"
-              aria-current={f.id === ex.folder.id ? 'page' : undefined}
-              className={cn(s.sideItem, f.id === ex.folder.id && s.sideItemActive)}
-              onClick={() => ex.navigate(f.id)}
-            >
-              <Icon name={f.icon} className={s.sideIcon} />
-              {tr(f.name)}
-            </button>
-          ))}
+          {[...ex.regularFolders, null, ...ex.pinnedFolders].map((f) =>
+            f === null ? (
+              <hr key="divider" className={s.sideDivider} />
+            ) : (
+              <button
+                key={f.id}
+                type="button"
+                aria-current={f.id === ex.folder.id ? 'page' : undefined}
+                className={cn(s.sideItem, f.id === ex.folder.id && s.sideItemActive)}
+                onClick={() => ex.navigate(f.id)}
+              >
+                <Icon name={f.icon} className={s.sideIcon} />
+                {tr(f.name)}
+              </button>
+            ),
+          )}
         </nav>
 
         <div className={s.list} role="listbox" aria-label={folderName}>
@@ -90,7 +131,7 @@ export function Explorer({ windowId, initialFolder }: ExplorerProps) {
           {ex.rows.length === 0 && (
             <div className={s.empty}>
               <Icon name="folder" className={s.emptyIcon} />
-              {ex.total === 0 ? t('explorer.empty') : t('explorer.noMatches')}
+              {ex.total === 0 ? ex.emptyText : t('explorer.noMatches')}
             </div>
           )}
 

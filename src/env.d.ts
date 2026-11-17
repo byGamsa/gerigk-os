@@ -1,8 +1,9 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
-  // Unsplash access key (https://unsplash.com/oauth/applications) – in .env.local
-  readonly VITE_UNSPLASH_ACCESS_KEY?: string;
+  // Supabase project URL and publishable key (guestbook) – in .env.local
+  readonly VITE_SUPABASE_URL?: string;
+  readonly VITE_SUPABASE_PUBLISHABLE_KEY?: string;
 }
 
 // Build timestamp (ISO), set in vite.config.ts

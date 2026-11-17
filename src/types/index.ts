@@ -2,6 +2,7 @@ export type * from './app.types';
 export type * from './browser.types';
 export type * from './fs.types';
 export type * from './geometry.types';
+export type * from './guestbook.types';
 export type * from './i18n.types';
 export type * from './legal.types';
 export type * from './music.types';
