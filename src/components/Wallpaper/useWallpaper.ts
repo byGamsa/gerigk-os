@@ -3,7 +3,7 @@ import { useT } from '@/hooks/useT';
 import { loadRandomWallpaper, type LoadedWallpaper } from '@/services/wallpaper/wallpaperService';
 import { useOsStore } from '@/store/os.store';
 
-// Loads a random Unsplash wallpaper on every start (and on demand)
+// Loads a random self-hosted wallpaper on every start (and on demand)
 export function useWallpaper() {
   const { t } = useT();
   const nonce = useOsStore((s) => s.wallpaperNonce);

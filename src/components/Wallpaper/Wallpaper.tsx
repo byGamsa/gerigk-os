@@ -2,7 +2,7 @@ import { cn } from '@/lib/cn';
 import { wallpaperStyles as s } from './Wallpaper.styles';
 import { useWallpaper } from './useWallpaper';
 
-// Desktop background: random Unsplash photo with photographer credit, otherwise neutral gray
+// Desktop background: random self-hosted Unsplash photo with photographer credit, otherwise neutral gray
 export function Wallpaper() {
   const wp = useWallpaper();
   const { current, previous } = wp;

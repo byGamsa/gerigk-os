@@ -1,25 +1,50 @@
-import type { Wallpaper, WallpaperCacheEntry, WallpaperOrientation } from '@/types';
-import {
-  currentOrientation,
-  fetchRandomWallpapers,
-  trackWallpaperUse,
-  UnsplashError,
-  unsplashKey,
-  wallpaperImageUrl,
-} from './unsplash';
-import {
-  anyCachedWallpapers,
-  blockedUntil,
-  blockUntilNextHour,
-  cachedWallpapers,
-  pickWallpaper,
-  storeWallpapers,
-} from './wallpaperCache';
+import { osConfig } from '@/config/os.config';
+import type { Wallpaper, WallpaperFormat, WallpaperPhoto } from '@/types';
+import { toWallpaper, wallpaperImageUrl, wallpaperPhotos } from './wallpaperSource';
 
 export interface LoadedWallpaper {
   wallpaper: Wallpaper;
   // Fully loaded image URL at screen resolution
   src: string;
+}
+
+// Context menu / terminal only offer "next wallpaper" when photos are synced
+export const hasWallpapers = wallpaperPhotos.length > 0;
+
+const LAST_KEY = `${osConfig.storageKey}:wallpaper-last`;
+
+// Leftovers of the former Unsplash API cache
+try {
+  localStorage.removeItem(`${osConfig.storageKey}:wallpapers`);
+  localStorage.removeItem(`${osConfig.storageKey}:unsplash-blocked-until`);
+} catch {
+  // Storage blocked – nothing to clean up
+}
+
+function readLast(): string | null {
+  try {
+    return localStorage.getItem(LAST_KEY);
+  } catch {
+    return null;
+  }
+}
+
+function writeLast(id: string) {
+  try {
+    localStorage.setItem(LAST_KEY, id);
+  } catch {
+    // Storage blocked – repeats across visits are then possible
+  }
+}
+
+// Random photo – never the same one twice in a row (also across visits)
+function pickPhoto(): WallpaperPhoto {
+  const last = readLast();
+  const candidates = wallpaperPhotos.filter((p) => p.id !== last);
+  const pool = candidates.length ? candidates : wallpaperPhotos;
+  const picked = pool[Math.floor(Math.random() * pool.length)]!;
+  writeLast(picked.id);
+  return picked;
 }
 
 // Fully load the image before showing it; `onload` instead of `decode()` (hangs in background tabs)
@@ -32,45 +57,23 @@ function preload(src: string): Promise<void> {
   });
 }
 
-// In-flight API request – concurrent calls (e.g. React StrictMode) share one request
-let inFlight: Promise<WallpaperCacheEntry> | null = null;
+// AVIF first; browsers without AVIF fail to load it once and stay on WebP afterwards
+let formats: WallpaperFormat[] = ['avif', 'webp'];
 
-// Fresh cache → else a new API batch → on error/limit the last stored batch (saves the hourly limit)
-async function getBatch(orientation: WallpaperOrientation, key: string): Promise<WallpaperCacheEntry | null> {
-  const fresh = cachedWallpapers(orientation);
-  if (fresh) return fresh;
-
-  const stale = anyCachedWallpapers();
-  if (Date.now() < blockedUntil()) return stale;
-
-  inFlight ??= fetchRandomWallpapers(orientation, key)
-    .then((photos) => storeWallpapers(orientation, photos))
-    .finally(() => {
-      inFlight = null;
-    });
-
-  try {
-    return await inFlight;
-  } catch (error) {
-    if (error instanceof UnsplashError && error.rateLimited) {
-      blockUntilNextHour();
-      console.info('[wallpaper] Unsplash-Stundenlimit erreicht – nächster Versuch zur vollen Stunde.');
-    } else {
-      console.warn('[wallpaper]', error);
-    }
-    return stale;
-  }
-}
-
-// Random Unsplash wallpaper at screen resolution; `null` without API key or on failure (gray background)
+// Random self-hosted wallpaper at screen resolution; `null` without photos or on failure (gray background)
 export async function loadRandomWallpaper(): Promise<LoadedWallpaper | null> {
-  if (!unsplashKey) return null;
-  const entry = await getBatch(currentOrientation(), unsplashKey);
-  if (!entry) return null;
+  if (!hasWallpapers) return null;
+  const photo = pickPhoto();
 
-  const wallpaper = pickWallpaper(entry);
-  const src = wallpaperImageUrl(wallpaper);
-  await preload(src);
-  trackWallpaperUse(wallpaper, unsplashKey);
-  return { wallpaper, src };
+  for (const format of formats) {
+    const src = wallpaperImageUrl(photo, format);
+    try {
+      await preload(src);
+      return { wallpaper: toWallpaper(photo), src };
+    } catch {
+      if (format === 'avif') formats = ['webp'];
+    }
+  }
+  console.warn('[wallpaper] Hintergrund konnte nicht geladen werden – grauer Hintergrund.');
+  return null;
 }

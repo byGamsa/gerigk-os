@@ -1,0 +1,21 @@
+{
+  "$comment": "Curated Unsplash photos (id from unsplash.com/photos/<slug>-<id>). Run `npm run wallpapers:sync` after editing.",
+  "photos": [
+    { "id": "zAjdgNXsMeg", "author": "Luca Bravo", "username": "lucabravo" },
+    { "id": "UWQP2mh5YJI", "author": "Fabian Quintero", "username": "onefabian" },
+    { "id": "ucYWe5mzTMU", "author": "Jeremy Cai", "username": "j" },
+    { "id": "lQPEChtLjUo", "author": "Hugues de BUYER-MIMEURE", "username": "huguesdb" },
+    { "id": "qfmd9bu7IgA", "author": "FORREST CAVALE", "username": "forrestcavale" },
+    { "id": "s-y2HJElONo", "author": "lucas wesney", "username": "wesnext" },
+    { "id": "VNsGywdphUY", "author": "Matthew Smith", "username": "whale" },
+    { "id": "I_n_b44cqhk", "author": "Simon Lohmann", "username": "slohmann" },
+    { "id": "mI02K_LxlfU", "author": "Jake Hills", "username": "jakehills" },
+    { "id": "suSwPNTaQ5Q", "author": "Taneli Lahtinen", "username": "tanelah" },
+    { "id": "TMCWVfWKsxY", "author": "Ivana Cajina", "username": "von_co" },
+    { "id": "ySIhrENsguE", "author": "Nicola Pavan", "username": "pavan_nicola" },
+    { "id": "ibikgDapcp4", "author": "Sven Pieren", "username": "sven_pieren" },
+    { "id": "BFQlxG_tsg4", "author": "Takashi Miyazaki", "username": "miyatankun" },
+    { "id": "GKJbrnCURtM", "author": "Mushegh Hakobyan", "username": "mushegh" },
+    { "id": "v9VxGah_K2c", "author": "Hrant Khachatryan", "username": "hrantkhachatryan" }
+  ]
+}

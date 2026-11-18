@@ -1,36 +1,31 @@
-// Used part of the Unsplash API response (GET /photos/random)
-export interface UnsplashPhoto {
+// One self-hosted photo as written by `npm run wallpapers:sync` (src/data/wallpapers.generated.json)
+export interface WallpaperPhoto {
+  // Unsplash photo id, also the folder name in storage (`<id>/<width>.<format>`)
   id: string;
+  author: string;
+  // Unsplash username of the photographer
+  username: string;
   width: number;
   height: number;
-  color: string | null;
-  alt_description: string | null;
-  urls: { raw: string };
-  links: { html: string; download_location: string };
-  user: { name: string; links: { html: string } };
+  // Dominant color as a placeholder while loading
+  color: string;
+  // Available widths in px, ascending
+  widths: number[];
 }
 
-// Normalized wallpaper – independent of the source
+export interface WallpaperManifest {
+  // Public URL prefix of the stored files (Supabase Storage bucket or /wallpapers)
+  baseUrl: string;
+  photos: WallpaperPhoto[];
+}
+
+// Normalized wallpaper for the UI
 export interface Wallpaper {
   id: string;
-  // Base URL (Unsplash `urls.raw`), size is added when loading
-  rawUrl: string;
-  // Average color as a placeholder while loading
-  color: string | null;
-  alt: string | null;
+  color: string;
   author: string;
   authorUrl: string;
   photoUrl: string;
-  // Must be called on use per Unsplash guidelines
-  downloadLocation: string;
 }
 
-export interface WallpaperCacheEntry {
-  fetchedAt: number;
-  query: string | null;
-  orientation: WallpaperOrientation;
-  photos: Wallpaper[];
-  lastShownId: string | null;
-}
-
-export type WallpaperOrientation = 'landscape' | 'portrait';
+export type WallpaperFormat = 'avif' | 'webp';
