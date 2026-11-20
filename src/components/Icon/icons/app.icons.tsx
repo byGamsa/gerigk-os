@@ -108,6 +108,17 @@ function About(p: IconSvgProps) {
   );
 }
 
+// Projects store: shopping bag with a sparkle on a violet tile
+function Projects(p: IconSvgProps) {
+  return (
+    <Tile gradient={['#b98cff', '#5b3df5']} {...p}>
+      <path d="M22 26a10 10 0 0 1 20 0" fill="none" stroke="#fff" strokeWidth="3.6" strokeLinecap="round" />
+      <path d="M16.5 24.5h31l-2.2 21.3a4.5 4.5 0 0 1-4.5 4h-17.6a4.5 4.5 0 0 1-4.5-4z" fill="#fff" fillOpacity=".96" />
+      <path d="M32 31.5l1.7 4.3 4.3 1.7-4.3 1.7-1.7 4.3-1.7-4.3-4.3-1.7 4.3-1.7z" fill="#5b3df5" />
+    </Tile>
+  );
+}
+
 function TextFile(p: IconSvgProps) {
   return (
     <svg viewBox="0 0 48 48" {...p}>
@@ -200,6 +211,7 @@ export const appIcons = {
   trash: Trash,
   notepad: Notepad,
   about: About,
+  projects: Projects,
   textFile: TextFile,
   folder: Folder,
 } satisfies Record<string, IconComponent>;
