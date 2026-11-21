@@ -9,5 +9,5 @@ export const aboutApp = defineApp({
   component: About,
   pinned: true,
   autostart: true,
-  window: { width: 760, height: 660, position: { x: 34, y: 37 } },
+  window: { width: 760, height: 660, position: { x: -56, y: 6 } },
 });

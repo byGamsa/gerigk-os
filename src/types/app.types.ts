@@ -27,7 +27,7 @@ export interface AppWidgetProps {
 export interface AppWindowOptions extends Partial<Size> {
   minWidth?: number;
   minHeight?: number;
-  // Start position relative to the desk area (default: centered, cascading)
+  // Start position relative to the desk area; negative values count from the right/bottom (default: centered, cascading)
   position?: Point;
 }
 

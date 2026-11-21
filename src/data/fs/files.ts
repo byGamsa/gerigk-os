@@ -46,76 +46,230 @@ Enjoy looking around!
 const cvDe = `LEBENSLAUF
 ==========
 
-Name ........ Gerigk
-Rolle ....... Entwickler · Designer
+Lars Gerigk
+Full-Stack-Entwickler und Student der Medieninformatik
+an der Hochschule der Medien Stuttgart
 
-Ausbildung
-  • [Hochschule / Studiengang]
-  • [Schule / Abschluss]
+Web ......... larsgerigk.de
+E-Mail ...... larsgerigk@gmx.de
+GitHub ...... github.com/byGamsa
+LinkedIn .... linkedin.com/in/lars-gerigk
 
-Erfahrung
-  • [Position] – [Firma], [Zeitraum]
-  • [Position] – [Firma], [Zeitraum]
 
-Skills
-  TypeScript · React · Tailwind CSS · Unity · C# · XR · UI/UX
+BERUFSERFAHRUNG
+---------------
+11/2026 – heute   Mitgründer – Dendree GbR, Stuttgart
+                  Web-Plattformen, Apps und KI-Werkzeuge für Unternehmen.
+                  Frontend und Backend (Next.js, FastAPI, Supabase),
+                  Server-Infrastruktur mit Terraform und Docker.
 
-(Platzhalter – Inhalt in src/data/fs/files.ts anpassen)
+03/2025 – heute   Full-Stack-Webentwickler – Mercedes-Benz AG, Böblingen
+                  Zentrale Webanwendung für die digitale Nachrüstung von
+                  Sonderausstattungen: Frontend, Backend, Abrechnungssystem
+                  und Anbindung interner Schnittstellen.
+
+11/2023 – heute   Portfolio Manager – Nextise GmbH, Stuttgart
+                  Softwareschulungen konzipieren und halten, ein Team von
+                  Entwicklern leiten, Kunden wie Volkswagen AG, TÜV Nord
+                  und Universität Stuttgart.
+
+09/2024 – 08/2025 Studentische Hilfskraft – Hochschule der Medien
+                  Unterstützung in der Lehre mit Python.
+
+
+AUSBILDUNG
+----------
+ab 03/2027        M.Sc. Computer Science and Media (geplant)
+                  Hochschule der Medien, Stuttgart
+
+03/2023 – heute   B.Sc. Medieninformatik – Hochschule der Medien, Stuttgart
+                  Schwerpunkte: Künstliche Intelligenz, Virtual Reality,
+                  Webentwicklung, Datenbank- und Anwendungsentwicklung.
+
+01/2014 – 07/2022 Allgemeine Hochschulreife – Albertus-Magnus-Gymnasium
+                  Schwerpunkte Mathematik und Informatik; SMV, KSJ,
+                  Schülersprecher, Schulkonferenz.
+
+
+EHRENAMT
+--------
+04/2017 – 03/2023 Jugendleiter – Katholische Studierende Jugend, Stuttgart
+seit 2019         Betreuer – UNICEF-Kinderspielstadt Stutengarten
+
+
+AUSZEICHNUNGEN
+--------------
+05/2021           Finalist bei Jugend gründet (BMBF)
+                  18. Platz unter bundesweit 3.726 Teilnehmenden
+08/2023           Python-Grundkurs – Coding Academy
+                  (IT-Designers-Sponsoring-Programm)
+
+
+KENNTNISSE
+----------
+Sprachen ........ TypeScript · JavaScript · Python · Java · C#
+Frontend ........ React · Next.js · Vue/Nuxt · Angular · React Native
+Backend & Daten . FastAPI · Node.js · PostgreSQL · Supabase · MongoDB
+DevOps .......... Docker · Terraform · GitHub Actions · Kubernetes · AWS
+Sonstiges ....... Unity · Virtual Reality · Tauri
 `;
 
 const cvEn = `CURRICULUM VITAE
 ================
 
-Name ........ Gerigk
-Role ........ Developer · Designer
+Lars Gerigk
+Full-stack developer and computer science and media student
+at Stuttgart Media University (HdM)
 
-Education
-  • [University / programme]
-  • [School / degree]
+Web ......... larsgerigk.de
+Email ....... larsgerigk@gmx.de
+GitHub ...... github.com/byGamsa
+LinkedIn .... linkedin.com/in/lars-gerigk
 
-Experience
-  • [Position] – [Company], [period]
-  • [Position] – [Company], [period]
 
-Skills
-  TypeScript · React · Tailwind CSS · Unity · C# · XR · UI/UX
+WORK EXPERIENCE
+---------------
+11/2026 – now     Co-founder – Dendree GbR, Stuttgart
+                  Web platforms, apps and AI tools for businesses.
+                  Frontend and backend (Next.js, FastAPI, Supabase),
+                  server infrastructure with Terraform and Docker.
 
-(Placeholder – edit the content in src/data/fs/files.ts)
+03/2025 – now     Full-stack web developer – Mercedes-Benz AG, Böblingen
+                  Central web application for digitally retrofitting
+                  optional equipment: frontend, backend, billing system
+                  and integration of internal interfaces.
+
+11/2023 – now     Portfolio manager – Nextise GmbH, Stuttgart
+                  Designing and teaching software trainings, leading a
+                  team of developers, clients such as Volkswagen AG,
+                  TÜV Nord and the University of Stuttgart.
+
+09/2024 – 08/2025 Student assistant – Stuttgart Media University
+                  Teaching support with Python.
+
+
+EDUCATION
+---------
+from 03/2027      M.Sc. Computer Science and Media (planned)
+                  Stuttgart Media University
+
+03/2023 – now     B.Sc. Computer Science and Media – Stuttgart Media University
+                  Focus: artificial intelligence, virtual reality,
+                  web development, database and application development.
+
+01/2014 – 07/2022 Abitur (A levels) – Albertus-Magnus-Gymnasium, Stuttgart
+                  Focus on mathematics and computer science; student
+                  council, KSJ, student representative, school conference.
+
+
+VOLUNTEERING
+------------
+04/2017 – 03/2023 Youth leader – Katholische Studierende Jugend, Stuttgart
+since 2019        Supervisor – UNICEF children's play city Stutengarten
+
+
+AWARDS
+------
+05/2021           Finalist at Jugend gründet (German Federal Ministry of
+                  Education and Research) – 18th of 3,726 participants
+08/2023           Python foundation course – Coding Academy
+                  (IT-Designers sponsorship programme)
+
+
+SKILLS
+------
+Languages ....... TypeScript · JavaScript · Python · Java · C#
+Frontend ........ React · Next.js · Vue/Nuxt · Angular · React Native
+Backend & data .. FastAPI · Node.js · PostgreSQL · Supabase · MongoDB
+DevOps .......... Docker · Terraform · GitHub Actions · Kubernetes · AWS
+Other ........... Unity · Virtual Reality · Tauri
 `;
 
 const projectsDe = `PROJEKTE
 ========
+Alle Details, Bilder und Links: App „Projekte“ auf dem Desktop.
 
-1. Gerigk OS
-   Dieses Portfolio – ein Desktop im Browser mit Fenstern, Taskleiste,
-   Explorer, Musik-Player und zufälligen Unsplash-Hintergründen.
+1. Gaia Protocol (2026)
+   Koop-VR-Survival für zwei Spieler, gezeigt auf der gamescom 2026.
+   Unity · C# · VR · Multiplayer
+
+2. Stream Scheduler (2025 – 2026)
+   Planungsplattform für Twitch-Creator als Microservice-Architektur.
+   TypeScript · Next.js · Node.js · Keycloak · Kubernetes
+
+3. Pulse (2026)
+   Audio-Visualizer in Echtzeit für Browser und Windows.
+   React · three.js · Tauri
+
+4. Gerigk OS (2026)
+   Dieses Portfolio – ein Desktop im Browser.
    React · TypeScript · Tailwind CSS · Zustand
 
-2. [Projektname]
-   [Kurzbeschreibung, Rolle, Technologien]
+5. Software Defined Infrastructure (2025 – 2026)
+   Infrastructure as Code mit Terraform in der Hetzner Cloud.
 
-3. [Projektname]
-   [Kurzbeschreibung, Rolle, Technologien]
+6. Waste Classifier (2025 – 2026)
+   Bilderkennung für die richtige Tonne, PyTorch + Transfer Learning.
+
+7. DataBack (2024 – 2025)
+   CLI-Tool für inkrementelle PostgreSQL-Backups in Java.
+
+8. Sipster (2024)
+   Community-App für Spieleabende mit React Native und Node.js.
+
+9. Dendree (seit 2026)
+   Meine Softwarefirma – Web-Plattformen, Apps und KI-Werkzeuge.
+   Next.js · FastAPI · Supabase · Terraform · Docker · dendree.de
+
+10. Depth of Heritage (WS 2024/25)
+    VR-Survival-Horror in einer Mine, Vorläufer von Gaia Protocol.
+    Unity 6 · C# · VR · Multiplayer
 `;
 
 const projectsEn = `PROJECTS
 ========
+All details, images and links: the "Projects" app on the desktop.
 
-1. Gerigk OS
-   This portfolio – a desktop in the browser with windows, taskbar,
-   explorer, music player and random Unsplash wallpapers.
+1. Gaia Protocol (2026)
+   Co-op VR survival for two players, shown at gamescom 2026.
+   Unity · C# · VR · Multiplayer
+
+2. Stream Scheduler (2025 – 2026)
+   Planning platform for Twitch creators built as microservices.
+   TypeScript · Next.js · Node.js · Keycloak · Kubernetes
+
+3. Pulse (2026)
+   Real-time audio visualizer for the browser and Windows.
+   React · three.js · Tauri
+
+4. Gerigk OS (2026)
+   This portfolio – a desktop in the browser.
    React · TypeScript · Tailwind CSS · Zustand
 
-2. [Project name]
-   [Short description, role, technologies]
+5. Software Defined Infrastructure (2025 – 2026)
+   Infrastructure as code with Terraform in the Hetzner Cloud.
 
-3. [Project name]
-   [Short description, role, technologies]
+6. Waste Classifier (2025 – 2026)
+   Image recognition for the right bin, PyTorch + transfer learning.
+
+7. DataBack (2024 – 2025)
+   CLI tool for incremental PostgreSQL backups in Java.
+
+8. Sipster (2024)
+   Community app for game nights with React Native and Node.js.
+
+9. Dendree (since 2026)
+   My software company – web platforms, apps and AI tools.
+   Next.js · FastAPI · Supabase · Terraform · Docker · dendree.de
+
+10. Depth of Heritage (winter 2024/25)
+    VR survival horror in a mine, precursor of Gaia Protocol.
+    Unity 6 · C# · VR · Multiplayer
 `;
 
 const ideasDe = `Ideen für neue Apps auf diesem Desktop
 --------------------------------------
-[ ] Projekt-Galerie mit Screenshots
+[x] Projekt-Galerie mit Screenshots
 [x] Terminal mit ein paar versteckten Befehlen
 [ ] Kleines Spiel für den „Spiele“-Ordner
 [x] Musik-Player
@@ -124,7 +278,7 @@ const ideasDe = `Ideen für neue Apps auf diesem Desktop
 
 const ideasEn = `Ideas for new apps on this desktop
 ----------------------------------
-[ ] Project gallery with screenshots
+[x] Project gallery with screenshots
 [x] Terminal with a few hidden commands
 [ ] A small game for the "Games" menu
 [x] Music player
@@ -148,7 +302,7 @@ export const files: readonly VirtualFile[] = [
     kind: 'text',
     name: { de: 'Lebenslauf.txt', en: 'CV.txt' },
     content: { de: cvDe, en: cvEn },
-    modifiedAt: '2026-09-20T10:12:00',
+    modifiedAt: '2026-11-23T18:48:00',
   },
   {
     id: 'doc-projects',

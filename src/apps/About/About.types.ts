@@ -38,4 +38,5 @@ export interface AboutContent {
   education: readonly TimelineEntry[];
   skills: readonly SkillGroup[];
   volunteering: readonly TimelineEntry[];
+  awards: readonly TimelineEntry[];
 }

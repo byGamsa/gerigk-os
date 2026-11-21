@@ -50,8 +50,9 @@ export function positionedRect(size: Size, area: Rect, position: Point): Rect {
   return {
     width,
     height,
-    x: clamp(area.x + position.x, area.x, area.x + area.width - width),
-    y: clamp(area.y + position.y, area.y, area.y + area.height - height),
+    // Negative values count from the right/bottom edge
+    x: clamp(position.x < 0 ? area.x + area.width - width + position.x : area.x + position.x, area.x, area.x + area.width - width),
+    y: clamp(position.y < 0 ? area.y + area.height - height + position.y : area.y + position.y, area.y, area.y + area.height - height),
   };
 }
 

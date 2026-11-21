@@ -25,6 +25,7 @@ export function useAbout() {
       { id: 'experience', title: t('about.experience'), entries: content.experience },
       { id: 'education', title: t('about.education'), entries: content.education },
       { id: 'volunteering', title: t('about.volunteering'), entries: content.volunteering },
+      { id: 'awards', title: t('about.awards'), entries: content.awards },
     ],
   };
 }
