@@ -76,24 +76,31 @@ bleiben gespeichert; gesucht wird nur für neue Songs. `npm run build` synchroni
 Wird das Fenster minimiert, erscheint unten links ein Mini-Player-Widget. Jede App kann über
 `widget` in `defineApp` ein eigenes Widget bekommen.
 
-## Hintergrund (Unsplash)
+## Hintergrund (Unsplash-Fotos, selbst gehostet)
 
-Bei jedem Laden erscheint ein zufälliges Unsplash-Foto in Bildschirmauflösung (inkl. Retina/4K,
-passend zugeschnitten, AVIF/WebP), unten links mit Fotografen-Nennung und Link zum Foto.
+Bei jedem Laden erscheint ein zufälliges Foto aus einer kuratierten Auswahl (nie zweimal dasselbe
+hintereinander), in passender Auflösung (1280–3840 px, AVIF mit WebP-Fallback), unten links mit
+Fotografen-Nennung und Link zum Foto. Es gibt **keine Unsplash-API und keinen Key im Browser**: Die
+Fotos werden einmalig über den normalen Unsplash-Download geladen (Unsplash-Lizenz erlaubt Selbst-Hosting)
+und aus dem öffentlichen Supabase-Storage-Bucket `wallpapers` ausgeliefert.
 
-1. Auf https://unsplash.com/oauth/applications eine App anlegen und den **Access Key** kopieren
-2. `.env.example` nach `.env.local` kopieren und `VITE_UNSPLASH_ACCESS_KEY=…` eintragen
-3. Dev-Server neu starten
+1. Bucket anlegen: `supabase/migrations/20261123120000_wallpapers_bucket.sql` im Supabase SQL-Editor ausführen
+   (oder `supabase db push`)
+2. `SUPABASE_SECRET_KEY=…` in `.env.local` eintragen (Settings → API Keys → Secret keys)
+3. Fotos in `src/config/wallpapers.manifest.json` pflegen (`id` aus `unsplash.com/photos/<slug>-<id>`, Name, Username)
+4. `npm run wallpapers:sync` – lädt neue Fotos herunter, konvertiert, lädt hoch und schreibt
+   `src/data/wallpapers.generated.json` (committen). `--refresh` kodiert alle neu, `--local` schreibt zum
+   Testen nach `public/wallpapers/` statt Supabase.
 
-Ohne Key (oder solange das Foto lädt) ist der Hintergrund neutral grau. Motiv, Qualität und Cache-Dauer: `src/config/wallpaper.config.ts`.
-Es werden 30 Fotos pro API-Aufruf geladen und einige Stunden im Browser gecacht (Demo-Keys erlauben
-nur 50 Aufrufe/Stunde). Rechtsklick auf den Desktop → „Neuer Hintergrund“.
+Ohne synchronisierte Fotos, ohne Netz oder bei einem Fehler ist der Hintergrund neutral grau.
+Rechtsklick auf den Desktop → „Neuer Hintergrund“.
 
 ## Anpassen
 
 - **Name / Wallpaper:** `src/config/os.config.ts` (eigenes Foto z. B. als `public/wallpaper.jpg`)
 - **Impressum & Datenschutz:** `src/config/legal.config.ts` (Pflichtangaben inkl. Hosting-Anbieter – solange Platzhalter drin sind, warnt das Einstellungen-Fenster). Texte der Datenschutzerklärung: `src/apps/System/privacy.content.ts` – bei neuen Drittanbietern ergänzen!
 - **Über mich:** `src/apps/About/about.content.ts`
+- **Gästebuch (Supabase):** Migration `supabase/migrations/`, Edge Function `supabase/functions/guestbook-submit` (Filter + KI-Moderation), Keys `VITE_SUPABASE_URL` / `VITE_SUPABASE_PUBLISHABLE_KEY` in `.env.local`
 - **Browser (Startseite, Lesezeichen, bekannte Seiten):** `src/config/browser.config.ts`
 - **Terminal-Befehle:** `src/apps/Terminal/shell/commands/` (`core` · `system` · `fun` für Easter Eggs mit `hidden: true`)
 - **Dateien im Explorer** (Dokumente, Downloads, Papierkorb …): `src/data/fs/files.ts`

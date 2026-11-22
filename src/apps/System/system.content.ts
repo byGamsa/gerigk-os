@@ -35,7 +35,7 @@ const disclaimer: Localized<InfoParagraph[]> = {
     },
     {
       heading: 'Haftung für Links',
-      text: 'Diese Seite enthält Links und Einbettungen externer Anbieter (z. B. Spotify, YouTube, Unsplash), auf deren Inhalte ich keinen Einfluss habe. Für diese fremden Inhalte ist stets der jeweilige Anbieter oder Betreiber verantwortlich. Zum Zeitpunkt der Verlinkung waren keine Rechtsverstöße erkennbar; bei Bekanntwerden von Rechtsverletzungen werden entsprechende Links umgehend entfernt.',
+      text: 'Diese Seite enthält Links und Einbettungen externer Anbieter (z. B. Spotify, YouTube, GitHub), auf deren Inhalte ich keinen Einfluss habe. Für diese fremden Inhalte ist stets der jeweilige Anbieter oder Betreiber verantwortlich. Zum Zeitpunkt der Verlinkung waren keine Rechtsverstöße erkennbar; bei Bekanntwerden von Rechtsverletzungen werden entsprechende Links umgehend entfernt.',
     },
     {
       heading: 'Urheberrecht',
@@ -49,7 +49,7 @@ const disclaimer: Localized<InfoParagraph[]> = {
     },
     {
       heading: 'Liability for links',
-      text: 'This site contains links to and embeds from external providers (e.g. Spotify, YouTube, Unsplash) whose content I have no influence on. The respective provider is always responsible for such third-party content. Links will be removed immediately if any legal violations become known.',
+      text: 'This site contains links to and embeds from external providers (e.g. Spotify, YouTube, GitHub) whose content I have no influence on. The respective provider is always responsible for such third-party content. Links will be removed immediately if any legal violations become known.',
     },
     {
       heading: 'Copyright',
@@ -64,12 +64,16 @@ const media: Localized<InfoRow[]> = {
     { label: 'Musik', value: 'Wiedergabe über eingebettete YouTube-Videos; Rechte bei den jeweiligen Rechteinhabern' },
     { label: 'Playlist', value: 'Titelinformationen und Cover von Spotify' },
     { label: 'Schrift', value: 'Inter (SIL Open Font License)' },
+    { label: 'Projektbilder', value: 'Screenshots aus den jeweiligen Projekten; Rechte bei den Projektteams' },
+    { label: 'Dendree-Logo', value: '© Dendree GbR' },
   ],
   en: [
     { label: 'Wallpapers', value: 'Unsplash (Unsplash License) – photographer credited in the bottom left', href: 'https://unsplash.com/license' },
     { label: 'Music', value: 'Played via embedded YouTube videos; rights belong to the respective owners' },
     { label: 'Playlist', value: 'Track information and artwork from Spotify' },
     { label: 'Font', value: 'Inter (SIL Open Font License)' },
+    { label: 'Project images', value: 'Screenshots from the respective projects; rights belong to the project teams' },
+    { label: 'Dendree logo', value: '© Dendree GbR' },
   ],
 };
 

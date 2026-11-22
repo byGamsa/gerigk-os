@@ -11,7 +11,7 @@ const sites: readonly SiteInfo[] = [
     description:
       'Custom-built software for ambitious businesses. From web platforms to mobile apps, AI solutions, and everything in between – we build end-to-end software that drives your business forward.',
     icon: '/bookmarks/dendree.png',
-    embeddable: false,
+    embeddable: true,
   },
   {
     host: 'search.brave.com',

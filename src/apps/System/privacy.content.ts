@@ -34,13 +34,13 @@ function paragraphs(lang: Lang): Record<string, InfoParagraph[]> {
         ),
         p(
           'Lokaler Speicher (localStorage)',
-          'Damit deine Einstellungen erhalten bleiben, werden im lokalen Speicher deines Browsers gespeichert: Sprache, Lautstärke und Stummschaltung, Wiedergabeoptionen (Zufall/Wiederholen), die Anordnung der Desktop-Symbole sowie ein Zwischenspeicher für Hintergrundbilder. Diese Daten verlassen dein Gerät nicht und werden nicht an mich übertragen. Die Speicherung ist für die von dir genutzten Funktionen unbedingt erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG). Du kannst sie jederzeit über die Einstellungen deines Browsers löschen.',
+          'Damit deine Einstellungen erhalten bleiben, werden im lokalen Speicher deines Browsers gespeichert: Sprache, Lautstärke und Stummschaltung, Wiedergabeoptionen (Zufall/Wiederholen), die Anordnung der Desktop-Symbole das zuletzt gezeigte Hintergrundbild (damit nicht zweimal dasselbe erscheint) sowie eine Kopie deiner eigenen Gästebuch-Einträge, damit du sie sofort siehst. Diese Daten werden nicht an mich übertragen (die Gästebuch-Einträge selbst nur beim Absenden, siehe unten). Die Speicherung ist für die von dir genutzten Funktionen unbedingt erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG). Du kannst sie jederzeit über die Einstellungen deines Browsers löschen.',
         ),
       ],
       unsplash: [
         p(
-          'Hintergrundbilder von Unsplash',
-          'Die Desktop-Hintergründe werden von Unsplash (Unsplash Inc., Montreal, Kanada) geladen. Dafür stellt dein Browser eine Verbindung zu den Servern von Unsplash her (api.unsplash.com, images.unsplash.com); dabei wird deine IP-Adresse an Unsplash übermittelt. Außerdem wird Unsplash gemäß seinen API-Richtlinien mitgeteilt, welches Foto angezeigt wird. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer ansprechenden Gestaltung). Datenschutzerklärung von Unsplash: https://unsplash.com/privacy',
+          'Hintergrundbilder',
+          'Die Desktop-Hintergründe sind Fotos von Unsplash (Unsplash-Lizenz), die ich einmalig heruntergeladen habe. Beim Besuch besteht keine Verbindung zu Unsplash; erst wenn du auf den Fotografen-Hinweis klickst, öffnet sich die Seite des Fotos bei Unsplash. Die Bilddateien liegen im Speicher (Storage) meines Supabase-Projekts (Supabase Inc., San Francisco, USA; Rechenzentrum in der EU, Irland) und werden von dort bzw. über dessen Content-Delivery-Netzwerk ausgeliefert. Dabei verarbeitet Supabase technisch notwendig deine IP-Adresse und übliche Verbindungsdaten (z. B. Browsertyp, Zeitpunkt), um die Dateien auszuliefern; ein Transfer in die USA kann dabei nicht ausgeschlossen werden. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer ansprechenden und zuverlässigen Gestaltung). Datenschutzerklärung von Supabase: https://supabase.com/privacy',
         ),
       ],
       music: [
@@ -56,7 +56,21 @@ function paragraphs(lang: Lang): Record<string, InfoParagraph[]> {
       browser: [
         p(
           'Browser-App',
-          'Die Browser-App ist eine Nachbildung eines Browsers. Websites, die eine Einbettung erlauben, werden direkt in einem Rahmen (iframe) geladen; dabei stellt dein Browser eine Verbindung zum jeweiligen Anbieter her und übermittelt u. a. deine IP-Adresse – es gelten dessen Datenschutzbestimmungen. Websites, die keine Einbettung erlauben (z. B. dendree.de), werden nur als Vorschau angezeigt und erst auf deinen Klick in einem neuen Tab deines Browsers geöffnet. Suchanfragen werden an Brave Search (Brave Software, Inc., San Francisco, USA) übergeben und ebenfalls in einem neuen Tab geöffnet. Die Symbole der Lesezeichen sind lokal gespeichert. Datenschutzerklärung von Brave Search: https://search.brave.com/help/privacy-policy',
+          'Die Browser-App ist eine Nachbildung eines Browsers. Websites, die eine Einbettung erlauben, werden direkt in einem Rahmen (iframe) geladen; dabei stellt dein Browser eine Verbindung zum jeweiligen Anbieter her und übermittelt u. a. deine IP-Adresse – es gelten dessen Datenschutzbestimmungen. Beim Start lädt die Browser-App auf diese Weise die Website dendree.de (Dendree), sodass dabei automatisch eine Verbindung zu deren Server aufgebaut wird; dort können eigene Cookies und Dienste zum Einsatz kommen, über die dendree.de selbst informiert. Websites, die keine Einbettung erlauben, werden nur als Vorschau angezeigt und erst auf deinen Klick in einem neuen Tab deines Browsers geöffnet. Suchanfragen werden an Brave Search (Brave Software, Inc., San Francisco, USA) übergeben und ebenfalls in einem neuen Tab geöffnet. Die Symbole der Lesezeichen sind lokal gespeichert. Datenschutzerklärung von Brave Search: https://search.brave.com/help/privacy-policy',
+        ),
+      ],
+      guestbook: [
+        p(
+          'Gästebuch',
+          'Im Gästebuch kannst du anonym eine kurze Nachricht als Datei hinterlassen. Gespeichert werden nur Dateiname, Text, Sprache und Zeitpunkt – kein Name und keine E-Mail-Adresse. Zum Schutz vor Spam wird zusätzlich ein nicht umkehrbarer, mit einem geheimen Schlüssel gebildeter Hash deiner IP-Adresse gespeichert. Die Daten liegen bei Supabase (Supabase Inc., San Francisco, USA) in einem Rechenzentrum in der EU (Irland).',
+        ),
+        p(
+          'Automatische Prüfung per KI',
+          'Bevor eine Nachricht erscheint, wird sie zunächst mit einfachen Regeln auf Links, Spam und unerwünschte Wörter geprüft. Anschließend wird ihr Text zur Erkennung beleidigender Inhalte an ein KI-Modell (textdetox/xlmr-large-toxicity-classifier) bei Hugging Face (Hugging Face, Inc., New York, USA) übermittelt; dabei findet eine Übermittlung in die USA statt. Die Anfrage erfolgt von meinem Server aus, deine IP-Adresse wird nicht mitgesendet. Nachrichten mit Beleidigungen, Werbung oder Links werden nicht veröffentlicht; unklare Fälle prüfe ich manuell. Datenschutzerklärungen: https://supabase.com/privacy · https://huggingface.co/privacy',
+        ),
+        p(
+          'Rechtsgrundlage und Löschung',
+          'Rechtsgrundlage ist deine Einwilligung durch das aktive Absenden (Art. 6 Abs. 1 lit. a DSGVO), für den Spamschutz mein berechtigtes Interesse an einem missbrauchsfreien Gästebuch (Art. 6 Abs. 1 lit. f DSGVO). Da Nachrichten anonym sind, kann ich sie dir nicht zuordnen – schreib mir den Dateinamen und den ungefähren Zeitpunkt, dann lösche ich sie. Nicht veröffentlichte Nachrichten lösche ich regelmäßig.',
         ),
       ],
       fonts: [
@@ -103,13 +117,13 @@ function paragraphs(lang: Lang): Record<string, InfoParagraph[]> {
         p('No cookies', 'This website does not set any cookies itself and does not use analytics or tracking tools.'),
         p(
           'Local storage (localStorage)',
-          'To keep your settings, your browser’s local storage holds: language, volume and mute, playback options (shuffle/repeat), the arrangement of desktop icons and a cache for wallpapers. This data never leaves your device and is not sent to me. Storing it is strictly necessary for the features you use (Section 25 (2) no. 2 TDDDG). You can delete it at any time in your browser settings.',
+          'To keep your settings, your browser’s local storage holds: language, volume and mute, playback options (shuffle/repeat), the arrangement of desktop icons, the last shown wallpaper (so the same one doesn’t appear twice in a row) and a copy of your own guestbook entries so you see them right away. This data is not sent to me (guestbook entries themselves only when you submit them, see below). Storing it is strictly necessary for the features you use (Section 25 (2) no. 2 TDDDG). You can delete it at any time in your browser settings.',
         ),
       ],
       unsplash: [
         p(
-          'Wallpapers from Unsplash',
-          'Desktop wallpapers are loaded from Unsplash (Unsplash Inc., Montreal, Canada). Your browser connects to Unsplash servers (api.unsplash.com, images.unsplash.com), which transmits your IP address to Unsplash. As required by its API guidelines, Unsplash is also notified which photo is displayed. Legal basis: Art. 6 (1) (f) GDPR (legitimate interest in an appealing design). Unsplash privacy policy: https://unsplash.com/privacy',
+          'Wallpapers',
+          'The desktop wallpapers are photos from Unsplash (Unsplash License) that I downloaded once. Visiting this site does not connect you to Unsplash; only when you click the photographer credit does the photo’s page on Unsplash open. The image files are stored in the storage of my Supabase project (Supabase Inc., San Francisco, USA; data centre in the EU, Ireland) and delivered from there or via its content delivery network. To deliver them, Supabase necessarily processes your IP address and usual connection data (e.g. browser type, time); a transfer to the USA cannot be ruled out. Legal basis: Art. 6 (1) (f) GDPR (legitimate interest in an appealing and reliable design). Supabase privacy policy: https://supabase.com/privacy',
         ),
       ],
       music: [
@@ -125,7 +139,21 @@ function paragraphs(lang: Lang): Record<string, InfoParagraph[]> {
       browser: [
         p(
           'Browser app',
-          'The browser app is a replica of a web browser. Websites that allow embedding are loaded directly in a frame (iframe); your browser connects to the respective provider and transmits, among other things, your IP address – their privacy policy applies. Websites that do not allow embedding (e.g. dendree.de) are only shown as a preview and open in a new tab of your browser once you click. Search queries are passed to Brave Search (Brave Software, Inc., San Francisco, USA) and also open in a new tab. Bookmark icons are stored locally. Brave Search privacy policy: https://search.brave.com/help/privacy-policy',
+          'The browser app is a replica of a web browser. Websites that allow embedding are loaded directly in a frame (iframe); your browser connects to the respective provider and transmits, among other things, your IP address – their privacy policy applies. On start, the browser app loads the website dendree.de (Dendree) this way, so a connection to its server is established automatically; it may use its own cookies and services, about which dendree.de itself informs you. Websites that do not allow embedding are only shown as a preview and open in a new tab of your browser once you click. Search queries are passed to Brave Search (Brave Software, Inc., San Francisco, USA) and also open in a new tab. Bookmark icons are stored locally. Brave Search privacy policy: https://search.brave.com/help/privacy-policy',
+        ),
+      ],
+      guestbook: [
+        p(
+          'Guestbook',
+          'In the guestbook you can anonymously leave a short message as a file. Only the file name, text, language and time are stored – no name and no email address. To prevent spam, an irreversible hash of your IP address (created with a secret key) is stored as well. The data is hosted by Supabase (Supabase Inc., San Francisco, USA) in a data centre in the EU (Ireland).',
+        ),
+        p(
+          'Automatic AI review',
+          'Before a message appears, it is first checked with simple rules for links, spam and unwanted words. Its text is then sent to detect abusive content to an AI model (textdetox/xlmr-large-toxicity-classifier) at Hugging Face (Hugging Face, Inc., New York, USA), which involves a transfer to the USA. The request is made from my server, your IP address is not forwarded. Messages containing insults, advertising or links are not published; unclear cases are reviewed manually. Privacy policies: https://supabase.com/privacy · https://huggingface.co/privacy',
+        ),
+        p(
+          'Legal basis and deletion',
+          'The legal basis is your consent by actively submitting (Art. 6 (1) (a) GDPR); for spam protection, my legitimate interest in an abuse-free guestbook (Art. 6 (1) (f) GDPR). As messages are anonymous, I cannot link them to you – send me the file name and the approximate time and I will delete it. Unpublished messages are deleted regularly.',
         ),
       ],
       fonts: [
@@ -184,6 +212,7 @@ export function buildPrivacyContent(lang: Lang): PrivacyContent {
       { id: 'unsplash', icon: 'image', title: de ? 'Hintergrundbilder' : 'Wallpapers', paragraphs: t.unsplash },
       { id: 'music', icon: 'music', title: de ? 'Musik-Player' : 'Music player', paragraphs: t.music },
       { id: 'browser', icon: 'globe', title: de ? 'Browser-App' : 'Browser app', paragraphs: t.browser },
+      { id: 'guestbook', icon: 'folderSmall', title: de ? 'Gästebuch' : 'Guestbook', paragraphs: t.guestbook },
       { id: 'fonts', icon: 'document', title: de ? 'Schriftarten' : 'Fonts', paragraphs: t.fonts },
       { id: 'links', icon: 'externalLink', title: de ? 'Externe Links' : 'External links', paragraphs: t.links },
       { id: 'rights', icon: 'scale', title: de ? 'Deine Rechte' : 'Your rights', paragraphs: t.rights },

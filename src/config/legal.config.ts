@@ -16,5 +16,5 @@ export const legalConfig: LegalInfo = {
     name: 'IONOS SE',
     address: 'Elgendorfer Str. 57, 56410 Montabaur, Deutschland',
   },
-  privacyUpdated: 'September 2026',
+  privacyUpdated: 'November 2026',
 };
