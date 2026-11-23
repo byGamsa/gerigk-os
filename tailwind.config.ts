@@ -124,24 +124,27 @@ export default {
         '.glass': {
           background:
             'linear-gradient(150deg, rgba(255,255,255,.2) 0%, rgba(255,255,255,.07) 45%, rgba(255,255,255,.11) 100%)',
-          backdropFilter: 'blur(22px) saturate(185%)',
+          // Prefixed first: the CSS minifier keeps only the last of the two
           WebkitBackdropFilter: 'blur(22px) saturate(185%)',
+          backdropFilter: 'blur(22px) saturate(185%)',
           boxShadow: theme('boxShadow.glass'),
           '&::after': glassEdge(0.34, 0.14, 0.08),
         },
         // Denser glass – flyouts, menus, toasts
         '.glass-strong': {
           background: 'linear-gradient(150deg, rgba(64,54,56,.6), rgba(28,24,28,.68))',
-          backdropFilter: 'blur(36px) saturate(180%)',
+          // Prefixed first: the CSS minifier keeps only the last of the two
           WebkitBackdropFilter: 'blur(36px) saturate(180%)',
+          backdropFilter: 'blur(36px) saturate(180%)',
           boxShadow: theme('boxShadow.panel'),
           '&::after': glassEdge(0.2, 0.1, 0.05),
         },
         // Windows
         '.glass-window': {
           background: 'linear-gradient(160deg, rgba(52,45,49,.66), rgba(22,19,22,.76))',
-          backdropFilter: 'blur(40px) saturate(170%)',
+          // Prefixed first: the CSS minifier keeps only the last of the two
           WebkitBackdropFilter: 'blur(40px) saturate(170%)',
+          backdropFilter: 'blur(40px) saturate(170%)',
           '&::after': glassEdge(0.16, 0.08, 0.04),
         },
       });
