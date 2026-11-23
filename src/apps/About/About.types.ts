@@ -29,6 +29,8 @@ export interface SkillGroup {
 
 export interface AboutContent {
   name: string;
+  // Profile photo (public path); without one the initials are shown
+  photo?: string;
   role: LocalizedValue;
   location: LocalizedValue;
   intro: LocalizedValue;

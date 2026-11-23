@@ -10,9 +10,13 @@ export function About(_props: AppWindowProps) {
   return (
     <article className={s.root}>
       <header className={s.hero}>
-        <div className={s.avatar} aria-hidden>
-          {initials}
-        </div>
+        {content.photo ? (
+          <img className={s.photo} src={content.photo} alt={content.name} width={160} height={160} />
+        ) : (
+          <div className={s.avatar} aria-hidden>
+            {initials}
+          </div>
+        )}
         <div>
           <h1 className={s.name}>{content.name}</h1>
           <p className={s.role}>{tr(content.role)}</p>

@@ -4,6 +4,7 @@ import type { AboutContent } from './About.types';
 // Sources: CV, LinkedIn and GitHub profile – no phone number or third-party contact data on purpose
 export const aboutContent: AboutContent = {
   name: osConfig.owner,
+  photo: '/about/portrait.webp',
   role: { de: 'Full-Stack Developer · Medieninformatik-Student', en: 'Full-stack developer · Computer science student' },
   location: { de: 'Stuttgart · Hochschule der Medien', en: 'Stuttgart · Stuttgart Media University' },
   intro: {

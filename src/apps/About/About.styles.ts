@@ -4,6 +4,8 @@ export const aboutStyles = {
   root: `flex-1 select-text px-6 pb-10 pt-6 @[560px]:px-8 @[560px]:pb-12 @[560px]:pt-7 ${tokens.scroll}`,
 
   hero: 'flex items-center gap-5',
+  photo:
+    'size-[88px] shrink-0 rounded-full object-cover ring-2 ring-white/25 shadow-[0_12px_32px_rgba(0,0,0,.35)] @[560px]:size-[112px]',
   avatar: 'grid size-[72px] shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#ffbd73] to-[#ff5f8a] text-[26px] font-semibold shadow-[0_10px_30px_rgba(255,95,138,.35)] @[560px]:size-[84px] @[560px]:text-3xl',
   name: 'text-[24px] font-semibold leading-tight @[560px]:text-[26px]',
   role: 'mt-1 text-ink-soft',
