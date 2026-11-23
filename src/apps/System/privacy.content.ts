@@ -40,7 +40,7 @@ function paragraphs(lang: Lang): Record<string, InfoParagraph[]> {
       unsplash: [
         p(
           'Hintergrundbilder',
-          'Die Desktop-Hintergründe sind Fotos von Unsplash (Unsplash-Lizenz), die ich einmalig heruntergeladen habe. Beim Besuch besteht keine Verbindung zu Unsplash; erst wenn du auf den Fotografen-Hinweis klickst, öffnet sich die Seite des Fotos bei Unsplash. Die Bilddateien liegen im Speicher (Storage) meines Supabase-Projekts (Supabase Inc., San Francisco, USA; Rechenzentrum in der EU, Irland) und werden von dort bzw. über dessen Content-Delivery-Netzwerk ausgeliefert. Dabei verarbeitet Supabase technisch notwendig deine IP-Adresse und übliche Verbindungsdaten (z. B. Browsertyp, Zeitpunkt), um die Dateien auszuliefern; ein Transfer in die USA kann dabei nicht ausgeschlossen werden. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer ansprechenden und zuverlässigen Gestaltung). Datenschutzerklärung von Supabase: https://supabase.com/privacy',
+          'Die Desktop-Hintergründe sind Fotos von Unsplash (Unsplash-Lizenz), die ich einmalig heruntergeladen habe. Beim Besuch besteht keine Verbindung zu Unsplash; erst wenn du auf den Fotografen-Hinweis klickst, öffnet sich die Seite des Fotos bei Unsplash. Die Bilddateien liegen auf dem Server dieser Website und werden wie alle anderen Dateien vom Hosting-Anbieter ausgeliefert (siehe „Hosting“); es werden dabei keine zusätzlichen Daten an Dritte übermittelt.',
         ),
       ],
       music: [
@@ -123,7 +123,7 @@ function paragraphs(lang: Lang): Record<string, InfoParagraph[]> {
       unsplash: [
         p(
           'Wallpapers',
-          'The desktop wallpapers are photos from Unsplash (Unsplash License) that I downloaded once. Visiting this site does not connect you to Unsplash; only when you click the photographer credit does the photo’s page on Unsplash open. The image files are stored in the storage of my Supabase project (Supabase Inc., San Francisco, USA; data centre in the EU, Ireland) and delivered from there or via its content delivery network. To deliver them, Supabase necessarily processes your IP address and usual connection data (e.g. browser type, time); a transfer to the USA cannot be ruled out. Legal basis: Art. 6 (1) (f) GDPR (legitimate interest in an appealing and reliable design). Supabase privacy policy: https://supabase.com/privacy',
+          'The desktop wallpapers are photos from Unsplash (Unsplash License) that I downloaded once. Visiting this site does not connect you to Unsplash; only when you click the photographer credit does the photo’s page on Unsplash open. The image files are stored on this website’s server and delivered by the host like every other file (see “Hosting”); no additional data is passed on to third parties.',
         ),
       ],
       music: [

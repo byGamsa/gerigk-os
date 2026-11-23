@@ -1,0 +1,27 @@
+# larsgerigk.de – static single-page app, HTTPS certificates are fetched automatically
+
+larsgerigk.de {
+	root * /srv
+	encode zstd gzip
+
+	# Hashed build assets never change
+	@immutable path /assets/*
+	header @immutable Cache-Control "public, max-age=31536000, immutable"
+	# Everything else (index.html, public files) is revalidated
+	@html not path /assets/*
+	header @html Cache-Control "public, max-age=0, must-revalidate"
+
+	header {
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		Permissions-Policy "camera=(), microphone=(), geolocation=()"
+		-Server
+	}
+
+	try_files {path} /index.html
+	file_server
+}
+
+www.larsgerigk.de {
+	redir https://larsgerigk.de{uri} permanent
+}

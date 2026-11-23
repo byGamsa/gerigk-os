@@ -5,3 +5,5 @@ dist
 .env.local
 CLAUDE.md
 public/wallpapers
+.env
+/wallpapers

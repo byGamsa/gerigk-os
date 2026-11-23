@@ -1,0 +1,24 @@
+# Deploy: `git pull && docker compose up -d --build` (values for the build args in `.env` next to this file)
+services:
+  web:
+    build:
+      context: .
+      args:
+        VITE_SUPABASE_URL: ${VITE_SUPABASE_URL}
+        VITE_SUPABASE_PUBLISHABLE_KEY: ${VITE_SUPABASE_PUBLISHABLE_KEY}
+    container_name: gerigk-os
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '443:443'
+      - '443:443/udp'
+    volumes:
+      # Wallpapers are not in git (38 MB): copied once to the server, see README
+      - ./wallpapers:/srv/wallpapers:ro
+      # Certificates survive rebuilds
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  caddy_data:
+  caddy_config:

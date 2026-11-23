@@ -82,18 +82,32 @@ Bei jedem Laden erscheint ein zufälliges Foto aus einer kuratierten Auswahl (ni
 hintereinander), in passender Auflösung (1280–3840 px, AVIF mit WebP-Fallback), unten links mit
 Fotografen-Nennung und Link zum Foto. Es gibt **keine Unsplash-API und keinen Key im Browser**: Die
 Fotos werden einmalig über den normalen Unsplash-Download geladen (Unsplash-Lizenz erlaubt Selbst-Hosting)
-und aus dem öffentlichen Supabase-Storage-Bucket `wallpapers` ausgeliefert.
+und vom eigenen Server unter `/wallpapers` ausgeliefert.
 
-1. Bucket anlegen: `supabase/migrations/20261123120000_wallpapers_bucket.sql` im Supabase SQL-Editor ausführen
-   (oder `supabase db push`)
-2. `SUPABASE_SECRET_KEY=…` in `.env.local` eintragen (Settings → API Keys → Secret keys)
-3. Fotos in `src/config/wallpapers.manifest.json` pflegen (`id` aus `unsplash.com/photos/<slug>-<id>`, Name, Username)
-4. `npm run wallpapers:sync` – lädt neue Fotos herunter, konvertiert, lädt hoch und schreibt
-   `src/data/wallpapers.generated.json` (committen). `--refresh` kodiert alle neu, `--local` schreibt zum
-   Testen nach `public/wallpapers/` statt Supabase.
+1. Fotos in `src/config/wallpapers.manifest.json` pflegen (`id` aus `unsplash.com/photos/<slug>-<id>`, Name, Username)
+2. `npm run wallpapers:sync -- --local` – lädt neue Fotos herunter, konvertiert sie nach `public/wallpapers/`
+   und schreibt `src/data/wallpapers.generated.json` (committen). `--refresh` kodiert alle neu.
+3. `public/wallpapers/` ist nicht im Repo (Größe) und wird zum Server kopiert (siehe Deployment).
 
-Ohne synchronisierte Fotos, ohne Netz oder bei einem Fehler ist der Hintergrund neutral grau.
+Alternativ lädt `npm run wallpapers:sync` ohne `--local` in einen Supabase-Storage-Bucket
+(`supabase/migrations/20261123120000_wallpapers_bucket.sql`, `SUPABASE_SECRET_KEY` in `.env.local`).
+
+Ohne Fotos, ohne Netz oder bei einem Fehler ist der Hintergrund neutral grau.
 Rechtsklick auf den Desktop → „Neuer Hintergrund“.
+
+## Deployment (larsgerigk.de)
+
+Docker-Image: Node baut die Seite, Caddy liefert sie aus und holt automatisch HTTPS-Zertifikate
+(`Dockerfile`, `deploy/Caddyfile`, `docker-compose.yml`). Auf dem Server liegt das Repo in `~/gerigk-os` mit
+einer `.env` (`VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`) und dem Ordner `wallpapers/`.
+
+```bash
+# Hintergrundbilder (nur bei Änderungen) vom Entwicklungsrechner hochladen
+scp -r public/wallpapers/. gamsa@85.215.71.124:~/gerigk-os/wallpapers/
+
+# Auf dem Server: neuen Stand bauen und starten
+cd ~/gerigk-os && git pull && docker compose up -d --build
+```
 
 ## Anpassen
 
